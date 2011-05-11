@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="robots" content="noindex,noarchive">
+	<meta name="generator" content="Nette Framework">
+
+	<title>Fatal Error</title><!-- Class 'JsonResponse' not found -->
+
+	<style type="text/css" class="nette">html{overflow-y:scroll}body{margin:0 0 2em;padding:0}#netteBluescreen{font:9pt/1.5 Verdana,sans-serif;background:white;color:#333;position:absolute;left:0;top:0;width:100%;z-index:23178;text-align:left}#netteBluescreen *{font:inherit;color:inherit;background:transparent;border:none;margin:0;padding:0;text-align:inherit;text-indent:0}#netteBluescreen b{font-weight:bold}#netteBluescreen i{font-style:italic}#netteBluescreen a{text-decoration:none;color:#328ADC;padding:2px 4px;margin:-2px -4px}#netteBluescreen a:hover,#netteBluescreen a:active,#netteBluescreen a:focus{color:#085AA3}#netteBluescreen a abbr{font-family:sans-serif;color:#BBB}#netteBluescreenIcon{position:absolute;right:.5em;top:.5em;z-index:23179;text-decoration:none;background:#CD1818;padding:3px}#netteBluescreenError{background:#CD1818;color:white;font:13pt/1.5 Verdana,sans-serif!important;display:block}#netteBluescreenError #netteBsSearch{color:#CD1818;font-size:.7em}#netteBluescreenError:hover #netteBsSearch{color:#ED8383}#netteBluescreen h1{font-size:18pt;font-weight:normal;text-shadow:1px 1px 0 rgba(0,0,0,.4);margin:.7em 0}#netteBluescreen h2{font:14pt/1.5 sans-serif!important;color:#888;margin:.6em 0}#netteBluescreen h3{font:bold 10pt/1.5 Verdana,sans-serif!important;margin:1em 0;padding:0}#netteBluescreen p,#netteBluescreen pre{margin:.8em 0}#netteBluescreen pre,#netteBluescreen code,#netteBluescreen table{font:9pt/1.5 Consolas,monospace!important}#netteBluescreen pre,#netteBluescreen table{background:#FDF5CE;padding:.4em .7em;border:1px dotted silver;overflow:auto}#netteBluescreen table pre{padding:0;margin:0;border:none}#netteBluescreen pre.nette-dump span{color:#C22}#netteBluescreen pre.nette-dump a{color:#333}#netteBluescreen div.panel{padding:1px 25px}#netteBluescreen div.inner{background:#F4F3F1;padding:.1em 1em 1em;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px}#netteBluescreen table{border-collapse:collapse;width:100%}#netteBluescreen .outer{overflow:auto}#netteBluescreen td,#netteBluescreen th{vertical-align:top;text-align:left;padding:2px 6px;border:1px solid #e6dfbf}#netteBluescreen th{width:10%;font-weight:bold}#netteBluescreen tr:nth-child(2n),#netteBluescreen tr:nth-child(2n) pre{background-color:#F7F0CB}#netteBluescreen ol{margin:1em 0;padding-left:2.5em}#netteBluescreen ul{font:7pt/1.5 Verdana,sans-serif!important;padding:2em 4em;margin:1em 0 0;color:#777;background:#F6F5F3 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFEAAAAjCAMAAADbuxbOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBQTFRF/fz24d7Y7Onj5uLd9vPu3drUzMvG09LN39zW8e7o2NbQ3NnT29jS0M7J1tXQAAAApvmsFgAAABB0Uk5T////////////////////AOAjXRkAAAKlSURBVHja7FbbsqQgDAwENEgc//9vN+SCWDtbtXPmZR/Wc6o02mlC58LA9ckFAOszvMV8xNgyUjyXhojfMVKvRL0ZHavxXYy5JrmchMdzou8YlTClxajtK8ZGGpWRoBr1+gFjKfHkJPbizabLgzE3pH7Iu4K980xgFvlrVzMZoVBWhtvouCDdcTDmTgMCJdVxJ9MKO6XxnliM7hxi5lbj2ZVM4l8DqYyKoNLYcfqBB1/LpHYxEcfVG6ZpMDgyFUVWY/Q1sSYPpIdSAKWqLWL0XqWiMWc4hpH0OQOMOAgdycY4N9Sb7wWANQs3rsDSdLAYiuxi5siVfOhBWIrtH0G3kNaF/8Q4kCPE1kMucG/ZMUBUCOgiKJkPuWWTLGVgLGpwns1DraUayCtoBqERyaYtVsm85NActRooezvSLO/sKZP/nq8n4+xcyjNsRu8zW6KWpdb7wjiQd4WrtFZYFiKHENSmWp6xshh96c2RQ+c7Lt+qbijyEjHWUJ/pZsy8MGIUuzNiPySK2Gqoh6ZTRF6ko6q3nVTkaA//itIrDpW6l3SLo8juOmqMXkYknu5FdQxWbhCfKHEGDhxxyTVaXJF3ZjSl3jMksjSOOKmne9pI+mcG5QvaUJhI9HpkmRo2NpCrDJvsktRhRE2MM6F2n7dt4OaMUq8bCctk0+PoMRzL+1l5PZ2eyM/Owr86gf8z/tOM53lom5+nVcFuB+eJVzlXwAYy9TZ9s537tfqcsJWbEU4nBngZo6FfO9T9CdhfBtmk2dLiAy8uS4zwOpMx2HqYbTC+amNeAYTpsP4SIgvWfUBWXxn3CMHW3ffd7k3+YIkx7w0t/CVGvcPejoeOlzOWzeGbawOHqXQGUTMZRcfj4XPCgW9y/fuvVn8zD9P1QHzv80uAAQA0i3Jer7Jr7gAAAABJRU5ErkJggg==') 99% 10px no-repeat;border-top:1px solid #DDD}#netteBluescreen .highlight{background:#CD1818;color:white;font-weight:bold;font-style:normal;display:block;padding:0 .4em;margin:0 -.4em}#netteBluescreen .line{color:#9F9C7F;font-weight:normal;font-style:normal}#netteBluescreen a[href^=editor\:]{color:inherit;border-bottom:1px dotted #C1D2E1}</style>
+</head>
+
+
+
+<body>
+<div id="netteBluescreen">
+	<a id="netteBluescreenIcon" href="#" rel="next"><abbr>&#x25bc;</abbr></a
+
+	><div>
+		<div id="netteBluescreenError" class="panel">
+			<h1>Fatal Error</h1>
+
+			<p>Class 'JsonResponse' not found <a href="http://www.google.cz/search?sourceid=nette&amp;q=Fatal+Error+Class++not+found" id="netteBsSearch">search&#x25ba;</a></p>
+		</div>
+
+
+
+				
+			
+
+
+			
+
+
+												<div class="panel">
+			<h2><a href="#" rel="netteBsPnl1">Source file <abbr>&#x25bc;</abbr></a></h2>
+
+			<div id="netteBsPnl1" class="inner">
+				<p><b>File:</b> <a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Fapp%2Fpresenters%2FBasePresenter.php&amp;line=79">				/home/kubiq/php/lpstore/app/presenters/BasePresenter.php</a> &nbsp; <b>Line:</b> 79</p>
+				<pre><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>72:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>73:</span>    
+<span class='line'>74:</span>    &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000">actionSuggestDibi</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$typedText&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #080">''</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>75:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">matches&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'dibiSuggester'</span><span style="color: #D24; font-weight: bold">]-&gt;</span><span style="color: #000">getSuggestions</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$typedText</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>76:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>77:</span>    
+<span class='line'>78:</span>    &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000">renderSuggestDibi</span><span style="color: #D24; font-weight: bold">()&nbsp;{
+<span class='highlight'>79:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;sendResponse(new&nbsp;JsonResponse($this-&gt;matches));
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>80:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>81:</span>    &nbsp;&nbsp;&nbsp;&nbsp;
+<span class='line'>82:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">/**
+<span class='line'>83:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Search&nbsp;form&nbsp;component&nbsp;factory.
+<span class='line'>84:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;Nette\Application\AppForm
+<span class='line'>85:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+<span class='line'>86:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">public&nbsp;function&nbsp;</span><span style="color: #000">createComponentSearchForm</span><span style="color: #D24; font-weight: bold">()&nbsp;{
+</span></span></code></pre>
+			</div></div>
+			
+
+
+						
+
+
+			
+				
+
+
+				<div class="panel">
+		<h2><a href="#" rel="netteBsPnl2">Nette Application <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl2" class="nette-collapsed inner">
+			<h3>Requests</h3>
+			<pre class="nette-dump"><a href='#' rel='next'><span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>[
+   <a href='#' rel='next'>0 => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "GET" (3)
+      <a href='#' rel='next'>"flags" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+         "secured" => FALSE
+      }</code>
+      "name" <span>private</span> => "Item" (4)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(3) <abbr>&#x25bc;</abbr> </a><code>{
+         "action" => "suggestDibi" (11)
+         "q" => NULL
+         "typedText" => "med" (3)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      "frozen" <span>private</span> => TRUE
+   }</code>
+]</code>
+</pre>
+			<h3>Presenter</h3>
+			<pre class="nette-dump"><a href='#' rel='next'><span>ItemPresenter</span>(31) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+   <a href='#' rel='next'>"itemModel" <span>protected</span> => <span>ItemModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "transactionModel" <span>protected</span> => <span>TransactionModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "reqModel" <span>protected</span> => <span>RequirementModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "eveCentralModel" <span>protected</span> => <span>EveCentralModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "matches" <span>protected</span> => <span>array</span>(726) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">[
+      0 => "Medium Pulse Laser I" (20)
+      1 => "Medium Beam Laser I" (19)
+      2 => "Focused Medium Pulse Laser I" (28)
+      3 => "Focused Medium Beam Laser I" (27)
+      4 => "Medium Capacitor Booster I" (26)
+      5 => "Medium Pulse Laser I Blueprint" (30)
+      6 => "Medium Beam Laser I Blueprint" (29)
+      7 => "Focused Medium Pulse Laser I Blueprint" (38)
+      8 => "Focused Medium Beam Laser I Blueprint" (37)
+      9 => "Medium Capacitor Booster I Blueprint" (36)
+      10 => "Medium Capacitor Battery I" (26)
+      11 => "Medium Capacitor Battery I Blueprint" (36)
+      12 => "Medium Capacitor Booster II" (27)
+      13 => "Medium Capacitor Booster II Blueprint" (37)
+      14 => "Large Crates Of Galeptos Medicine" (33)
+      15 => "Advanced Medium Ship Assembly Array Blueprint" (45)
+      16 => "Medium Intensive Refining Array Blueprint" (41)
+      17 => "Medium Ship Assembly Array Blueprint" (36)
+      18 => "Amarr Control Tower Medium Blueprint" (36)
+      19 => "Caldari Control Tower Medium Blueprint" (38)
+      20 => "Gallente Control Tower Medium Blueprint" (39)
+      21 => "Minmatar Control Tower Medium Blueprint" (39)
+      22 => "Medium Biochemical Reactor Array Blueprint" (42)
+      23 => "Medium Blaster Battery Blueprint" (32)
+      24 => "Medium Railgun Battery Blueprint" (32)
+      25 => "Medium Artillery Battery Blueprint" (34)
+      26 => "Medium AutoCannon Battery Blueprint" (35)
+      27 => "Medium Pulse Laser Battery Blueprint" (36)
+      28 => "Medium Beam Laser Battery Blueprint" (35)
+      29 => "Focused Medium Beam Laser II" (28)
+      30 => "Focused Medium Beam Laser II Blueprint" (38)
+      31 => "Medium Beam Laser II" (20)
+      32 => "Medium Beam Laser II Blueprint" (30)
+      33 => "Medium Pulse Laser II" (21)
+      34 => "Medium Pulse Laser II Blueprint" (31)
+      35 => "Jammed Prototype Weapon Platform" (32)
+      36 => "Medium Standard Container" (25)
+      37 => "Medium Hybrid Turret" (20)
+      38 => "Medium Projectile Turret" (24)
+      39 => "Medium Energy Turret" (20)
+      40 => "Medium Secure Container" (23)
+      41 => "Medium Capacitor Battery II" (27)
+      42 => "Medium Capacitor Battery II Blueprint" (37)
+      43 => "Focused Medium Pulse Laser II" (29)
+      44 => "Focused Medium Pulse Laser II Blueprint" (39)
+      45 => "Medium Armor Repairer I" (23)
+      46 => "Medium Armor Repairer I Blueprint" (33)
+      47 => "Medium Armor Repairer II" (24)
+      48 => "Medium Armor Repairer II Blueprint" (34)
+      49 => "Medium Shield Transporter I" (27)
+      50 => "Medium Shield Transporter I Blueprint" (37)
+      51 => "Medium Shield Transporter II" (28)
+      52 => "Medium Shield Transporter II Blueprint" (38)
+      53 => "Medium Hull Repairer I" (22)
+      54 => "Medium Hull Repairer I Blueprint" (32)
+      55 => "Medium Hull Repairer II" (23)
+      56 => "Medium Hull Repairer II Blueprint" (33)
+      57 => "Medium Shield Extender I" (24)
+      58 => "Medium Shield Extender I Blueprint" (34)
+      59 => "Medium Shield Extender II" (25)
+      60 => "Medium Shield Extender II Blueprint" (35)
+      61 => "Medium Proton Smartbomb I" (25)
+      62 => "Medium Proton Smartbomb I Blueprint" (35)
+      63 => "Medium Proton Smartbomb II" (26)
+      64 => "Medium Proton Smartbomb II Blueprint" (36)
+      65 => "Medium Graviton Smartbomb I" (27)
+      66 => "Medium Graviton Smartbomb I Blueprint" (37)
+      67 => "Medium Graviton Smartbomb II" (28)
+      68 => "Medium Graviton Smartbomb II Blueprint" (38)
+      69 => "Medium Plasma Smartbomb I" (25)
+      70 => "Medium Plasma Smartbomb I Blueprint" (35)
+      71 => "Medium Plasma Smartbomb II" (26)
+      72 => "Medium Plasma Smartbomb II Blueprint" (36)
+      73 => "Medium EMP Smartbomb I" (22)
+      74 => "Medium EMP Smartbomb I Blueprint" (32)
+      75 => "Medium EMP Smartbomb II" (23)
+      76 => "Medium EMP Smartbomb II Blueprint" (33)
+      77 => "Medium I-a Polarized Armor Regenerator" (38)
+      78 => "Medium Inefficient Armor Repair Unit" (36)
+      79 => "Medium 'Accommodation' Vestment Reconstructer I" (47)
+      80 => "Medium Automated I Carapace Restoration" (39)
+      81 => "Medium Nano Armor Repair Unit I" (31)
+      82 => "Medium F-RX Prototype I Capacitor Boost" (39)
+      83 => "Medium Brief Capacitor Overcharge I" (35)
+      84 => "Medium Electrochemical Capacitor Booster I" (42)
+      85 => "Medium Tapered Capacitor Infusion I" (35)
+      86 => "Medium Inefficient Hull Repair Unit" (35)
+      87 => "Medium 'Hope' Hull Reconstructor I" (34)
+      88 => "Medium Automated Structural Restoration" (39)
+      89 => "Medium I-b Polarized Structural Regenerator" (43)
+      90 => "Medium Ld-Acid Capacitor Battery I" (34)
+      91 => "Medium Peroxide I Capacitor Power Cell" (38)
+      92 => "Medium Ohm Capacitor Reserve I" (30)
+      93 => "Medium F-4a Ld-Sulfate I Capacitor Charge Unit" (46)
+      94 => "Medium Modal Pulse Laser I" (26)
+      95 => "Medium Afocal Pulse Maser I" (27)
+      96 => "Medium Modulated Pulse Energy Beam I" (36)
+      97 => "Medium Anode Pulse Particle Stream I" (36)
+      98 => "Medium Modal Laser I" (20)
+      99 => "Medium Afocal Maser I" (21)
+      100 => "Medium Modulated Energy Beam I" (30)
+      101 => "Medium Anode Particle Stream I" (30)
+      102 => "Focused Modal Medium Laser I" (28)
+      103 => "Focused Afocal Medium Maser I" (29)
+      104 => "Focused Modulated Medium Energy Beam I" (38)
+      105 => "Focused Anode Medium Particle Stream I" (38)
+      106 => "Medium Subordinate Screen Stabilizer I" (38)
+      107 => "Medium Azeotropic Ward Salubrity I" (34)
+      108 => "Medium Supplemental Barrier Emitter I" (37)
+      109 => "Medium F-S9 Regolith Shield Induction" (37)
+      110 => "Medium Murky Shield Screen Transmitter I" (40)
+      111 => "Medium 'Atonement' I Ward Projector" (35)
+      112 => "Medium Asymmetric Barrier Transpositioner I" (43)
+      113 => "Medium S95a Partial Shield Transporter" (38)
+      114 => "220mm Medium 'Scout' Autocannon I" (33)
+      115 => "220mm Medium Carbine Repeating Cannon I" (39)
+      116 => "220mm Medium Gallium I Machine Gun" (34)
+      117 => "220mm Medium Prototype I Automatic Cannon" (41)
+      118 => "425mm Medium 'Scout' Autocannon I" (33)
+      119 => "425mm Medium Carbine Repeating Cannon I" (39)
+      120 => "425mm Medium Gallium I Machine Gun" (34)
+      121 => "425mm Medium Prototype I Automatic Cannon" (41)
+      122 => "650mm Medium 'Scout' Artillery I" (32)
+      123 => "650mm Medium Carbine Howitzer I" (31)
+      124 => "650mm Medium Gallium I Cannon" (29)
+      125 => "650mm Medium Prototype I Siege Cannon" (37)
+      126 => "Medium Rudimentary Concussion Bomb I" (36)
+      127 => "Medium 'Vehemence' I Shockwave Charge" (37)
+      128 => "Medium 'Notos' Explosive Charge I" (33)
+      129 => "Medium YF-12a Smartbomb" (23)
+      130 => "Medium Shield Booster I" (23)
+      131 => "Medium Shield Booster I Blueprint" (33)
+      132 => "Medium Shield Booster II" (24)
+      133 => "Medium Shield Booster II Blueprint" (34)
+      134 => "Medium Neutron Saturation Injector I" (36)
+      135 => "Medium Clarity Ward Booster I" (29)
+      136 => "Medium Converse I Deflection Catalyzer" (38)
+      137 => "Medium C5-L Emergency Shield Overload I" (39)
+      138 => "Medium Remote Armor Repair System I" (35)
+      139 => "Medium Remote Armor Repair System I Blueprint" (45)
+      140 => "Aidonis Honorary Fellow Medallion" (33)
+      141 => "Mobile Medium Warp Disruptor I" (30)
+      142 => "Medium Artillery Specialization" (31)
+      143 => "Medium Beam Laser Specialization" (32)
+      144 => "Medium Railgun Specialization" (29)
+      145 => "Medium Autocannon Specialization" (32)
+      146 => "Medium Blaster Specialization" (29)
+      147 => "Medium Pulse Laser Specialization" (33)
+      148 => "Medium Energy Transfer Array I" (30)
+      149 => "Medium Energy Transfer Array I Blueprint" (40)
+      150 => "Medium Energy Transfer Array II" (31)
+      151 => "Medium Energy Transfer Array II Blueprint" (41)
+      152 => "Medium Intensive Refining Array" (31)
+      153 => "Medium Nosferatu I" (18)
+      154 => "Medium Nosferatu I Blueprint" (28)
+      155 => "Medium Nosferatu II" (19)
+      156 => "Medium Nosferatu II Blueprint" (29)
+      157 => "Medium Energy Neutralizer I" (27)
+      158 => "Medium Energy Neutralizer I Blueprint" (37)
+      159 => "Medium Energy Neutralizer II" (28)
+      160 => "Medium Energy Neutralizer II Blueprint" (38)
+      161 => "Mobile Medium Warp Disruptor I Blueprint" (40)
+      162 => "Dark Blood Focused Medium Beam Laser" (36)
+      163 => "Dark Blood Focused Medium Pulse Laser" (37)
+      164 => "Dark Blood Medium Beam Laser" (28)
+      165 => "Dark Blood Medium Pulse Laser" (29)
+      166 => "True Sansha Focused Medium Beam Laser" (37)
+      167 => "True Sansha Focused Medium Pulse Laser" (38)
+      168 => "True Sansha Medium Beam Laser" (29)
+      169 => "True Sansha Medium Pulse Laser" (30)
+      170 => "Dread Guristas Medium Shield Booster" (36)
+      171 => "Domination Medium Shield Booster" (32)
+      172 => "Domination Medium Armor Repairer" (32)
+      173 => "True Sansha Medium Armor Repairer" (33)
+      174 => "Dark Blood Medium Armor Repairer" (32)
+      175 => "Shadow Serpentis Medium Armor Repairer" (38)
+      176 => "Dark Blood Medium Nosferatu" (27)
+      177 => "True Sansha Medium Nosferatu" (28)
+      178 => "Dark Blood Medium Energy Neutralizer" (36)
+      179 => "True Sansha Medium Energy Neutralizer" (37)
+      180 => "Dark Blood Medium Capacitor Booster" (35)
+      181 => "True Sansha Medium Capacitor Booster" (36)
+      182 => "Dark Blood Medium EMP Smartbomb" (31)
+      183 => "True Sansha Medium EMP Smartbomb" (32)
+      184 => "Dread Guristas Medium Graviton Smartbomb" (40)
+      185 => "Shadow Serpentis Medium Plasma Smartbomb" (40)
+      186 => "Domination Medium Proton Smartbomb" (34)
+      187 => "Galeptos Medicine" (17)
+      188 => "Ammatar Navy Medium Armor Repairer" (34)
+      189 => "Federation Navy Medium Armor Repairer" (37)
+      190 => "Ammatar Navy Medium Capacitor Booster" (37)
+      191 => "Ammatar Navy Medium Capacitor Booster Blueprint" (47)
+      192 => "Imperial Navy Medium Capacitor Booster" (38)
+      193 => "Imperial Navy Medium Capacitor Booster Blueprint" (48)
+      194 => "Ammatar Navy Medium Energy Neutralizer" (38)
+      195 => "Ammatar Navy Medium Energy Neutralizer Blueprint" (48)
+      196 => "Imperial Navy Medium Energy Neutralizer" (39)
+      197 => "Imperial Navy Medium Energy Neutralizer Blueprint" (49)
+      198 => "Ammatar Navy Medium Pulse Laser" (31)
+      199 => "Ammatar Navy Medium Beam Laser" (30)
+      200 => "Ammatar Navy Focused Medium Pulse Laser" (39)
+      201 => "Ammatar Navy Focused Medium Beam Laser" (38)
+      202 => "Imperial Navy Medium Pulse Laser" (32)
+      203 => "Imperial Navy Medium Beam Laser" (31)
+      204 => "Imperial Navy Focused Medium Pulse Laser" (40)
+      205 => "Imperial Navy Focused Medium Beam Laser" (39)
+      206 => "Ammatar Navy Medium Nosferatu" (29)
+      207 => "Ammatar Navy Medium Nosferatu Blueprint" (39)
+      208 => "Imperial Navy Medium Nosferatu" (30)
+      209 => "Imperial Navy Medium Nosferatu Blueprint" (40)
+      210 => "Caldari Navy Medium Shield Booster" (34)
+      211 => "Republic Fleet Medium Shield Booster" (36)
+      212 => "Caldari Navy Medium Graviton Smartbomb" (38)
+      213 => "Caldari Navy Medium Graviton Smartbomb Blueprint" (48)
+      214 => "Republic Fleet Medium Proton Smartbomb" (38)
+      215 => "Republic Fleet Medium Proton Smartbomb Blueprint" (48)
+      216 => "Ammatar Navy Medium EMP Smartbomb" (33)
+      217 => "Ammatar Navy Medium EMP Smartbomb Blueprint" (43)
+      218 => "Federation Navy Medium Plasma Smartbomb" (39)
+      219 => "Federation Navy Medium Plasma Smartbomb Blueprint" (49)
+      220 => "Imperial Navy Medium EMP Smartbomb" (34)
+      221 => "Imperial Navy Medium EMP Smartbomb Blueprint" (44)
+      222 => "Medium Sized Sealed Cargo Containers" (36)
+      223 => "Medium I-ax Regenerative Projector" (34)
+      224 => "Medium Coaxial Regenerative Projector" (37)
+      225 => "Medium 'Arup' I Remote Bulwark Reconstruction" (45)
+      226 => "Medium 'Solace' I Remote Bulwark Reconstruction" (47)
+      227 => "Medium Rudimentary Energy Destabilizer I" (40)
+      228 => "Medium 'Gremlin' Power Core Disruptor I" (39)
+      229 => "Medium Unstable Power Fluctuator I" (34)
+      230 => "Medium Asymmetric Energy Succor I" (33)
+      231 => "Medium Murky Energy Transmitter I" (33)
+      232 => "Medium Partial E95b Power Conduit" (33)
+      233 => "Medium 'Regard' I Power Projector" (33)
+      234 => "Medium 'Ghoul' Energy Siphon I" (30)
+      235 => "Medium 'Knave' I Energy Drain" (29)
+      236 => "Medium Diminishing Power System Drain I" (39)
+      237 => "Medium Artillery Battery" (24)
+      238 => "Medium Railgun Battery" (22)
+      239 => "Novice Medal" (12)
+      240 => "Intermediate Medal" (18)
+      241 => "Legends Medal" (13)
+      242 => "Medium Beam Laser Battery" (25)
+      243 => "Medium Audit Log Secure Container" (33)
+      244 => "Medium Blaster Battery" (22)
+      245 => "Medium Pulse Laser Battery" (26)
+      246 => "Republic Fleet Medium Armor Repairer" (36)
+      247 => "Imperial Navy Medium Armor Repairer" (35)
+      248 => "Medium AutoCannon Battery" (25)
+      249 => "Corelum C-Type Medium Remote Armor Repair System" (48)
+      250 => "Corelum B-Type Medium Remote Armor Repair System" (48)
+      251 => "Corelum A-Type Medium Remote Armor Repair System" (48)
+      252 => "Corpum C-Type Medium Armor Repairer" (35)
+      253 => "Corpum B-Type Medium Armor Repairer" (35)
+      254 => "Corpum A-Type Medium Armor Repairer" (35)
+      255 => "Centum C-Type Medium Armor Repairer" (35)
+      256 => "Centum B-Type Medium Armor Repairer" (35)
+      257 => "Centum A-Type Medium Armor Repairer" (35)
+      258 => "Corelum C-Type Medium Armor Repairer" (36)
+      259 => "Corelum B-Type Medium Armor Repairer" (36)
+      260 => "Corelum A-Type Medium Armor Repairer" (36)
+      261 => "Centum C-Type Medium Remote Armor Repair System" (47)
+      262 => "Centum B-Type Medium Remote Armor Repair System" (47)
+      263 => "Centum A-Type Medium Remote Armor Repair System" (47)
+      264 => "Corpum C-Type Medium Energy Transfer Array" (42)
+      265 => "Corpum B-Type Medium Energy Transfer Array" (42)
+      266 => "Corpum A-Type Medium Energy Transfer Array" (42)
+      267 => "Centum C-Type Medium Energy Transfer Array" (42)
+      268 => "Centum B-Type Medium Energy Transfer Array" (42)
+      269 => "Centum A-Type Medium Energy Transfer Array" (42)
+      270 => "Corpum C-Type Medium Nosferatu" (30)
+      271 => "Corpum B-Type Medium Nosferatu" (30)
+      272 => "Corpum A-Type Medium Nosferatu" (30)
+      273 => "Gistum C-Type Medium Shield Transporter" (39)
+      274 => "Gistum B-Type Medium Shield Transporter" (39)
+      275 => "Gistum A-Type Medium Shield Transporter" (39)
+      276 => "Pithum C-Type Medium Shield Transporter" (39)
+      277 => "Pithum B-Type Medium Shield Transporter" (39)
+      278 => "Pithum A-Type Medium Shield Transporter" (39)
+      279 => "Gistum C-Type Medium Shield Booster" (35)
+      280 => "Gistum B-Type Medium Shield Booster" (35)
+      281 => "Gistum A-Type Medium Shield Booster" (35)
+      282 => "Pithum C-Type Medium Shield Booster" (35)
+      283 => "Pithum B-Type Medium Shield Booster" (35)
+      284 => "Pithum A-Type Medium Shield Booster" (35)
+      285 => "Amarr Control Tower Medium" (26)
+      286 => "Caldari Control Tower Medium" (28)
+      287 => "Gallente Control Tower Medium" (29)
+      288 => "Minmatar Control Tower Medium" (29)
+      289 => "Medium 'Gattotte' Capacitor Booster" (35)
+      290 => "Medium 'Gattotte' Capacitor Booster Blueprint" (45)
+      291 => "Medium 'Lone Ranger' Shield Booster" (35)
+      292 => "Medium 'Lone Ranger' Shield Booster Blueprint" (45)
+      293 => "Medium 'Canyon' Shield Extender" (31)
+      294 => "Medium 'Integrative' Hull Repair Unit" (37)
+      295 => "Medium 'Integrative' Hull Repair Unit Blueprint" (47)
+      296 => "Medium Degenerative Concussion Bomb I" (37)
+      297 => "Medium Degenerative Concussion Bomb I Blueprint" (47)
+      298 => "425mm Medium 'Jolt' Autocannon I" (32)
+      299 => "425mm Medium 'Jolt' Autocannon I Blueprint" (42)
+      300 => "650mm Medium 'Jolt' Artillery I" (31)
+      301 => "650mm Medium 'Jolt' Artillery I Blueprint" (41)
+      302 => "Guristas Medium Weapon Console" (30)
+      303 => "Station Medical Center" (22)
+      304 => "Station Medical Center Blueprint" (32)
+      305 => "Ancient Vherokior Medallion" (27)
+      306 => "Medium Biochemical Reactor Array" (32)
+      307 => "'Meditation' Medium Armor Repairer I" (36)
+      308 => "'Meditation' Medium Armor Repairer I Blueprint" (46)
+      309 => "'Love' Medium Remote Armor Repair System I" (42)
+      310 => "'Love' Medium Remote Armor Repair System I Blueprint" (52)
+      311 => "Medium Armor Maintenance Bot I" (30)
+      312 => "Medium Armor Maintenance Bot I Blueprint" (40)
+      313 => "Medium Shield Maintenance Bot I" (31)
+      314 => "Medium Shield Maintenance Bot I Blueprint" (41)
+      315 => "'Greaves' Medium Armor Repairer I" (33)
+      316 => "'Greaves' Medium Armor Repairer I Blueprint" (43)
+      317 => "'Censer' Medium Capacitor Battery I" (35)
+      318 => "'Censer' Medium Capacitor Battery I Blueprint" (45)
+      319 => "'Harness' Medium Capacitor Booster I" (36)
+      320 => "'Harness' Medium Capacitor Booster I Blueprint" (46)
+      321 => "'Ditch' Medium Energy Neutralizer I" (35)
+      322 => "'Ditch' Medium Energy Neutralizer I Blueprint" (45)
+      323 => "'Strigoi' Medium Nosferatu I" (28)
+      324 => "'Strigoi' Medium Nosferatu I Blueprint" (38)
+      325 => "'Longbow' Medium Pulse Laser I" (30)
+      326 => "'Longbow' Medium Pulse Laser I Blueprint" (40)
+      327 => "'Gauntlet' Medium Beam Laser I" (30)
+      328 => "'Gauntlet' Medium Beam Laser I Blueprint" (40)
+      329 => "'Crossbow' Focused Medium Beam Laser I" (38)
+      330 => "'Crossbow' Focused Medium Beam Laser I Blueprint" (48)
+      331 => "'Knight' Medium Energy Transfer Array I" (39)
+      332 => "'Knight' Medium Energy Transfer Array I Blueprint" (49)
+      333 => "'Lance' Medium EMP Smartbomb I" (30)
+      334 => "'Lance' Medium EMP Smartbomb I Blueprint" (40)
+      335 => "Blood Raider Commander's Medalion" (33)
+      336 => "Inter-Galactic Media Report - The Audesder Incident (1 of 3)" (60)
+      337 => "Inter-Galactic Media Report - The Audesder Incident (2 of 3)" (60)
+      338 => "Inter-Galactic Media Report - The Audesder Incident (3 of 3)" (60)
+      339 => "Corpum Commander Medallion" (26)
+      340 => "Lord Arachnan's Medal" (21)
+      341 => "Medium Ship Assembly Array" (26)
+      342 => "Advanced Medium Ship Assembly Array" (35)
+      343 => "Mobile Medium Warp Disruptor II" (31)
+      344 => "Mobile Medium Warp Disruptor II Blueprint" (41)
+      345 => "Medium Remote Armor Repair System II" (36)
+      346 => "Medium Remote Armor Repair System II Blueprint" (46)
+      347 => "Blood Control Tower Medium" (26)
+      348 => "Dark Blood Control Tower Medium" (31)
+      349 => "Guristas Control Tower Medium" (29)
+      350 => "Dread Guristas Control Tower Medium" (35)
+      351 => "Serpentis Control Tower Medium" (30)
+      352 => "Shadow Control Tower Medium" (27)
+      353 => "Angel Control Tower Medium" (26)
+      354 => "Domination Control Tower Medium" (31)
+      355 => "Serpentis Medium Blaster Battery" (32)
+      356 => "Shadow Medium Blaster Battery" (29)
+      357 => "Serpentis Medium Railgun Battery" (32)
+      358 => "Shadow Medium Railgun Battery" (29)
+      359 => "Blood Medium Beam Laser Battery" (31)
+      360 => "Dark Blood Medium Beam Laser Battery" (36)
+      361 => "Blood Medium Pulse Laser Battery" (32)
+      362 => "Dark Blood Medium Pulse Laser Battery" (37)
+      363 => "Angel Medium Artillery Battery" (30)
+      364 => "Domination Medium Artillery Battery" (35)
+      365 => "Angel Medium AutoCannon Battery" (31)
+      366 => "Domination Medium AutoCannon Battery" (36)
+      367 => "Angel Control Tower Medium Blueprint" (36)
+      368 => "Blood Control Tower Medium Blueprint" (36)
+      369 => "Dark Blood Control Tower Medium Blueprint" (41)
+      370 => "Domination Control Tower Medium Blueprint" (41)
+      371 => "Guristas Control Tower Medium Blueprint" (39)
+      372 => "Dread Guristas Control Tower Medium Blueprint" (45)
+      373 => "Serpentis Control Tower Medium Blueprint" (40)
+      374 => "Shadow Control Tower Medium Blueprint" (37)
+      375 => "Sansha Medium Beam Laser Battery" (32)
+      376 => "Sansha Medium Pulse Laser Battery" (33)
+      377 => "True Sansha Medium Beam Laser Battery" (37)
+      378 => "True Sansha Medium Pulse Laser Battery" (38)
+      379 => "Sansha Control Tower Medium" (27)
+      380 => "Sansha Control Tower Medium Blueprint" (37)
+      381 => "True Sansha Control Tower Medium" (32)
+      382 => "True Sansha Control Tower Medium Blueprint" (42)
+      383 => "Sansha Medium Beam Laser Battery Blueprint" (42)
+      384 => "Sansha Medium Pulse Laser Battery Blueprint" (43)
+      385 => "True Sansha Medium Pulse Laser Battery Blueprint" (48)
+      386 => "True Sansha Medium Beam Laser Battery Blueprint" (47)
+      387 => "Blood Medium Beam Laser Battery Blueprint" (41)
+      388 => "Blood Medium Pulse Laser Battery Blueprint" (42)
+      389 => "Dark Blood Medium Beam Laser Battery Blueprint" (46)
+      390 => "Dark Blood Medium Pulse Laser Battery Blueprint" (47)
+      391 => "Angel Medium Autocannon Battery Blueprint" (41)
+      392 => "Angel Medium Artillery Battery Blueprint" (40)
+      393 => "Domination Medium Artillery Battery Blueprint" (45)
+      394 => "Domination Medium Autocannon Battery Blueprint" (46)
+      395 => "Serpentis Medium Railgun Battery Blueprint" (42)
+      396 => "Serpentis Medium Blaster Battery Blueprint" (42)
+      397 => "Shadow Medium Railgun Battery Blueprint" (39)
+      398 => "Shadow Medium Blaster Battery Blueprint" (39)
+      399 => "Medium Remote Hull Repair System I" (34)
+      400 => "Medium Remote Hull Repair System I Blueprint" (44)
+      401 => "Medium Armor Maintenance Bot II" (31)
+      402 => "Medium Armor Maintenance Bot II Blueprint" (41)
+      403 => "Medium Shield Maintenance Bot II" (32)
+      404 => "Medium Shield Maintenance Bot II Blueprint" (42)
+      405 => "Khanid Navy Medium Armor Repairer" (33)
+      406 => "Khanid Navy Medium EMP Smartbomb" (32)
+      407 => "Khanid Navy Medium EMP Smartbomb Blueprint" (42)
+      408 => "Thukker Medium Shield Extender" (30)
+      409 => "Syndicate Mobile Medium Warp Disruptor" (38)
+      410 => "AIMEDs" (6)
+      411 => "Prop Comedian" (13)
+      412 => "Medicinal Herbs" (15)
+      413 => "Medical Supplies" (16)
+      414 => "Medium Anti-EM Pump I" (21)
+      415 => "Medium Anti-EM Pump I Blueprint" (31)
+      416 => "Medium Anti-EM Pump II" (22)
+      417 => "Medium Anti-EM Pump II Blueprint" (32)
+      418 => "Medium Anti-Explosive Pump I" (28)
+      419 => "Medium Anti-Explosive Pump I Blueprint" (38)
+      420 => "Medium Anti-Explosive Pump II" (29)
+      421 => "Medium Anti-Explosive Pump II Blueprint" (39)
+      422 => "Medium Anti-Kinetic Pump I" (26)
+      423 => "Medium Anti-Kinetic Pump I Blueprint" (36)
+      424 => "Medium Anti-Kinetic Pump II" (27)
+      425 => "Medium Anti-Kinetic Pump II Blueprint" (37)
+      426 => "Medium Anti-Thermic Pump I" (26)
+      427 => "Medium Anti-Thermic Pump I Blueprint" (36)
+      428 => "Medium Anti-Thermic Pump II" (27)
+      429 => "Medium Anti-Thermic Pump II Blueprint" (37)
+      430 => "Medium Auxiliary Nano Pump I" (28)
+      431 => "Medium Auxiliary Nano Pump I Blueprint" (38)
+      432 => "Medium Auxiliary Nano Pump II" (29)
+      433 => "Medium Auxiliary Nano Pump II Blueprint" (39)
+      434 => "Medium Trimark Armor Pump I" (27)
+      435 => "Medium Trimark Armor Pump I Blueprint" (37)
+      436 => "Medium Trimark Armor Pump II" (28)
+      437 => "Medium Trimark Armor Pump II Blueprint" (38)
+      438 => "Medium Nanobot Accelerator I" (28)
+      439 => "Medium Nanobot Accelerator I Blueprint" (38)
+      440 => "Medium Nanobot Accelerator II" (29)
+      441 => "Medium Nanobot Accelerator II Blueprint" (39)
+      442 => "Medium Remote Repair Augmentor I" (32)
+      443 => "Medium Remote Repair Augmentor I Blueprint" (42)
+      444 => "Medium Remote Repair Augmentor II" (33)
+      445 => "Medium Remote Repair Augmentor II Blueprint" (43)
+      446 => "Medium Salvage Tackle I" (23)
+      447 => "Medium Salvage Tackle I Blueprint" (33)
+      448 => "Medium Salvage Tackle II" (24)
+      449 => "Medium Salvage Tackle II Blueprint" (34)
+      450 => "Medium Auxiliary Thrusters I" (28)
+      451 => "Medium Auxiliary Thrusters I Blueprint" (38)
+      452 => "Medium Auxiliary Thrusters II" (29)
+      453 => "Medium Auxiliary Thrusters II Blueprint" (39)
+      454 => "Medium Cargohold Optimization I" (31)
+      455 => "Medium Cargohold Optimization I Blueprint" (41)
+      456 => "Medium Cargohold Optimization II" (32)
+      457 => "Medium Cargohold Optimization II Blueprint" (42)
+      458 => "Medium Dynamic Fuel Valve I" (27)
+      459 => "Medium Dynamic Fuel Valve I Blueprint" (37)
+      460 => "Medium Dynamic Fuel Valve II" (28)
+      461 => "Medium Dynamic Fuel Valve II Blueprint" (38)
+      462 => "Medium Engine Thermal Shielding I" (33)
+      463 => "Medium Engine Thermal Shielding I Blueprint" (43)
+      464 => "Medium Engine Thermal Shielding II" (34)
+      465 => "Medium Engine Thermal Shielding II Blueprint" (44)
+      466 => "Medium Low Friction Nozzle Joints I" (35)
+      467 => "Medium Low Friction Nozzle Joints I Blueprint" (45)
+      468 => "Medium Hyperspatial Velocity Optimizer I" (40)
+      469 => "Medium Hyperspatial Velocity Optimizer I Blueprint" (50)
+      470 => "Medium Hyperspatial Velocity Optimizer II" (41)
+      471 => "Medium Hyperspatial Velocity Optimizer II Blueprint" (51)
+      472 => "Medium Low Friction Nozzle Joints II" (36)
+      473 => "Medium Low Friction Nozzle Joints II Blueprint" (46)
+      474 => "Medium Polycarbon Engine Housing I" (34)
+      475 => "Medium Polycarbon Engine Housing I Blueprint" (44)
+      476 => "Medium Polycarbon Engine Housing II" (35)
+      477 => "Medium Polycarbon Engine Housing II Blueprint" (45)
+      478 => "Medium Warp Core Optimizer I" (28)
+      479 => "Medium Warp Core Optimizer I Blueprint" (38)
+      480 => "Medium Warp Core Optimizer II" (29)
+      481 => "Medium Warp Core Optimizer II Blueprint" (39)
+      482 => "Medium Emission Scope Sharpener I" (33)
+      483 => "Medium Emission Scope Sharpener I Blueprint" (43)
+      484 => "Medium Emission Scope Sharpener II" (34)
+      485 => "Medium Emission Scope Sharpener II Blueprint" (44)
+      486 => "Medium Gravity Capacitor Upgrade I" (34)
+      487 => "Medium Gravity Capacitor Upgrade I Blueprint" (44)
+      488 => "Medium Gravity Capacitor Upgrade II" (35)
+      489 => "Medium Gravity Capacitor Upgrade II Blueprint" (45)
+      490 => "Medium Liquid Cooled Electronics I" (34)
+      491 => "Medium Liquid Cooled Electronics I Blueprint" (44)
+      492 => "Medium Liquid Cooled Electronics II" (35)
+      493 => "Medium Liquid Cooled Electronics II Blueprint" (45)
+      494 => "Medium Memetic Algorithm Bank I" (31)
+      495 => "Medium Memetic Algorithm Bank I Blueprint" (41)
+      496 => "Medium Memetic Algorithm Bank II" (32)
+      497 => "Medium Memetic Algorithm Bank II Blueprint" (42)
+      498 => "Medium Signal Disruption Amplifier I" (36)
+      499 => "Medium Signal Disruption Amplifier I Blueprint" (46)
+      500 => "Medium Signal Disruption Amplifier II" (37)
+      501 => "Medium Signal Disruption Amplifier II Blueprint" (47)
+      502 => "Medium Inverted Signal Field Projector I" (40)
+      503 => "Medium Inverted Signal Field Projector I Blueprint" (50)
+      504 => "Medium Inverted Signal Field Projector II" (41)
+      505 => "Medium Inverted Signal Field Projector II Blueprint" (51)
+      506 => "Medium Ionic Field Projector I" (30)
+      507 => "Medium Ionic Field Projector I Blueprint" (40)
+      508 => "Medium Ionic Field Projector II" (31)
+      509 => "Medium Ionic Field Projector II Blueprint" (41)
+      510 => "Medium Particle Dispersion Augmentor I" (38)
+      511 => "Medium Particle Dispersion Augmentor I Blueprint" (48)
+      512 => "Medium Particle Dispersion Augmentor II" (39)
+      513 => "Medium Particle Dispersion Augmentor II Blueprint" (49)
+      514 => "Medium Particle Dispersion Projector I" (38)
+      515 => "Medium Particle Dispersion Projector I Blueprint" (48)
+      516 => "Medium Particle Dispersion Projector II" (39)
+      517 => "Medium Particle Dispersion Projector II Blueprint" (49)
+      518 => "Medium Signal Focusing Kit I" (28)
+      519 => "Medium Signal Focusing Kit I Blueprint" (38)
+      520 => "Medium Signal Focusing Kit II" (29)
+      521 => "Medium Signal Focusing Kit II Blueprint" (39)
+      522 => "Medium Targeting System Subcontroller I" (39)
+      523 => "Medium Targeting System Subcontroller I Blueprint" (49)
+      524 => "Medium Targeting System Subcontroller II" (40)
+      525 => "Medium Targeting System Subcontroller II Blueprint" (50)
+      526 => "Medium Targeting Systems Stabilizer I" (37)
+      527 => "Medium Targeting Systems Stabilizer I Blueprint" (47)
+      528 => "Medium Targeting Systems Stabilizer II" (38)
+      529 => "Medium Targeting Systems Stabilizer II Blueprint" (48)
+      530 => "Medium Tracking Diagnostic Subroutines I" (40)
+      531 => "Medium Tracking Diagnostic Subroutines I Blueprint" (50)
+      532 => "Medium Tracking Diagnostic Subroutines II" (41)
+      533 => "Medium Tracking Diagnostic Subroutines II Blueprint" (51)
+      534 => "Medium Ancillary Current Router I" (33)
+      535 => "Medium Ancillary Current Router I Blueprint" (43)
+      536 => "Medium Ancillary Current Router II" (34)
+      537 => "Medium Ancillary Current Router II Blueprint" (44)
+      538 => "Medium Capacitor Control Circuit I" (34)
+      539 => "Medium Capacitor Control Circuit I Blueprint" (44)
+      540 => "Medium Capacitor Control Circuit II" (35)
+      541 => "Medium Capacitor Control Circuit II Blueprint" (45)
+      542 => "Medium Egress Port Maximizer I" (30)
+      543 => "Medium Egress Port Maximizer I Blueprint" (40)
+      544 => "Medium Egress Port Maximizer II" (31)
+      545 => "Medium Egress Port Maximizer II Blueprint" (41)
+      546 => "Medium Powergrid Subroutine Maximizer I" (39)
+      547 => "Medium Powergrid Subroutine Maximizer I Blueprint" (49)
+      548 => "Medium Powergrid Subroutine Maximizer II" (40)
+      549 => "Medium Powergrid Subroutine Maximizer II Blueprint" (50)
+      550 => "Medium Semiconductor Memory Cell I" (34)
+      551 => "Medium Semiconductor Memory Cell I Blueprint" (44)
+      552 => "Medium Semiconductor Memory Cell II" (35)
+      553 => "Medium Semiconductor Memory Cell II Blueprint" (45)
+      554 => "Medium Algid Energy Administrations Unit I" (42)
+      555 => "Medium Algid Energy Administrations Unit I Blueprint" (52)
+      556 => "Medium Algid Energy Administrations Unit II" (43)
+      557 => "Medium Algid Energy Administrations Unit II Blueprint" (53)
+      558 => "Medium Energy Ambit Extension I" (31)
+      559 => "Medium Energy Ambit Extension I Blueprint" (41)
+      560 => "Medium Energy Ambit Extension II" (32)
+      561 => "Medium Energy Ambit Extension II Blueprint" (42)
+      562 => "Medium Energy Burst Aerator I" (29)
+      563 => "Medium Energy Burst Aerator I Blueprint" (39)
+      564 => "Medium Energy Burst Aerator II" (30)
+      565 => "Medium Energy Burst Aerator II Blueprint" (40)
+      566 => "Medium Energy Collision Accelerator I" (37)
+      567 => "Medium Energy Collision Accelerator I Blueprint" (47)
+      568 => "Medium Energy Collision Accelerator II" (38)
+      569 => "Medium Energy Collision Accelerator II Blueprint" (48)
+      570 => "Medium Energy Discharge Elutriation I" (37)
+      571 => "Medium Energy Discharge Elutriation I Blueprint" (47)
+      572 => "Medium Energy Discharge Elutriation II" (38)
+      573 => "Medium Energy Discharge Elutriation II Blueprint" (48)
+      574 => "Medium Energy Locus Coordinator I" (33)
+      575 => "Medium Energy Locus Coordinator I Blueprint" (43)
+      576 => "Medium Energy Locus Coordinator II" (34)
+      577 => "Medium Energy Locus Coordinator II Blueprint" (44)
+      578 => "Medium Energy Metastasis Adjuster I" (35)
+      579 => "Medium Energy Metastasis Adjuster I Blueprint" (45)
+      580 => "Medium Energy Metastasis Adjuster II" (36)
+      581 => "Medium Energy Metastasis Adjuster II Blueprint" (46)
+      582 => "Medium Algid Hybrid Administrations Unit I" (42)
+      583 => "Medium Algid Hybrid Administrations Unit I Blueprint" (52)
+      584 => "Medium Algid Hybrid Administrations Unit II" (43)
+      585 => "Medium Algid Hybrid Administrations Unit II Blueprint" (53)
+      586 => "Medium Hybrid Ambit Extension I" (31)
+      587 => "Medium Hybrid Ambit Extension I Blueprint" (41)
+      588 => "Medium Hybrid Ambit Extension II" (32)
+      589 => "Medium Hybrid Ambit Extension II Blueprint" (42)
+      590 => "Medium Hybrid Burst Aerator I" (29)
+      591 => "Medium Hybrid Burst Aerator I Blueprint" (39)
+      592 => "Medium Hybrid Burst Aerator II" (30)
+      593 => "Medium Hybrid Burst Aerator II Blueprint" (40)
+      594 => "Medium Hybrid Collision Accelerator I" (37)
+      595 => "Medium Hybrid Collision Accelerator I Blueprint" (47)
+      596 => "Medium Hybrid Collision Accelerator II" (38)
+      597 => "Medium Hybrid Collision Accelerator II Blueprint" (48)
+      598 => "Medium Hybrid Discharge Elutriation I" (37)
+      599 => "Medium Hybrid Discharge Elutriation I Blueprint" (47)
+      600 => "Medium Hybrid Discharge Elutriation II" (38)
+      601 => "Medium Hybrid Discharge Elutriation II Blueprint" (48)
+      602 => "Medium Hybrid Locus Coordinator I" (33)
+      603 => "Medium Hybrid Locus Coordinator I Blueprint" (43)
+      604 => "Medium Hybrid Locus Coordinator II" (34)
+      605 => "Medium Hybrid Locus Coordinator II Blueprint" (44)
+      606 => "Medium Hybrid Metastasis Adjuster I" (35)
+      607 => "Medium Hybrid Metastasis Adjuster I Blueprint" (45)
+      608 => "Medium Hybrid Metastasis Adjuster II" (36)
+      609 => "Medium Hybrid Metastasis Adjuster II Blueprint" (46)
+      610 => "Medium Bay Loading Accelerator I" (32)
+      611 => "Medium Bay Loading Accelerator I Blueprint" (42)
+      612 => "Medium Bay Loading Accelerator II" (33)
+      613 => "Medium Bay Loading Accelerator II Blueprint" (43)
+      614 => "Medium Hydraulic Bay Thrusters I" (32)
+      615 => "Medium Hydraulic Bay Thrusters I Blueprint" (42)
+      616 => "Medium Hydraulic Bay Thrusters II" (33)
+      617 => "Medium Hydraulic Bay Thrusters II Blueprint" (43)
+      618 => "Medium Rocket Fuel Cache Partition I" (36)
+      619 => "Medium Rocket Fuel Cache Partition I Blueprint" (46)
+      620 => "Medium Rocket Fuel Cache Partition II" (37)
+      621 => "Medium Rocket Fuel Cache Partition II Blueprint" (47)
+      622 => "Medium Warhead Calefaction Catalyst I" (37)
+      623 => "Medium Warhead Calefaction Catalyst I Blueprint" (47)
+      624 => "Medium Warhead Calefaction Catalyst II" (38)
+      625 => "Medium Warhead Calefaction Catalyst II Blueprint" (48)
+      626 => "Medium Warhead Flare Catalyst I" (31)
+      627 => "Medium Warhead Flare Catalyst I Blueprint" (41)
+      628 => "Medium Warhead Flare Catalyst II" (32)
+      629 => "Medium Warhead Flare Catalyst II Blueprint" (42)
+      630 => "Medium Warhead Rigor Catalyst I" (31)
+      631 => "Medium Warhead Rigor Catalyst I Blueprint" (41)
+      632 => "Medium Warhead Rigor Catalyst II" (32)
+      633 => "Medium Warhead Rigor Catalyst II Blueprint" (42)
+      634 => "Medium Projectile Ambit Extension I" (35)
+      635 => "Medium Projectile Ambit Extension I Blueprint" (45)
+      636 => "Medium Projectile Ambit Extension II" (36)
+      637 => "Medium Projectile Ambit Extension II Blueprint" (46)
+      638 => "Medium Projectile Burst Aerator I" (33)
+      639 => "Medium Projectile Burst Aerator I Blueprint" (43)
+      640 => "Medium Projectile Burst Aerator II" (34)
+      641 => "Medium Projectile Burst Aerator II Blueprint" (44)
+      642 => "Medium Projectile Collision Accelerator I" (41)
+      643 => "Medium Projectile Collision Accelerator I Blueprint" (51)
+      644 => "Medium Projectile Collision Accelerator II" (42)
+      645 => "Medium Projectile Collision Accelerator II Blueprint" (52)
+      646 => "Medium Projectile Locus Coordinator I" (37)
+      647 => "Medium Projectile Locus Coordinator I Blueprint" (47)
+      648 => "Medium Projectile Locus Coordinator II" (38)
+      649 => "Medium Projectile Locus Coordinator II Blueprint" (48)
+      650 => "Medium Projectile Metastasis Adjuster I" (39)
+      651 => "Medium Projectile Metastasis Adjuster I Blueprint" (49)
+      652 => "Medium Projectile Metastasis Adjuster II" (40)
+      653 => "Medium Projectile Metastasis Adjuster II Blueprint" (50)
+      654 => "Medium Anti-EM Screen Reinforcer I" (34)
+      655 => "Medium Anti-EM Screen Reinforcer I Blueprint" (44)
+      656 => "Medium Anti-EM Screen Reinforcer II" (35)
+      657 => "Medium Anti-EM Screen Reinforcer II Blueprint" (45)
+      658 => "Medium Anti-Explosive Screen Reinforcer I" (41)
+      659 => "Medium Anti-Explosive Screen Reinforcer I Blueprint" (51)
+      660 => "Medium Anti-Explosive Screen Reinforcer II" (42)
+      661 => "Medium Anti-Explosive Screen Reinforcer II Blueprint" (52)
+      662 => "Medium Anti-Kinetic Screen Reinforcer I" (39)
+      663 => "Medium Anti-Kinetic Screen Reinforcer I Blueprint" (49)
+      664 => "Medium Anti-Kinetic Screen Reinforcer II" (40)
+      665 => "Medium Anti-Kinetic Screen Reinforcer II Blueprint" (50)
+      666 => "Medium Anti-Thermal Screen Reinforcer I" (39)
+      667 => "Medium Anti-Thermal Screen Reinforcer I Blueprint" (49)
+      668 => "Medium Anti-Thermal Screen Reinforcer II" (40)
+      669 => "Medium Anti-Thermal Screen Reinforcer II Blueprint" (50)
+      670 => "Medium Core Defence Capacitor Safeguard I" (41)
+      671 => "Medium Core Defence Capacitor Safeguard I Blueprint" (51)
+      672 => "Medium Core Defence Capacitor Safeguard II" (42)
+      673 => "Medium Core Defence Capacitor Safeguard II Blueprint" (52)
+      674 => "Medium Core Defence Charge Economizer I" (39)
+      675 => "Medium Core Defence Charge Economizer I Blueprint" (49)
+      676 => "Medium Core Defence Charge Economizer II" (40)
+      677 => "Medium Core Defence Charge Economizer II Blueprint" (50)
+      678 => "Medium Core Defence Field Extender I" (36)
+      679 => "Medium Core Defence Field Extender I Blueprint" (46)
+      680 => "Medium Core Defence Field Extender II" (37)
+      681 => "Medium Core Defence Field Extender II Blueprint" (47)
+      682 => "Medium Core Defence Field Purger I" (34)
+      683 => "Medium Core Defence Field Purger I Blueprint" (44)
+      684 => "Medium Core Defence Field Purger II" (35)
+      685 => "Medium Core Defence Field Purger II Blueprint" (45)
+      686 => "Medium Core Defence Operational Solidifier I" (44)
+      687 => "Medium Core Defence Operational Solidifier I Blueprint" (54)
+      688 => "Medium Core Defence Operational Solidifier II" (45)
+      689 => "Medium Core Defence Operational Solidifier II Blueprint" (55)
+      690 => "Caldari Navy Medium Shield Extender" (35)
+      691 => "Republic Fleet Medium Shield Extender" (37)
+      692 => "Imperial Navy Medium Energy Transfer Array" (42)
+      693 => "Medium Drone Control Range Augmentor I" (38)
+      694 => "Medium Drone Control Range Augmentor I Blueprint" (48)
+      695 => "Medium Drone Control Range Augmentor II" (39)
+      696 => "Medium Drone Control Range Augmentor II Blueprint" (49)
+      697 => "Medium Drone Durability Enhancer I" (34)
+      698 => "Medium Drone Durability Enhancer I Blueprint" (44)
+      699 => "Medium Drone Durability Enhancer II" (35)
+      700 => "Medium Drone Durability Enhancer II Blueprint" (45)
+      701 => "Medium Drone Mining Augmentor I" (31)
+      702 => "Medium Drone Mining Augmentor I Blueprint" (41)
+      703 => "Medium Drone Mining Augmentor II" (32)
+      704 => "Medium Drone Mining Augmentor II Blueprint" (42)
+      705 => "Medium Drone Repair Augmentor I" (31)
+      706 => "Medium Drone Repair Augmentor I Blueprint" (41)
+      707 => "Medium Drone Repair Augmentor II" (32)
+      708 => "Medium Drone Repair Augmentor II Blueprint" (42)
+      709 => "Medium Drone Speed Augmentor I" (30)
+      710 => "Medium Drone Speed Augmentor I Blueprint" (40)
+      711 => "Medium Drone Speed Augmentor II" (31)
+      712 => "Medium Drone Speed Augmentor II Blueprint" (41)
+      713 => "Medium Drone Scope Chip I" (25)
+      714 => "Medium Drone Scope Chip I Blueprint" (35)
+      715 => "Medium Drone Scope Chip II" (26)
+      716 => "Medium Drone Scope Chip II Blueprint" (36)
+      717 => "Medium Sentry Damage Augmentor I" (32)
+      718 => "Medium Sentry Damage Augmentor I Blueprint" (42)
+      719 => "Medium Sentry Damage Augmentor II" (33)
+      720 => "Medium Sentry Damage Augmentor II Blueprint" (43)
+      721 => "Medium Stasis Drone Augmentor I" (31)
+      722 => "Medium Stasis Drone Augmentor I Blueprint" (41)
+      723 => "Medium Stasis Drone Augmentor II" (32)
+      724 => "Medium Stasis Drone Augmentor II Blueprint" (42)
+      725 => "Olfei Medallion" (15)
+   <a href='#' rel='next'>]</code>
+   "onShutdown" => NULL
+   "request" <span>private</span> => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "GET" (3)
+      <a href='#' rel='next'>"flags" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+         "secured" => FALSE
+      }</code>
+      "name" <span>private</span> => "Item" (4)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(3) <abbr>&#x25bc;</abbr> </a><code>{
+         "action" => "suggestDibi" (11)
+         "q" => NULL
+         "typedText" => "med" (3)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      "frozen" <span>private</span> => TRUE
+   }</code>
+   "response" <span>private</span> => NULL
+   "autoCanonicalize" => TRUE
+   "absoluteUrls" => FALSE
+   "globalParams" <span>private</span> => <span>array</span>(0) 
+   "globalState" <span>private</span> => NULL
+   "globalStateSinces" <span>private</span> => NULL
+   "action" <span>private</span> => "suggestDibi" (11)
+   "view" <span>private</span> => "suggestDibi" (11)
+   "layout" <span>private</span> => NULL
+   "payload" <span>private</span> => <span>stdClass</span>(0) 
+   "signalReceiver" <span>private</span> => ""
+   "signal" <span>private</span> => NULL
+   "ajaxMode" <span>private</span> => TRUE
+   "startupCheck" <span>private</span> => TRUE
+   "lastCreatedRequest" <span>private</span> => NULL
+   "lastCreatedRequestFlag" <span>private</span> => NULL
+   "template" <span>private</span> => NULL
+   "invalidSnippets" <span>private</span> => <span>array</span>(0) 
+   <a href='#' rel='next'>"params" <span>protected</span> => <span>array</span>(3) <abbr>&#x25bc;</abbr> </a><code>{
+      "action" => "suggestDibi" (11)
+      "q" => NULL
+      "typedText" => "med" (3)
+   <a href='#' rel='next'>}</code>
+   "components" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"dibiSuggester" => <span>DibiSuggester</span>(9) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "table" <span>protected</span> => "invTypes" (8)
+         "column" <span>protected</span> => "typeName" (8)
+         "where" <span>protected</span> => "[published] = 1 and [typeName] LIKE %s" (38)
+         "matches" <span>protected</span> => <span>array</span>(726) [ ... ]
+         "matchFromBeginning" <span>protected</span> => FALSE
+         "matchToEnd" <span>protected</span> => FALSE
+         "parent" <span>private</span> => <span>ItemPresenter</span>(31) { *RECURSION* }
+         "name" <span>private</span> => "dibiSuggester" (13)
+         "monitors" <span>private</span> => <span>array</span>(0) 
+      }</code>
+   }</code>
+   "cloning" <span>private</span> => NULL
+   "parent" <span>private</span> => NULL
+   "name" <span>private</span> => "Item" (4)
+   <a href='#' rel='next'>"monitors" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"Nette\Application\Presenter" => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>[
+         0 => NULL
+         1 => NULL
+         2 => NULL
+         3 => TRUE
+      ]</code>
+   }</code>
+}</code>
+</pre>		</div></div>
+		
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl3">Environment <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl3" class="nette-collapsed inner">
+						<h3><a href="#" rel="netteBsPnl-env-const">Constants <abbr>&#x25bc;</abbr></a></h3>
+			<div class="outer">
+			<table id="netteBsPnl-env-const">
+			<tr><th>SITE</th><td><pre class="nette-dump">""
+</pre></td></tr>
+<tr><th>WWW_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/www" (27)
+</pre></td></tr>
+<tr><th>APP_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/www/../app" (34)
+</pre></td></tr>
+<tr><th>LIBS_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/www/../libs" (35)
+</pre></td></tr>
+<tr><th>TEMP_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/www/../temp" (35)
+</pre></td></tr>
+<tr><th>NETTE</th><td><pre class="nette-dump">TRUE
+</pre></td></tr>
+<tr><th>NETTE_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/libs/Nette" (34)
+</pre></td></tr>
+<tr><th>NETTE_VERSION_ID</th><td><pre class="nette-dump">20000
+</pre></td></tr>
+<tr><th>NETTE_PACKAGE</th><td><pre class="nette-dump">"5.3" (3)
+</pre></td></tr>
+			</table>
+			</div>
+			
+
+			<h3><a href="#" rel="netteBsPnl-env-files">Included files <abbr>&#x25ba;</abbr></a> (101)</h3>
+			<div class="outer">
+			<table id="netteBsPnl-env-files" class="nette-collapsed">
+			<tr><td>/home/kubiq/php/lpstore/www/index.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/bootstrap.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/loader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/shortcuts.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/exceptions.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Object.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/LimitedScope.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/AutoLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/NetteLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/DebugHelpers.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/Debug.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/DebugPanel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/IDebugPanel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Environment/Environment.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Environment/Configurator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/Config.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/ConfigAdapterIni.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/IConfigAdapter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/ArrayTools.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Iterators/GenericRecursiveIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Context.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/FreezableObject.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/IFreezable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/IContext.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Callback.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/RobotLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/FileStorage.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/ICacheStorage.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/FileJournal.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/ICacheJournal.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/Cache.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Framework.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/HttpRequestFactory.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/UriScript.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/Uri.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/ObjectMixin.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/String.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/HttpRequest.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/IHttpRequest.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Application.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Routers/MultiRouter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/ArrayList.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IRouter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Routers/Route.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/HttpResponse.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/IHttpResponse.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/ClassReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/PropertyReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/BaseModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/dibi.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/interfaces.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDateTime.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiObject.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiHashMap.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiException.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiConnection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiResult.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiResultIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiRow.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiTranslator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDataSource.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiFluent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDatabaseInfo.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiProfiler.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/drivers/mysql.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/drivers/mysql.reflector.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/Session.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/RoutingDebugger.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterRequest.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPresenterLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/presenters/ItemPresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/presenters/BasePresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Presenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Control.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterComponent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/ComponentContainer.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/Component.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/IComponent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/IComponentContainer.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/ISignalReceiver.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IStatePersistent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPartiallyRenderable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IRenderable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterComponentReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/AnnotationsParser.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/ItemModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/TransactionModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/RequirementModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/EveCentralModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Form.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/FormContainer.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/MethodReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/SuggestInput/Suggesters/DibiSuggester.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/SuggestInput/Suggesters/ISuggester.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Tools.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Finder.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Iterators/RecursiveCallbackFilterIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Iterators/CallbackFilterIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/templates/bluescreen.phtml</td></tr>
+			</table>
+			</div>
+
+
+			<h3>$_SERVER</h3>
+						<div class="outer">
+			<table>
+			<tr><th>REDIRECT_STATUS</th><td><pre class="nette-dump">"200" (3)
+</pre></td></tr>
+<tr><th>HTTP_HOST</th><td><pre class="nette-dump">"lpstore" (7)
+</pre></td></tr>
+<tr><th>HTTP_CONNECTION</th><td><pre class="nette-dump">"keep-alive" (10)
+</pre></td></tr>
+<tr><th>HTTP_REFERER</th><td><pre class="nette-dump">"http://lpstore/item/detail?name=Caracal+Navy+Issue+Blueprint&amp;_fid=lg0d" (70)
+</pre></td></tr>
+<tr><th>HTTP_X_REQUESTED_WITH</th><td><pre class="nette-dump">"XMLHttpRequest" (14)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT</th><td><pre class="nette-dump">"*/*" (3)
+</pre></td></tr>
+<tr><th>HTTP_USER_AGENT</th><td><pre class="nette-dump">"Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/9.0.597.98 Safari/534.13" (112)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_ENCODING</th><td><pre class="nette-dump">"gzip,deflate,sdch" (17)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_LANGUAGE</th><td><pre class="nette-dump">"cs,cs-CZ;q=0.8" (14)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_CHARSET</th><td><pre class="nette-dump">"windows-1250,utf-8;q=0.7,*;q=0.3" (32)
+</pre></td></tr>
+<tr><th>HTTP_COOKIE</th><td><pre class="nette-dump">"nette-debug-bar=-76:-169; PHPSESSID=vmb85ap36jr43rl1qmeidudbk1; nette-browser=5es9sagkxy" (88)
+</pre></td></tr>
+<tr><th>PATH</th><td><pre class="nette-dump">"/usr/local/bin:/usr/bin:/bin" (28)
+</pre></td></tr>
+<tr><th>SERVER_SIGNATURE</th><td><pre class="nette-dump">"&lt;address&gt;Apache/2.2.16 (Ubuntu) Server at lpstore Port 80&lt;/address&gt;
+" (68)
+</pre></td></tr>
+<tr><th>SERVER_SOFTWARE</th><td><pre class="nette-dump">"Apache/2.2.16 (Ubuntu)" (22)
+</pre></td></tr>
+<tr><th>SERVER_NAME</th><td><pre class="nette-dump">"lpstore" (7)
+</pre></td></tr>
+<tr><th>SERVER_ADDR</th><td><pre class="nette-dump">"127.0.1.1" (9)
+</pre></td></tr>
+<tr><th>SERVER_PORT</th><td><pre class="nette-dump">"80" (2)
+</pre></td></tr>
+<tr><th>REMOTE_ADDR</th><td><pre class="nette-dump">"127.0.1.1" (9)
+</pre></td></tr>
+<tr><th>DOCUMENT_ROOT</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/www/" (28)
+</pre></td></tr>
+<tr><th>SERVER_ADMIN</th><td><pre class="nette-dump">"[no address given]" (18)
+</pre></td></tr>
+<tr><th>SCRIPT_FILENAME</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/www/index.php" (37)
+</pre></td></tr>
+<tr><th>REMOTE_PORT</th><td><pre class="nette-dump">"50824" (5)
+</pre></td></tr>
+<tr><th>REDIRECT_QUERY_STRING</th><td><pre class="nette-dump">"typedText=med" (13)
+</pre></td></tr>
+<tr><th>REDIRECT_URL</th><td><pre class="nette-dump">"/item/suggest-dibi" (18)
+</pre></td></tr>
+<tr><th>GATEWAY_INTERFACE</th><td><pre class="nette-dump">"CGI/1.1" (7)
+</pre></td></tr>
+<tr><th>SERVER_PROTOCOL</th><td><pre class="nette-dump">"HTTP/1.1" (8)
+</pre></td></tr>
+<tr><th>REQUEST_METHOD</th><td><pre class="nette-dump">"GET" (3)
+</pre></td></tr>
+<tr><th>QUERY_STRING</th><td><pre class="nette-dump">"typedText=med" (13)
+</pre></td></tr>
+<tr><th>REQUEST_URI</th><td><pre class="nette-dump">"/item/suggest-dibi?typedText=med" (32)
+</pre></td></tr>
+<tr><th>SCRIPT_NAME</th><td><pre class="nette-dump">"/index.php" (10)
+</pre></td></tr>
+<tr><th>PHP_SELF</th><td><pre class="nette-dump">"/index.php" (10)
+</pre></td></tr>
+<tr><th>REQUEST_TIME</th><td><pre class="nette-dump">1298072582
+</pre></td></tr>
+			</table>
+			</div>
+					</div></div>
+
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl4">HTTP request <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl4" class="nette-collapsed inner">
+						<h3>Headers</h3>
+			<div class="outer">
+			<table>
+			<tr><th>Host</th><td>lpstore</td></tr>
+<tr><th>Connection</th><td>keep-alive</td></tr>
+<tr><th>Referer</th><td>http://lpstore/item/detail?name=Caracal+Navy+Issue+Blueprint&amp;_fid=lg0d</td></tr>
+<tr><th>x-requested-with</th><td>XMLHttpRequest</td></tr>
+<tr><th>accept</th><td>*/*</td></tr>
+<tr><th>User-Agent</th><td>Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/9.0.597.98 Safari/534.13</td></tr>
+<tr><th>Accept-Encoding</th><td>gzip,deflate,sdch</td></tr>
+<tr><th>Accept-Language</th><td>cs,cs-CZ;q=0.8</td></tr>
+<tr><th>Accept-Charset</th><td>windows-1250,utf-8;q=0.7,*;q=0.3</td></tr>
+<tr><th>Cookie</th><td>nette-debug-bar=-76:-169; PHPSESSID=vmb85ap36jr43rl1qmeidudbk1; nette-browser=5es9sagkxy</td></tr>
+			</table>
+			</div>
+			
+
+						<h3>$_GET</h3>
+						<div class="outer">
+			<table>
+			<tr><th>typedText</th><td><pre class="nette-dump">"med" (3)
+</pre></td></tr>
+			</table>
+			</div>
+									<h3>$_POST</h3>
+						<p><i>empty</i></p>
+									<h3>$_COOKIE</h3>
+						<div class="outer">
+			<table>
+			<tr><th>nette-debug-bar</th><td><pre class="nette-dump">"-76:-169" (8)
+</pre></td></tr>
+<tr><th>PHPSESSID</th><td><pre class="nette-dump">"vmb85ap36jr43rl1qmeidudbk1" (26)
+</pre></td></tr>
+<tr><th>nette-browser</th><td><pre class="nette-dump">"5es9sagkxy" (10)
+</pre></td></tr>
+			</table>
+			</div>
+								</div></div>
+
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl5">HTTP response <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl5" class="nette-collapsed inner">
+			<h3>Headers</h3>
+						<pre>X-Powered-By: Nette Framework<br>Expires: Thu, 19 Nov 1981 08:52:00 GMT<br>Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0<br>Pragma: no-cache<br>Set-Cookie: PHPSESSID=vmb85ap36jr43rl1qmeidudbk1; path=/; httponly<br>Set-Cookie: nette-browser=5es9sagkxy; path=/; httponly<br></pre>
+					</div></div>
+
+
+		<ul>
+			<li>Report generated at 2011/02/19 00:43:02</li>
+							<li><a href="http://lpstore/item/suggest-dibi?typedText=med">http://lpstore/item/suggest-dibi?typedText=med</a></li>
+						<li>PHP 5.3.3-1ubuntu9.3</li>
+			<li>Apache/2.2.16 (Ubuntu)</li>			<li>Nette Framework 2.0-dev <i>(revision bb2b723 released on 2011-02-06)</i></li>		</ul>
+	</div>
+</div>
+
+<script type="text/javascript">/*<![CDATA[*/var bs=document.getElementById("netteBluescreen");document.body.appendChild(bs);document.onkeyup=function(b){b=b||window.event;b.keyCode==27&&!b.shiftKey&&!b.altKey&&!b.ctrlKey&&!b.metaKey&&bs.onclick({target:document.getElementById("netteBluescreenIcon")})};
+for(var i=0,styles=document.styleSheets;i<styles.length;i++)if((styles[i].owningElement||styles[i].ownerNode).className!=="nette"){styles[i].oldDisabled=styles[i].disabled;styles[i].disabled=true}else styles[i].addRule?styles[i].addRule(".nette-collapsed","display: none"):styles[i].insertRule(".nette-collapsed { display: none }",0);
+bs.onclick=function(b){b=b||window.event;for(var a=b.target||b.srcElement;a&&a.tagName&&a.tagName.toLowerCase()!=="a";)a=a.parentNode;if(!a||!a.rel)return true;for(var d=a.getElementsByTagName("abbr")[0],c=a.rel==="next"?a.nextSibling:document.getElementById(a.rel);c.nodeType!==1;)c=c.nextSibling;b=c.currentStyle?c.currentStyle.display=="none":getComputedStyle(c,null).display=="none";try{d.innerHTML=String.fromCharCode(b?9660:9658)}catch(e){}c.style.display=b?c.tagName.toLowerCase()==="code"?"inline":
+"block":"none";if(a.id==="netteBluescreenIcon"){a=0;for(d=document.styleSheets;a<d.length;a++)if((d[a].owningElement||d[a].ownerNode).className!=="nette")d[a].disabled=b?true:d[a].oldDisabled}return false};/*]]>*/</script>
+</body>
+</html>

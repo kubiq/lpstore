@@ -1,22 +1,24 @@
 <?php
 
 /**
- * My Application
+ * LpStore
  *
- * @copyright  Copyright (c) 2010 John Doe
- * @package    MyApplication
+ * @copyright  Copyright (c) 2011 Kubiq
+ * @package    LpStore
  */
+
+
+
 
 use Nette\Debug,
 	Nette\Application\BadRequestException;
 
 
-
 /**
  * Error presenter.
  *
- * @author     John Doe
- * @package    MyApplication
+ * @author     Kubiq
+ * @package    LpStore
  */
 class ErrorPresenter extends BasePresenter
 {

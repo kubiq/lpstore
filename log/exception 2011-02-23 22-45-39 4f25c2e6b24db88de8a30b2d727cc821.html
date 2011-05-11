@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="robots" content="noindex,noarchive">
+	<meta name="generator" content="Nette Framework">
+
+	<title>DibiDriverException</title><!-- Access denied for user 'ic_lpstore'@'fixed-140.rjnet.cz' (using password: YES) #1045 -->
+
+	<style type="text/css" class="nette">html{overflow-y:scroll}body{margin:0 0 2em;padding:0}#netteBluescreen{font:9pt/1.5 Verdana,sans-serif;background:white;color:#333;position:absolute;left:0;top:0;width:100%;z-index:23178;text-align:left}#netteBluescreen *{font:inherit;color:inherit;background:transparent;border:none;margin:0;padding:0;text-align:inherit;text-indent:0}#netteBluescreen b{font-weight:bold}#netteBluescreen i{font-style:italic}#netteBluescreen a{text-decoration:none;color:#328ADC;padding:2px 4px;margin:-2px -4px}#netteBluescreen a:hover,#netteBluescreen a:active,#netteBluescreen a:focus{color:#085AA3}#netteBluescreen a abbr{font-family:sans-serif;color:#BBB}#netteBluescreenIcon{position:absolute;right:.5em;top:.5em;z-index:23179;text-decoration:none;background:#CD1818;padding:3px}#netteBluescreenError{background:#CD1818;color:white;font:13pt/1.5 Verdana,sans-serif!important;display:block}#netteBluescreenError #netteBsSearch{color:#CD1818;font-size:.7em}#netteBluescreenError:hover #netteBsSearch{color:#ED8383}#netteBluescreen h1{font-size:18pt;font-weight:normal;text-shadow:1px 1px 0 rgba(0,0,0,.4);margin:.7em 0}#netteBluescreen h2{font:14pt/1.5 sans-serif!important;color:#888;margin:.6em 0}#netteBluescreen h3{font:bold 10pt/1.5 Verdana,sans-serif!important;margin:1em 0;padding:0}#netteBluescreen p,#netteBluescreen pre{margin:.8em 0}#netteBluescreen pre,#netteBluescreen code,#netteBluescreen table{font:9pt/1.5 Consolas,monospace!important}#netteBluescreen pre,#netteBluescreen table{background:#FDF5CE;padding:.4em .7em;border:1px dotted silver;overflow:auto}#netteBluescreen table pre{padding:0;margin:0;border:none}#netteBluescreen pre.nette-dump span{color:#C22}#netteBluescreen pre.nette-dump a{color:#333}#netteBluescreen div.panel{padding:1px 25px}#netteBluescreen div.inner{background:#F4F3F1;padding:.1em 1em 1em;border-radius:8px;-moz-border-radius:8px;-webkit-border-radius:8px}#netteBluescreen table{border-collapse:collapse;width:100%}#netteBluescreen .outer{overflow:auto}#netteBluescreen td,#netteBluescreen th{vertical-align:top;text-align:left;padding:2px 6px;border:1px solid #e6dfbf}#netteBluescreen th{width:10%;font-weight:bold}#netteBluescreen tr:nth-child(2n),#netteBluescreen tr:nth-child(2n) pre{background-color:#F7F0CB}#netteBluescreen ol{margin:1em 0;padding-left:2.5em}#netteBluescreen ul{font:7pt/1.5 Verdana,sans-serif!important;padding:2em 4em;margin:1em 0 0;color:#777;background:#F6F5F3 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFEAAAAjCAMAAADbuxbOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBQTFRF/fz24d7Y7Onj5uLd9vPu3drUzMvG09LN39zW8e7o2NbQ3NnT29jS0M7J1tXQAAAApvmsFgAAABB0Uk5T////////////////////AOAjXRkAAAKlSURBVHja7FbbsqQgDAwENEgc//9vN+SCWDtbtXPmZR/Wc6o02mlC58LA9ckFAOszvMV8xNgyUjyXhojfMVKvRL0ZHavxXYy5JrmchMdzou8YlTClxajtK8ZGGpWRoBr1+gFjKfHkJPbizabLgzE3pH7Iu4K980xgFvlrVzMZoVBWhtvouCDdcTDmTgMCJdVxJ9MKO6XxnliM7hxi5lbj2ZVM4l8DqYyKoNLYcfqBB1/LpHYxEcfVG6ZpMDgyFUVWY/Q1sSYPpIdSAKWqLWL0XqWiMWc4hpH0OQOMOAgdycY4N9Sb7wWANQs3rsDSdLAYiuxi5siVfOhBWIrtH0G3kNaF/8Q4kCPE1kMucG/ZMUBUCOgiKJkPuWWTLGVgLGpwns1DraUayCtoBqERyaYtVsm85NActRooezvSLO/sKZP/nq8n4+xcyjNsRu8zW6KWpdb7wjiQd4WrtFZYFiKHENSmWp6xshh96c2RQ+c7Lt+qbijyEjHWUJ/pZsy8MGIUuzNiPySK2Gqoh6ZTRF6ko6q3nVTkaA//itIrDpW6l3SLo8juOmqMXkYknu5FdQxWbhCfKHEGDhxxyTVaXJF3ZjSl3jMksjSOOKmne9pI+mcG5QvaUJhI9HpkmRo2NpCrDJvsktRhRE2MM6F2n7dt4OaMUq8bCctk0+PoMRzL+1l5PZ2eyM/Owr86gf8z/tOM53lom5+nVcFuB+eJVzlXwAYy9TZ9s537tfqcsJWbEU4nBngZo6FfO9T9CdhfBtmk2dLiAy8uS4zwOpMx2HqYbTC+amNeAYTpsP4SIgvWfUBWXxn3CMHW3ffd7k3+YIkx7w0t/CVGvcPejoeOlzOWzeGbawOHqXQGUTMZRcfj4XPCgW9y/fuvVn8zD9P1QHzv80uAAQA0i3Jer7Jr7gAAAABJRU5ErkJggg==') 99% 10px no-repeat;border-top:1px solid #DDD}#netteBluescreen .highlight{background:#CD1818;color:white;font-weight:bold;font-style:normal;display:block;padding:0 .4em;margin:0 -.4em}#netteBluescreen .line{color:#9F9C7F;font-weight:normal;font-style:normal}#netteBluescreen a[href^=editor\:]{color:inherit;border-bottom:1px dotted #C1D2E1}</style>
+</head>
+
+
+
+<body>
+<div id="netteBluescreen">
+	<a id="netteBluescreenIcon" href="#" rel="next"><abbr>&#x25bc;</abbr></a
+
+	><div>
+		<div id="netteBluescreenError" class="panel">
+			<h1>DibiDriverException #1045</h1>
+
+			<p>Access denied for user 'ic_lpstore'@'fixed-140.rjnet.cz' (using password: YES) <a href="http://www.google.cz/search?sourceid=nette&amp;q=DibiDriverException+Access+denied+for+user+%40+%28using+password%3A+YES%29" id="netteBsSearch">search&#x25ba;</a></p>
+		</div>
+
+
+
+				
+			
+
+
+			
+
+
+												<div class="panel">
+			<h2><a href="#" rel="netteBsPnl1">Source file <abbr>&#x25bc;</abbr></a></h2>
+
+			<div id="netteBsPnl1" class="inner">
+				<p><b>File:</b> <a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2Fdibi%2Fdrivers%2Fmysql.php&amp;line=109">				/home/kubiq/php/lpstore/libs/dibi/drivers/mysql.php</a> &nbsp; <b>Line:</b> 109</p>
+				<pre><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>102:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">connection&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;@</span><span style="color: #000">mysql_connect</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$host</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">$config</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'username'</span><span style="color: #D24; font-weight: bold">],&nbsp;</span><span style="color: #000">$config</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'password'</span><span style="color: #D24; font-weight: bold">],&nbsp;</span><span style="color: #000">TRUE</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">$config</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'flags'</span><span style="color: #D24; font-weight: bold">]);&nbsp;</span><span style="color: #999; font-style: italic">//&nbsp;intentionally&nbsp;@
+<span class='line'>103:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">}&nbsp;else&nbsp;{
+<span class='line'>104:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">connection&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;@</span><span style="color: #000">mysql_pconnect</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$host</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">$config</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'username'</span><span style="color: #D24; font-weight: bold">],&nbsp;</span><span style="color: #000">$config</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'password'</span><span style="color: #D24; font-weight: bold">],&nbsp;</span><span style="color: #000">$config</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'flags'</span><span style="color: #D24; font-weight: bold">]);&nbsp;</span><span style="color: #999; font-style: italic">//&nbsp;intentionally&nbsp;@
+<span class='line'>105:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">}
+<span class='line'>106:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>107:</span>    
+<span class='line'>108:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #000">is_resource</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">connection</span><span style="color: #D24; font-weight: bold">))&nbsp;{
+<span class='highlight'>109:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;DibiDriverException(mysql_error(),&nbsp;mysql_errno());
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>110:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>111:</span>    
+<span class='line'>112:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(isset(</span><span style="color: #000">$config</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'charset'</span><span style="color: #D24; font-weight: bold">]))&nbsp;{
+<span class='line'>113:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$ok&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">FALSE</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>114:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #000">function_exists</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #080">'mysql_set_charset'</span><span style="color: #D24; font-weight: bold">))&nbsp;{
+<span class='line'>115:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">//&nbsp;affects&nbsp;the&nbsp;character&nbsp;set&nbsp;used&nbsp;by&nbsp;mysql_real_escape_string()&nbsp;(was&nbsp;added&nbsp;in&nbsp;MySQL&nbsp;5.0.7&nbsp;and&nbsp;PHP&nbsp;5.2.3)
+<span class='line'>116:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$ok&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;@</span><span style="color: #000">mysql_set_charset</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$config</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'charset'</span><span style="color: #D24; font-weight: bold">],&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">connection</span><span style="color: #D24; font-weight: bold">);&nbsp;</span><span style="color: #999; font-style: italic">//&nbsp;intentionally&nbsp;@
+</span></span></code></pre>
+			</div></div>
+			
+
+
+									<div class="panel">
+				<h2><a href="#" rel="netteBsPnl2">Call stack <abbr>&#x25bc;</abbr></a></h2>
+
+				<div id="netteBsPnl2" class="inner">
+				<ol>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2Fdibi%2Flibs%2FDibiConnection.php&amp;line=161" title="/home/kubiq/php/lpstore/libs/dibi/libs/DibiConnection.php">
+						libs/<b>DibiConnection.php</b></a> (161)					
+					<a href="#" rel="netteBsSrc1-0">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					DibiMySqlDriver->					connect
+					(<a href="#" rel="netteBsArgs1-0">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-0">
+						<table>
+						<tr><th>$config</th><td><pre class="nette-dump"><a href='#' rel='next'><span>array</span>(11) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+   "driver" => "mysql" (5)
+   "database" => "ic_lpstore" (10)
+   "charset" => "utf8" (4)
+   "lazy" => "1"
+   "host" => "mysql.ic.cz" (11)
+   "profiler" => "1"
+   "username" => "ic_lpstore" (10)
+   "password" => "yvpxQQTSAqmNx5cH" (16)
+   <a href='#' rel='next'>"result" => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+      "detectTypes" => NULL
+      "formatDateTime" => NULL
+   }</code>
+   "name" => 0
+   "flags" => NULL
+}</code>
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-0"><code><span style="color: #06B"><span style="color: #999; font-style: italic"><span class='line'>154:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;void
+<span class='line'>155:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+<span class='line'>156:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">final&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000">connect</span><span style="color: #D24; font-weight: bold">()
+<span class='line'>157:</span>    &nbsp;&nbsp;&nbsp;&nbsp;{
+<span class='line'>158:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">profiler&nbsp;</span><span style="color: #D24; font-weight: bold">!==&nbsp;</span><span style="color: #000">NULL</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>159:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$ticket&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">profiler</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">before</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">IDibiProfiler</span><span style="color: #D24; font-weight: bold">::</span><span style="color: #000">CONNECT</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>160:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='highlight'>161:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;driver-&gt;connect($this-&gt;config);
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>162:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">connected&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">TRUE</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>163:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(isset(</span><span style="color: #000">$ticket</span><span style="color: #D24; font-weight: bold">))&nbsp;{
+<span class='line'>164:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">profiler</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">after</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$ticket</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>165:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>166:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>167:</span>    
+<span class='line'>168:</span>    
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2Fdibi%2Flibs%2FDibiConnection.php&amp;line=316" title="/home/kubiq/php/lpstore/libs/dibi/libs/DibiConnection.php">
+						libs/<b>DibiConnection.php</b></a> (316)					
+					<a href="#" rel="netteBsSrc1-1">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					DibiConnection->					connect
+					()
+					</p>
+
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-1"><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>309:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">/**
+<span class='line'>310:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Generates&nbsp;SQL&nbsp;query.
+<span class='line'>311:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;array
+<span class='line'>312:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;string
+<span class='line'>313:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+<span class='line'>314:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">private&nbsp;function&nbsp;</span><span style="color: #000">translateArgs</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$args</span><span style="color: #D24; font-weight: bold">)
+<span class='line'>315:</span>    &nbsp;&nbsp;&nbsp;&nbsp;{
+<span class='highlight'>316:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;connected&nbsp;||&nbsp;$this-&gt;connect();
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>317:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">translator</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">translate</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$args</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>318:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>319:</span>    
+<span class='line'>320:</span>    
+<span class='line'>321:</span>    
+<span class='line'>322:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">/**
+<span class='line'>323:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Executes&nbsp;the&nbsp;SQL&nbsp;query.
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2Fdibi%2Flibs%2FDibiConnection.php&amp;line=256" title="/home/kubiq/php/lpstore/libs/dibi/libs/DibiConnection.php">
+						libs/<b>DibiConnection.php</b></a> (256)					
+					<a href="#" rel="netteBsSrc1-2">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					DibiConnection->					translateArgs
+					(<a href="#" rel="netteBsArgs1-2">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-2">
+						<table>
+						<tr><th>$args</th><td><pre class="nette-dump"><a href='#' rel='next'><span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>[
+   <a href='#' rel='next'>0 => <span>array</span>(5) <abbr>&#x25bc;</abbr> </a><code>[
+      0 => "SELECT count(*) " (16)
+      1 => "FROM [invTypes]" (15)
+      2 => "WHERE [typeName] like %s" (24)
+      3 => "%invule%" (8)
+      4 => "AND [published] = 1" (19)
+   ]</code>
+]</code>
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-2"><code><span style="color: #06B"><span style="color: #999; font-style: italic"><span class='line'>249:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;array|mixed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;one&nbsp;or&nbsp;more&nbsp;arguments
+<span class='line'>250:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;DibiResult|int&nbsp;&nbsp;&nbsp;result&nbsp;set&nbsp;object&nbsp;(if&nbsp;any)
+<span class='line'>251:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@throws&nbsp;DibiException
+<span class='line'>252:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+<span class='line'>253:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">final&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000">query</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$args</span><span style="color: #D24; font-weight: bold">)
+<span class='line'>254:</span>    &nbsp;&nbsp;&nbsp;&nbsp;{
+<span class='line'>255:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$args&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">func_get_args</span><span style="color: #D24; font-weight: bold">();
+<span class='highlight'>256:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;nativeQuery($this-&gt;translateArgs($args));
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>257:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>258:</span>    
+<span class='line'>259:</span>    
+<span class='line'>260:</span>    
+<span class='line'>261:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">/**
+<span class='line'>262:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Generates&nbsp;SQL&nbsp;query.
+<span class='line'>263:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;array|mixed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;one&nbsp;or&nbsp;more&nbsp;arguments
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2Fdibi%2Fdibi.php&amp;line=297" title="/home/kubiq/php/lpstore/libs/dibi/dibi.php">
+						dibi/<b>dibi.php</b></a> (297)					
+					<a href="#" rel="netteBsSrc1-3">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					DibiConnection->					query
+					(<a href="#" rel="netteBsArgs1-3">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-3">
+						<table>
+						<tr><th>$args</th><td><pre class="nette-dump"><a href='#' rel='next'><span>array</span>(5) <abbr>&#x25bc;</abbr> </a><code>[
+   0 => "SELECT count(*) " (16)
+   1 => "FROM [invTypes]" (15)
+   2 => "WHERE [typeName] like %s" (24)
+   3 => "%invule%" (8)
+   4 => "AND [published] = 1" (19)
+]</code>
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-3"><code><span style="color: #06B"><span style="color: #999; font-style: italic"><span class='line'>290:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;array|mixed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;one&nbsp;or&nbsp;more&nbsp;arguments
+<span class='line'>291:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;DibiResult|int&nbsp;&nbsp;&nbsp;result&nbsp;set&nbsp;object&nbsp;(if&nbsp;any)
+<span class='line'>292:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@throws&nbsp;DibiException
+<span class='line'>293:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+<span class='line'>294:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">public&nbsp;static&nbsp;function&nbsp;</span><span style="color: #000">query</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$args</span><span style="color: #D24; font-weight: bold">)
+<span class='line'>295:</span>    &nbsp;&nbsp;&nbsp;&nbsp;{
+<span class='line'>296:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$args&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">func_get_args</span><span style="color: #D24; font-weight: bold">();
+<span class='highlight'>297:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;self::getConnection()-&gt;query($args);
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>298:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>299:</span>    
+<span class='line'>300:</span>    
+<span class='line'>301:</span>    
+<span class='line'>302:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">/**
+<span class='line'>303:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Executes&nbsp;the&nbsp;SQL&nbsp;query&nbsp;-&nbsp;Monostate&nbsp;for&nbsp;DibiConnection::nativeQuery().
+<span class='line'>304:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SQL&nbsp;statement.
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Fapp%2Fmodels%2FItemModel.php&amp;line=91" title="/home/kubiq/php/lpstore/app/models/ItemModel.php">
+						models/<b>ItemModel.php</b></a> (91)					
+					<a href="#" rel="netteBsSrc1-4">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					dibi::					query
+					(<a href="#" rel="netteBsArgs1-4">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-4">
+						<table>
+						<tr><th>$args</th><td><pre class="nette-dump">"SELECT count(*) " (16)
+</pre></td></tr>
+<tr><th>#1</th><td><pre class="nette-dump">"FROM [invTypes]" (15)
+</pre></td></tr>
+<tr><th>#2</th><td><pre class="nette-dump">"WHERE [typeName] like %s" (24)
+</pre></td></tr>
+<tr><th>#3</th><td><pre class="nette-dump">"%invule%" (8)
+</pre></td></tr>
+<tr><th>#4</th><td><pre class="nette-dump">"AND [published] = 1" (19)
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-4"><code><span style="color: #06B"><span style="color: #999; font-style: italic"><span class='line'>84:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+<span class='line'>85:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">public&nbsp;function&nbsp;</span><span style="color: #000">countSearch</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$q&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">null</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>86:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!(bool)&nbsp;</span><span style="color: #000">$q</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>87:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;</span><span style="color: #000">InvalidArgumentException</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #080">"Item&nbsp;name&nbsp;has&nbsp;to&nbsp;be&nbsp;given"</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>88:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>89:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$q&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #080">'%'&nbsp;</span><span style="color: #D24; font-weight: bold">.&nbsp;</span><span style="color: #000">$q&nbsp;</span><span style="color: #D24; font-weight: bold">.&nbsp;</span><span style="color: #080">'%'</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>90:</span>    
+<span class='highlight'>91:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;dibi::query('SELECT&nbsp;count(*)&nbsp;',&nbsp;'FROM&nbsp;[invTypes]',&nbsp;'WHERE&nbsp;[typeName]&nbsp;like&nbsp;%s',&nbsp;$q,&nbsp;'AND&nbsp;[published]&nbsp;=&nbsp;1')
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #080"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #080"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #080"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #080"></span><span style="color: #D24; font-weight: bold"><span class='line'>92:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&gt;</span><span style="color: #000">fetchSingle</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>93:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>94:</span>    
+<span class='line'>95:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">/**
+<span class='line'>96:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;vrati&nbsp;pole&nbsp;itemu&nbsp;pro&nbsp;autocomplete
+<span class='line'>97:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;int&nbsp;$name&nbsp;of&nbsp;
+<span class='line'>98:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;int&nbsp;$offset
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Fapp%2Fpresenters%2FItemPresenter.php&amp;line=66" title="/home/kubiq/php/lpstore/app/presenters/ItemPresenter.php">
+						presenters/<b>ItemPresenter.php</b></a> (66)					
+					<a href="#" rel="netteBsSrc1-5">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					ItemModel->					countSearch
+					(<a href="#" rel="netteBsArgs1-5">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-5">
+						<table>
+						<tr><th>$q</th><td><pre class="nette-dump">"invule" (6)
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-5"><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>59:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$searchForm&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'searchForm'</span><span style="color: #D24; font-weight: bold">];
+<span class='line'>60:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$searchForm</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">setDefaults</span><span style="color: #D24; font-weight: bold">(array(</span><span style="color: #080">'q'&nbsp;</span><span style="color: #D24; font-weight: bold">=&gt;&nbsp;</span><span style="color: #000">$q</span><span style="color: #D24; font-weight: bold">));
+<span class='line'>61:</span>    
+<span class='line'>62:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$vp&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #080">'vp'</span><span style="color: #D24; font-weight: bold">];
+<span class='line'>63:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">paginator&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$vp</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">paginator</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>64:</span>    
+<span class='line'>65:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">paginator</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">itemsPerPage&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">20</span><span style="color: #D24; font-weight: bold">;
+<span class='highlight'>66:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;paginator-&gt;itemCount&nbsp;=&nbsp;$this-&gt;itemModel-&gt;countSearch($q);
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>67:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class='line'>68:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">paginator</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">itemCount&nbsp;</span><span style="color: #D24; font-weight: bold">==&nbsp;</span><span style="color: #000">1</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>69:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$item&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">itemModel</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">getItems</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$q</span><span style="color: #D24; font-weight: bold">,</span><span style="color: #000">0</span><span style="color: #D24; font-weight: bold">,</span><span style="color: #000">1</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>70:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">Debug</span><span style="color: #D24; font-weight: bold">::</span><span style="color: #000">barDump</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$item</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>71:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">redirect</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #080">"Item:detail"</span><span style="color: #D24; font-weight: bold">,&nbsp;array(</span><span style="color: #080">'name'</span><span style="color: #D24; font-weight: bold">=&gt;&nbsp;</span><span style="color: #000">$item</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #000">0</span><span style="color: #D24; font-weight: bold">]-&gt;</span><span style="color: #000">typeName</span><span style="color: #D24; font-weight: bold">));
+<span class='line'>72:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>73:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<i>inner-code</i>					
+					
+					ItemPresenter->					actionSearch
+					(<a href="#" rel="netteBsArgs1-6">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-6">
+						<table>
+						<tr><th>$q</th><td><pre class="nette-dump">"invule" (6)
+</pre></td></tr>
+<tr><th>$page</th><td><pre class="nette-dump">1
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2FNette%2FReflection%2FMethodReflection.php&amp;line=80" title="/home/kubiq/php/lpstore/libs/Nette/Reflection/MethodReflection.php">
+						Reflection/<b>MethodReflection.php</b></a> (80)					
+					<a href="#" rel="netteBsSrc1-7">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					ReflectionMethod->					invokeArgs
+					(<a href="#" rel="netteBsArgs1-7">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-7">
+						<table>
+						<tr><th>$object</th><td><pre class="nette-dump"><a href='#' rel='next'><span>ItemPresenter</span>(32) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+   <a href='#' rel='next'>"paginator" <span>private</span> => <span>Nette\Paginator</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      "base" <span>private</span> => 1
+      "itemsPerPage" <span>private</span> => 20
+      <a href='#' rel='next'>"page" <span>private</span> => 1
+      "itemCount" <span>private</span> => NULL
+   }</code>
+   "itemModel" <span>protected</span> => <span>ItemModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "transactionModel" <span>protected</span> => <span>TransactionModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "reqModel" <span>protected</span> => <span>RequirementModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "eveCentralModel" <span>protected</span> => <span>EveCentralModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      "primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   <a href='#' rel='next'>}</code>
+   "matches" <span>protected</span> => NULL
+   "onShutdown" => NULL
+   "request" <span>private</span> => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "GET" (3)
+      <a href='#' rel='next'>"flags" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+         "secured" => FALSE
+      }</code>
+      "name" <span>private</span> => "Item" (4)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+         "action" => "search" (6)
+         "q" => "invule" (6)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      <a href='#' rel='next'>"frozen" <span>private</span> => TRUE
+   }</code>
+   "response" <span>private</span> => <span>Nette\Application\ForwardingResponse</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"request" <span>private</span> => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "method" <span>private</span> => "FORWARD" (7)
+         "flags" <span>private</span> => <span>array</span>(0) 
+         "name" <span>private</span> => "Error" (5)
+         "params" <span>private</span> => <span>array</span>(2) { ... }
+         "post" <span>private</span> => <span>array</span>(0) 
+         "files" <span>private</span> => <span>array</span>(0) 
+         "frozen" <span>private</span> => TRUE
+      }</code>
+   }</code>
+   "autoCanonicalize" => TRUE
+   "absoluteUrls" => FALSE
+   "globalParams" <span>private</span> => <span>array</span>(0) 
+   <a href='#' rel='next'>"globalState" <span>private</span> => NULL
+   "globalStateSinces" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      "vp-page" => FALSE
+   }</code>
+   "action" <span>private</span> => "search" (6)
+   "view" <span>private</span> => "search" (6)
+   "layout" <span>private</span> => NULL
+   "payload" <span>private</span> => <span>stdClass</span>(0) 
+   "signalReceiver" <span>private</span> => ""
+   "signal" <span>private</span> => NULL
+   <a href='#' rel='next'>"ajaxMode" <span>private</span> => FALSE
+   "startupCheck" <span>private</span> => TRUE
+   "lastCreatedRequest" <span>private</span> => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "FORWARD" (7)
+      "flags" <span>private</span> => <span>array</span>(0) 
+      "name" <span>private</span> => "Error" (5)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+         "exception" => <span>DibiDriverException</span>(8) { ... }
+         "action" => "default" (7)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      <a href='#' rel='next'>"frozen" <span>private</span> => TRUE
+   }</code>
+   "lastCreatedRequestFlag" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      "current" => FALSE
+   }</code>
+   "template" <span>private</span> => NULL
+   "invalidSnippets" <span>private</span> => <span>array</span>(0) 
+   <a href='#' rel='next'>"params" <span>protected</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+      "action" => "search" (6)
+      "q" => "invule" (6)
+   <a href='#' rel='next'>}</code>
+   "components" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"searchForm" => <span>Nette\Application\AppForm</span>(17) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "onSubmit" => <span>array</span>(1) [ ... ]
+         "onInvalidSubmit" => NULL
+         "submittedBy" <span>private</span> => FALSE
+         "httpData" <span>private</span> => <span>array</span>(0) 
+         "element" <span>private</span> => <span>Nette\Web\Html</span>(4) { ... }
+         "renderer" <span>private</span> => NULL
+         "translator" <span>private</span> => NULL
+         "groups" <span>private</span> => <span>array</span>(0) 
+         "errors" <span>private</span> => <span>array</span>(0) 
+         "onValidate" => NULL
+         "currentGroup" <span>protected</span> => NULL
+         "valid" <span>protected</span> => NULL
+         "components" <span>private</span> => <span>array</span>(2) { ... }
+         "cloning" <span>private</span> => NULL
+         "parent" <span>private</span> => <span>ItemPresenter</span>(32) { *RECURSION* }
+         "name" <span>private</span> => "searchForm" (10)
+         "monitors" <span>private</span> => <span>array</span>(2) { ... }
+      <a href='#' rel='next'>}</code>
+      "vp" => <span>VisualPaginator</span>(10) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "paginator" <span>private</span> => <span>Nette\Paginator</span>(4) { ... }
+         "page" => 1
+         "template" <span>private</span> => NULL
+         "invalidSnippets" <span>private</span> => <span>array</span>(0) 
+         "params" <span>protected</span> => <span>array</span>(0) 
+         "components" <span>private</span> => <span>array</span>(0) 
+         "cloning" <span>private</span> => NULL
+         "parent" <span>private</span> => <span>ItemPresenter</span>(32) { *RECURSION* }
+         "name" <span>private</span> => "vp" (2)
+         "monitors" <span>private</span> => <span>array</span>(1) { ... }
+      }</code>
+   }</code>
+   "cloning" <span>private</span> => NULL
+   "parent" <span>private</span> => NULL
+   "name" <span>private</span> => "Item" (4)
+   <a href='#' rel='next'>"monitors" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"Nette\Application\Presenter" => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>[
+         0 => NULL
+         1 => NULL
+         2 => NULL
+         3 => TRUE
+      ]</code>
+   }</code>
+}</code>
+</pre></td></tr>
+<tr><th>$args</th><td><pre class="nette-dump"><a href='#' rel='next'><span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>[
+   0 => "invule" (6)
+   1 => 1
+]</code>
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-7"><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>73:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">settype</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$val</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">gettype</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$def</span><span style="color: #D24; font-weight: bold">));
+<span class='line'>74:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>75:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$res</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #000">$i</span><span style="color: #D24; font-weight: bold">++]&nbsp;=&nbsp;</span><span style="color: #000">$val</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>76:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{
+<span class='line'>77:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$res</span><span style="color: #D24; font-weight: bold">[</span><span style="color: #000">$i</span><span style="color: #D24; font-weight: bold">++]&nbsp;=&nbsp;</span><span style="color: #000">$def</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>78:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>79:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='highlight'>80:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;$this-&gt;invokeArgs($object,&nbsp;$res);
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>81:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>82:</span>    
+<span class='line'>83:</span>    
+<span class='line'>84:</span>    
+<span class='line'>85:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">/**
+<span class='line'>86:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@return&nbsp;Nette\Callback
+<span class='line'>87:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2FNette%2FApplication%2FPresenterComponent.php&amp;line=97" title="/home/kubiq/php/lpstore/libs/Nette/Application/PresenterComponent.php">
+						Application/<b>PresenterComponent.php</b></a> (97)					
+					<a href="#" rel="netteBsSrc1-8">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					Nette\Reflection\MethodReflection->					invokeNamedArgs
+					(<a href="#" rel="netteBsArgs1-8">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-8">
+						<table>
+						<tr><th>$object</th><td><pre class="nette-dump"><a href='#' rel='next'><span>ItemPresenter</span>(32) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+   <a href='#' rel='next'>"paginator" <span>private</span> => <span>Nette\Paginator</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      "base" <span>private</span> => 1
+      "itemsPerPage" <span>private</span> => 20
+      <a href='#' rel='next'>"page" <span>private</span> => 1
+      "itemCount" <span>private</span> => NULL
+   }</code>
+   "itemModel" <span>protected</span> => <span>ItemModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "transactionModel" <span>protected</span> => <span>TransactionModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "reqModel" <span>protected</span> => <span>RequirementModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "eveCentralModel" <span>protected</span> => <span>EveCentralModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      "primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   <a href='#' rel='next'>}</code>
+   "matches" <span>protected</span> => NULL
+   "onShutdown" => NULL
+   "request" <span>private</span> => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "GET" (3)
+      <a href='#' rel='next'>"flags" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+         "secured" => FALSE
+      }</code>
+      "name" <span>private</span> => "Item" (4)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+         "action" => "search" (6)
+         "q" => "invule" (6)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      <a href='#' rel='next'>"frozen" <span>private</span> => TRUE
+   }</code>
+   "response" <span>private</span> => <span>Nette\Application\ForwardingResponse</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"request" <span>private</span> => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "method" <span>private</span> => "FORWARD" (7)
+         "flags" <span>private</span> => <span>array</span>(0) 
+         "name" <span>private</span> => "Error" (5)
+         "params" <span>private</span> => <span>array</span>(2) { ... }
+         "post" <span>private</span> => <span>array</span>(0) 
+         "files" <span>private</span> => <span>array</span>(0) 
+         "frozen" <span>private</span> => TRUE
+      }</code>
+   }</code>
+   "autoCanonicalize" => TRUE
+   "absoluteUrls" => FALSE
+   "globalParams" <span>private</span> => <span>array</span>(0) 
+   <a href='#' rel='next'>"globalState" <span>private</span> => NULL
+   "globalStateSinces" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      "vp-page" => FALSE
+   }</code>
+   "action" <span>private</span> => "search" (6)
+   "view" <span>private</span> => "search" (6)
+   "layout" <span>private</span> => NULL
+   "payload" <span>private</span> => <span>stdClass</span>(0) 
+   "signalReceiver" <span>private</span> => ""
+   "signal" <span>private</span> => NULL
+   <a href='#' rel='next'>"ajaxMode" <span>private</span> => FALSE
+   "startupCheck" <span>private</span> => TRUE
+   "lastCreatedRequest" <span>private</span> => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "FORWARD" (7)
+      "flags" <span>private</span> => <span>array</span>(0) 
+      "name" <span>private</span> => "Error" (5)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+         "exception" => <span>DibiDriverException</span>(8) { ... }
+         "action" => "default" (7)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      <a href='#' rel='next'>"frozen" <span>private</span> => TRUE
+   }</code>
+   "lastCreatedRequestFlag" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      "current" => FALSE
+   }</code>
+   "template" <span>private</span> => NULL
+   "invalidSnippets" <span>private</span> => <span>array</span>(0) 
+   <a href='#' rel='next'>"params" <span>protected</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+      "action" => "search" (6)
+      "q" => "invule" (6)
+   <a href='#' rel='next'>}</code>
+   "components" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"searchForm" => <span>Nette\Application\AppForm</span>(17) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "onSubmit" => <span>array</span>(1) [ ... ]
+         "onInvalidSubmit" => NULL
+         "submittedBy" <span>private</span> => FALSE
+         "httpData" <span>private</span> => <span>array</span>(0) 
+         "element" <span>private</span> => <span>Nette\Web\Html</span>(4) { ... }
+         "renderer" <span>private</span> => NULL
+         "translator" <span>private</span> => NULL
+         "groups" <span>private</span> => <span>array</span>(0) 
+         "errors" <span>private</span> => <span>array</span>(0) 
+         "onValidate" => NULL
+         "currentGroup" <span>protected</span> => NULL
+         "valid" <span>protected</span> => NULL
+         "components" <span>private</span> => <span>array</span>(2) { ... }
+         "cloning" <span>private</span> => NULL
+         "parent" <span>private</span> => <span>ItemPresenter</span>(32) { *RECURSION* }
+         "name" <span>private</span> => "searchForm" (10)
+         "monitors" <span>private</span> => <span>array</span>(2) { ... }
+      <a href='#' rel='next'>}</code>
+      "vp" => <span>VisualPaginator</span>(10) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "paginator" <span>private</span> => <span>Nette\Paginator</span>(4) { ... }
+         "page" => 1
+         "template" <span>private</span> => NULL
+         "invalidSnippets" <span>private</span> => <span>array</span>(0) 
+         "params" <span>protected</span> => <span>array</span>(0) 
+         "components" <span>private</span> => <span>array</span>(0) 
+         "cloning" <span>private</span> => NULL
+         "parent" <span>private</span> => <span>ItemPresenter</span>(32) { *RECURSION* }
+         "name" <span>private</span> => "vp" (2)
+         "monitors" <span>private</span> => <span>array</span>(1) { ... }
+      }</code>
+   }</code>
+   "cloning" <span>private</span> => NULL
+   "parent" <span>private</span> => NULL
+   "name" <span>private</span> => "Item" (4)
+   <a href='#' rel='next'>"monitors" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"Nette\Application\Presenter" => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>[
+         0 => NULL
+         1 => NULL
+         2 => NULL
+         3 => TRUE
+      ]</code>
+   }</code>
+}</code>
+</pre></td></tr>
+<tr><th>$args</th><td><pre class="nette-dump"><a href='#' rel='next'><span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+   "action" => "search" (6)
+   "q" => "invule" (6)
+}</code>
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-8"><code><span style="color: #06B"><span style="color: #999; font-style: italic"><span class='line'> 90:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/
+<span class='line'> 91:</span>    &nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">protected&nbsp;function&nbsp;</span><span style="color: #000">tryCall</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$method</span><span style="color: #D24; font-weight: bold">,&nbsp;array&nbsp;</span><span style="color: #000">$params</span><span style="color: #D24; font-weight: bold">)
+<span class='line'> 92:</span>    &nbsp;&nbsp;&nbsp;&nbsp;{
+<span class='line'> 93:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$rc&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">getReflection</span><span style="color: #D24; font-weight: bold">();
+<span class='line'> 94:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #000">$rc</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">hasMethod</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$method</span><span style="color: #D24; font-weight: bold">))&nbsp;{
+<span class='line'> 95:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$rm&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$rc</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">getMethod</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$method</span><span style="color: #D24; font-weight: bold">);
+<span class='line'> 96:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #000">$rm</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">isPublic</span><span style="color: #D24; font-weight: bold">()&nbsp;&amp;&amp;&nbsp;!</span><span style="color: #000">$rm</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">isAbstract</span><span style="color: #D24; font-weight: bold">()&nbsp;&amp;&amp;&nbsp;!</span><span style="color: #000">$rm</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">isStatic</span><span style="color: #D24; font-weight: bold">())&nbsp;{
+<span class='highlight'> 97:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$rm-&gt;invokeNamedArgs($this,&nbsp;$params);
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'> 98:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000">TRUE</span><span style="color: #D24; font-weight: bold">;
+<span class='line'> 99:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>100:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>101:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #000">FALSE</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>102:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>103:</span>    
+<span class='line'>104:</span>    
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2FNette%2FApplication%2FPresenter.php&amp;line=163" title="/home/kubiq/php/lpstore/libs/Nette/Application/Presenter.php">
+						Application/<b>Presenter.php</b></a> (163)					
+					<a href="#" rel="netteBsSrc1-9">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					Nette\Application\PresenterComponent->					tryCall
+					(<a href="#" rel="netteBsArgs1-9">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-9">
+						<table>
+						<tr><th>$method</th><td><pre class="nette-dump">"actionsearch" (12)
+</pre></td></tr>
+<tr><th>$params</th><td><pre class="nette-dump"><a href='#' rel='next'><span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+   "action" => "search" (6)
+   "q" => "invule" (6)
+}</code>
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-9"><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>156:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">initGlobalParams</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>157:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">startup</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>158:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">startupCheck</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>159:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$class&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">reflection</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">getMethod</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #080">'startup'</span><span style="color: #D24; font-weight: bold">)-&gt;</span><span style="color: #000">getDeclaringClass</span><span style="color: #D24; font-weight: bold">()-&gt;</span><span style="color: #000">getName</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>160:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;\</span><span style="color: #000">InvalidStateException</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #080">"Method&nbsp;</span><span style="color: #000">$class</span><span style="color: #080">::startup()&nbsp;or&nbsp;its&nbsp;descendant&nbsp;doesn't&nbsp;call&nbsp;parent::startup()."</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>161:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>162:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">//&nbsp;calls&nbsp;$this-&gt;action&lt;Action&gt;()
+<span class='highlight'>163:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$this-&gt;tryCall($this-&gt;formatActionMethod($this-&gt;getAction()),&nbsp;$this-&gt;params);
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>164:</span>    
+<span class='line'>165:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">autoCanonicalize</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>166:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">canonicalize</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>167:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>168:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">getHttpRequest</span><span style="color: #D24; font-weight: bold">()-&gt;</span><span style="color: #000">isMethod</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #080">'head'</span><span style="color: #D24; font-weight: bold">))&nbsp;{
+<span class='line'>169:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">terminate</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>170:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Flibs%2FNette%2FApplication%2FApplication.php&amp;line=133" title="/home/kubiq/php/lpstore/libs/Nette/Application/Application.php">
+						Application/<b>Application.php</b></a> (133)					
+					<a href="#" rel="netteBsSrc1-10">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					Nette\Application\Presenter->					run
+					(<a href="#" rel="netteBsArgs1-10">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-10">
+						<table>
+						<tr><th>$request</th><td><pre class="nette-dump"><a href='#' rel='next'><span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+   "method" <span>private</span> => "GET" (3)
+   <a href='#' rel='next'>"flags" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      "secured" => FALSE
+   }</code>
+   "name" <span>private</span> => "Item" (4)
+   <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+      "action" => "search" (6)
+      "q" => "invule" (6)
+   }</code>
+   "post" <span>private</span> => <span>array</span>(0) 
+   "files" <span>private</span> => <span>array</span>(0) 
+   "frozen" <span>private</span> => TRUE
+}</code>
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-10"><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>126:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(</span><span style="color: #000">InvalidPresenterException&nbsp;$e</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>127:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw&nbsp;new&nbsp;</span><span style="color: #000">BadRequestException</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$e</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">getMessage</span><span style="color: #D24; font-weight: bold">(),&nbsp;</span><span style="color: #000">404</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">$e</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>128:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>129:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$request</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">freeze</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>130:</span>    
+<span class='line'>131:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">//&nbsp;Execute&nbsp;presenter
+<span class='line'>132:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">presenter&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;new&nbsp;</span><span style="color: #000">$class</span><span style="color: #D24; font-weight: bold">;
+<span class='highlight'>133:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$response&nbsp;=&nbsp;$this-&gt;presenter-&gt;run($request);
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>134:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">onResponse</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">$response</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>135:</span>    
+<span class='line'>136:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">//&nbsp;Send&nbsp;response
+<span class='line'>137:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #D24; font-weight: bold">if&nbsp;(</span><span style="color: #000">$response&nbsp;</span><span style="color: #D24; font-weight: bold">instanceof&nbsp;</span><span style="color: #000">ForwardingResponse</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>138:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$request&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$response</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">getRequest</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>139:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;
+<span class='line'>140:</span>    
+</span></span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Fapp%2Fbootstrap.php&amp;line=54" title="/home/kubiq/php/lpstore/app/bootstrap.php">
+						app/<b>bootstrap.php</b></a> (54)					
+					<a href="#" rel="netteBsSrc1-11">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+					Nette\Application\Application->					run
+					()
+					</p>
+
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-11"><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>47:</span>    
+<span class='line'>48:</span>    
+<span class='line'>49:</span>    
+<span class='line'>50:</span>    </span><span style="color: #000">$application</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">onStartup</span><span style="color: #D24; font-weight: bold">[]&nbsp;=&nbsp;</span><span style="color: #080">'BaseModel::connect'</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>51:</span>    </span><span style="color: #000">$application</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">onShutdown</span><span style="color: #D24; font-weight: bold">[]&nbsp;=&nbsp;</span><span style="color: #080">'BaseModel::disconnect'</span><span style="color: #D24; font-weight: bold">;
+<span class='line'>52:</span>    
+<span class='line'>53:</span>    </span><span style="color: #999; font-style: italic">//&nbsp;Step&nbsp;5:&nbsp;Run&nbsp;the&nbsp;application!
+<span class='highlight'>54:    $application-&gt;run();
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>55:</span>    </span>
+</span></code></pre>
+					
+					</li>
+										<li><p>
+
+											<a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Findex.php&amp;line=22" title="/home/kubiq/php/lpstore/index.php">
+						lpstore/<b>index.php</b></a> (22)					
+					<a href="#" rel="netteBsSrc1-12">source <abbr>&#x25ba;</abbr></a>&nbsp; 
+										require
+					(<a href="#" rel="netteBsArgs1-12">arguments <abbr>&#x25ba;</abbr></a>)
+					</p>
+
+											<div class="nette-collapsed outer" id="netteBsArgs1-12">
+						<table>
+						<tr><th>#0</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/app/bootstrap.php" (41)
+</pre></td></tr>
+						</table>
+						</div>
+					
+
+											<pre class="nette-collapsed" id="netteBsSrc1-12"><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>15:</span>    </span><span style="color: #999; font-style: italic">//&nbsp;absolute&nbsp;filesystem&nbsp;path&nbsp;to&nbsp;the&nbsp;libraries
+<span class='line'>16:</span>    </span><span style="color: #000">define</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #080">'LIBS_DIR'</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">WWW_DIR&nbsp;</span><span style="color: #D24; font-weight: bold">.&nbsp;</span><span style="color: #080">'/libs'</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>17:</span>    
+<span class='line'>18:</span>    </span><span style="color: #999; font-style: italic">//&nbsp;absolute&nbsp;filesystem&nbsp;path&nbsp;to&nbsp;the&nbsp;temporary&nbsp;files
+<span class='line'>19:</span>    </span><span style="color: #000">define</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #080">'TEMP_DIR'</span><span style="color: #D24; font-weight: bold">,&nbsp;</span><span style="color: #000">WWW_DIR&nbsp;</span><span style="color: #D24; font-weight: bold">.&nbsp;</span><span style="color: #080">'/temp'</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>20:</span>    
+<span class='line'>21:</span>    </span><span style="color: #999; font-style: italic">//&nbsp;load&nbsp;bootstrap&nbsp;file
+<span class='highlight'>22:    require&nbsp;APP_DIR&nbsp;.&nbsp;'/bootstrap.php';
+</span></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #080"></span><span style="color: #D24; font-weight: bold"><span class='line'>23:</span>    </span>
+</span></code></pre>
+					
+					</li>
+									</ol>
+			</div></div>
+			
+
+
+			
+				
+
+
+				<div class="panel">
+		<h2><a href="#" rel="netteBsPnl3">Nette Application <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl3" class="nette-collapsed inner">
+			<h3>Requests</h3>
+			<pre class="nette-dump"><a href='#' rel='next'><span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>[
+   <a href='#' rel='next'>0 => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "GET" (3)
+      <a href='#' rel='next'>"flags" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+         "secured" => FALSE
+      }</code>
+      "name" <span>private</span> => "Item" (4)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+         "action" => "search" (6)
+         "q" => "invule" (6)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      <a href='#' rel='next'>"frozen" <span>private</span> => TRUE
+   }</code>
+   1 => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "FORWARD" (7)
+      "flags" <span>private</span> => <span>array</span>(0) 
+      "name" <span>private</span> => "Error" (5)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+         "exception" => <span>DibiDriverException</span>(8) { ... }
+         "action" => "default" (7)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      "frozen" <span>private</span> => TRUE
+   }</code>
+]</code>
+</pre>
+			<h3>Presenter</h3>
+			<pre class="nette-dump"><a href='#' rel='next'><span>ErrorPresenter</span>(31) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+   <a href='#' rel='next'>"itemModel" <span>protected</span> => <span>ItemModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "transactionModel" <span>protected</span> => <span>TransactionModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "reqModel" <span>protected</span> => <span>RequirementModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "eveCentralModel" <span>protected</span> => <span>EveCentralModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => FALSE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      "primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   <a href='#' rel='next'>}</code>
+   "matches" <span>protected</span> => NULL
+   "onShutdown" => NULL
+   "request" <span>private</span> => <span>Nette\Application\PresenterRequest</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "FORWARD" (7)
+      "flags" <span>private</span> => <span>array</span>(0) 
+      "name" <span>private</span> => "Error" (5)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+         "exception" => <span>DibiDriverException</span>(8) { ... }
+         "action" => "default" (7)
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      "frozen" <span>private</span> => TRUE
+   }</code>
+   "response" <span>private</span> => NULL
+   "autoCanonicalize" => TRUE
+   "absoluteUrls" => FALSE
+   "globalParams" <span>private</span> => <span>array</span>(0) 
+   "globalState" <span>private</span> => NULL
+   "globalStateSinces" <span>private</span> => NULL
+   "action" <span>private</span> => "default" (7)
+   "view" <span>private</span> => "500" (3)
+   "layout" <span>private</span> => NULL
+   "payload" <span>private</span> => <span>stdClass</span>(0) 
+   "signalReceiver" <span>private</span> => ""
+   "signal" <span>private</span> => NULL
+   "ajaxMode" <span>private</span> => FALSE
+   "startupCheck" <span>private</span> => TRUE
+   "lastCreatedRequest" <span>private</span> => NULL
+   "lastCreatedRequestFlag" <span>private</span> => NULL
+   "template" <span>private</span> => NULL
+   "invalidSnippets" <span>private</span> => <span>array</span>(0) 
+   <a href='#' rel='next'>"params" <span>protected</span> => <span>array</span>(2) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"exception" => <span>DibiDriverException</span>(8) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "sql" <span>private</span> => NULL
+         "message" <span>protected</span> => "Access denied for user 'ic_lpstore'@'fixed-140.rjnet.cz' (using password: YES)" (78)
+         "string" <span>private</span> => "exception 'DibiDriverException' with message 'Access denied for user 'ic_lpstore'@'fixed-140.rjnet.cz' (using password: YES)' in /home/kubiq/php/lpsto ... " (1657)
+         "code" <span>protected</span> => 1045
+         "file" <span>protected</span> => "/home/kubiq/php/lpstore/libs/dibi/drivers/mysql.php" (51)
+         "line" <span>protected</span> => 109
+         "trace" <span>private</span> => <span>array</span>(13) [ ... ]
+         "previous" <span>private</span> => NULL
+      }</code>
+      "action" => "default" (7)
+   }</code>
+   "components" <span>private</span> => <span>array</span>(0) 
+   "cloning" <span>private</span> => NULL
+   "parent" <span>private</span> => NULL
+   "name" <span>private</span> => "Error" (5)
+   <a href='#' rel='next'>"monitors" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"Nette\Application\Presenter" => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>[
+         0 => NULL
+         1 => NULL
+         2 => NULL
+         3 => TRUE
+      ]</code>
+   }</code>
+}</code>
+</pre>		</div></div>
+		
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl4">Environment <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl4" class="nette-collapsed inner">
+						<h3><a href="#" rel="netteBsPnl-env-const">Constants <abbr>&#x25bc;</abbr></a></h3>
+			<div class="outer">
+			<table id="netteBsPnl-env-const">
+			<tr><th>SITE</th><td><pre class="nette-dump">"lp store" (8)
+</pre></td></tr>
+<tr><th>WWW_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore" (23)
+</pre></td></tr>
+<tr><th>APP_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/app" (27)
+</pre></td></tr>
+<tr><th>LIBS_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/libs" (28)
+</pre></td></tr>
+<tr><th>TEMP_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/temp" (28)
+</pre></td></tr>
+<tr><th>NETTE</th><td><pre class="nette-dump">TRUE
+</pre></td></tr>
+<tr><th>NETTE_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/libs/Nette" (34)
+</pre></td></tr>
+<tr><th>NETTE_VERSION_ID</th><td><pre class="nette-dump">20000
+</pre></td></tr>
+<tr><th>NETTE_PACKAGE</th><td><pre class="nette-dump">"5.3" (3)
+</pre></td></tr>
+			</table>
+			</div>
+			
+
+			<h3><a href="#" rel="netteBsPnl-env-files">Included files <abbr>&#x25ba;</abbr></a> (120)</h3>
+			<div class="outer">
+			<table id="netteBsPnl-env-files" class="nette-collapsed">
+			<tr><td>/home/kubiq/php/lpstore/index.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/bootstrap.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/loader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/shortcuts.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/exceptions.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Object.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/LimitedScope.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/AutoLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/NetteLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/DebugHelpers.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/Debug.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/DebugPanel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/IDebugPanel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Environment/Environment.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Environment/Configurator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/Config.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/ConfigAdapterIni.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/IConfigAdapter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/ArrayTools.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Iterators/GenericRecursiveIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Context.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/FreezableObject.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/IFreezable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/IContext.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Callback.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/RobotLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/FileStorage.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/ICacheStorage.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/FileJournal.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/ICacheJournal.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/Cache.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Framework.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/HttpRequestFactory.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/UriScript.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/Uri.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/ObjectMixin.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/String.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/HttpRequest.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/IHttpRequest.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Application.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Routers/MultiRouter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/ArrayList.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IRouter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Routers/Route.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/HttpResponse.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/IHttpResponse.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/ClassReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/PropertyReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/BaseModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/dibi.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/interfaces.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDateTime.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiObject.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiHashMap.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiException.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiConnection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiResult.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiResultIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiRow.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiTranslator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDataSource.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiFluent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDatabaseInfo.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiProfiler.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/drivers/mysql.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/drivers/mysql.reflector.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/Session.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/RoutingDebugger.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterRequest.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPresenterLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/presenters/ItemPresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/presenters/BasePresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Presenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Control.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterComponent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/ComponentContainer.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/Component.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/IComponent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/IComponentContainer.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/ISignalReceiver.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IStatePersistent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPartiallyRenderable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IRenderable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterComponentReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/AnnotationsParser.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/ItemModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/TransactionModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/RequirementModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/EveCentralModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Form.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/FormContainer.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/MethodReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/AppForm.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Web/Html.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/SuggestInput/SuggestInput.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/SuggestInput/Suggesters/ISuggester.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/SuggestInput/Suggesters/ConstantSuggester.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/SuggestInput/Suggesters/ArraySuggester.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/SuggestInput/Suggesters/DibiSuggester.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Controls/TextInput.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Controls/TextBase.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Controls/FormControl.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/IFormControl.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Rules.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/RecursiveComponentIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Iterators/InstanceFilterIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Rule.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Controls/SubmitButton.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Controls/Button.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/ISubmitterControl.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Link.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/VisualPaginator/VisualPaginator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Paginator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/presenters/ErrorPresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Responses/ForwardingResponse.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPresenterResponse.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Exceptions/AbortException.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Debug/templates/bluescreen.phtml</td></tr>
+			</table>
+			</div>
+
+
+			<h3>$_SERVER</h3>
+						<div class="outer">
+			<table>
+			<tr><th>REDIRECT_STATUS</th><td><pre class="nette-dump">"200" (3)
+</pre></td></tr>
+<tr><th>HTTP_HOST</th><td><pre class="nette-dump">"lpstore" (7)
+</pre></td></tr>
+<tr><th>HTTP_CONNECTION</th><td><pre class="nette-dump">"keep-alive" (10)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT</th><td><pre class="nette-dump">"application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5" (90)
+</pre></td></tr>
+<tr><th>HTTP_USER_AGENT</th><td><pre class="nette-dump">"Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/9.0.597.98 Safari/534.13" (112)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_ENCODING</th><td><pre class="nette-dump">"gzip,deflate,sdch" (17)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_LANGUAGE</th><td><pre class="nette-dump">"cs,cs-CZ;q=0.8" (14)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_CHARSET</th><td><pre class="nette-dump">"windows-1250,utf-8;q=0.7,*;q=0.3" (32)
+</pre></td></tr>
+<tr><th>PATH</th><td><pre class="nette-dump">"/usr/local/bin:/usr/bin:/bin" (28)
+</pre></td></tr>
+<tr><th>SERVER_SIGNATURE</th><td><pre class="nette-dump">"&lt;address&gt;Apache/2.2.16 (Ubuntu) Server at lpstore Port 80&lt;/address&gt;
+" (68)
+</pre></td></tr>
+<tr><th>SERVER_SOFTWARE</th><td><pre class="nette-dump">"Apache/2.2.16 (Ubuntu)" (22)
+</pre></td></tr>
+<tr><th>SERVER_NAME</th><td><pre class="nette-dump">"lpstore" (7)
+</pre></td></tr>
+<tr><th>SERVER_ADDR</th><td><pre class="nette-dump">"127.0.1.1" (9)
+</pre></td></tr>
+<tr><th>SERVER_PORT</th><td><pre class="nette-dump">"80" (2)
+</pre></td></tr>
+<tr><th>REMOTE_ADDR</th><td><pre class="nette-dump">"127.0.1.1" (9)
+</pre></td></tr>
+<tr><th>DOCUMENT_ROOT</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/" (24)
+</pre></td></tr>
+<tr><th>SERVER_ADMIN</th><td><pre class="nette-dump">"[no address given]" (18)
+</pre></td></tr>
+<tr><th>SCRIPT_FILENAME</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/index.php" (33)
+</pre></td></tr>
+<tr><th>REMOTE_PORT</th><td><pre class="nette-dump">"40924" (5)
+</pre></td></tr>
+<tr><th>REDIRECT_URL</th><td><pre class="nette-dump">"/item/search/invule" (19)
+</pre></td></tr>
+<tr><th>GATEWAY_INTERFACE</th><td><pre class="nette-dump">"CGI/1.1" (7)
+</pre></td></tr>
+<tr><th>SERVER_PROTOCOL</th><td><pre class="nette-dump">"HTTP/1.1" (8)
+</pre></td></tr>
+<tr><th>REQUEST_METHOD</th><td><pre class="nette-dump">"GET" (3)
+</pre></td></tr>
+<tr><th>QUERY_STRING</th><td><pre class="nette-dump">""
+</pre></td></tr>
+<tr><th>REQUEST_URI</th><td><pre class="nette-dump">"/item/search/invule" (19)
+</pre></td></tr>
+<tr><th>SCRIPT_NAME</th><td><pre class="nette-dump">"/index.php" (10)
+</pre></td></tr>
+<tr><th>PHP_SELF</th><td><pre class="nette-dump">"/index.php" (10)
+</pre></td></tr>
+<tr><th>REQUEST_TIME</th><td><pre class="nette-dump">1298497539
+</pre></td></tr>
+			</table>
+			</div>
+					</div></div>
+
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl5">HTTP request <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl5" class="nette-collapsed inner">
+						<h3>Headers</h3>
+			<div class="outer">
+			<table>
+			<tr><th>Host</th><td>lpstore</td></tr>
+<tr><th>Connection</th><td>keep-alive</td></tr>
+<tr><th>Accept</th><td>application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5</td></tr>
+<tr><th>User-Agent</th><td>Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/534.13 (KHTML, like Gecko) Chrome/9.0.597.98 Safari/534.13</td></tr>
+<tr><th>Accept-Encoding</th><td>gzip,deflate,sdch</td></tr>
+<tr><th>Accept-Language</th><td>cs,cs-CZ;q=0.8</td></tr>
+<tr><th>Accept-Charset</th><td>windows-1250,utf-8;q=0.7,*;q=0.3</td></tr>
+			</table>
+			</div>
+			
+
+						<h3>$_GET</h3>
+						<p><i>empty</i></p>
+									<h3>$_POST</h3>
+						<p><i>empty</i></p>
+									<h3>$_COOKIE</h3>
+						<p><i>empty</i></p>
+								</div></div>
+
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl6">HTTP response <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl6" class="nette-collapsed inner">
+			<h3>Headers</h3>
+						<pre>X-Powered-By: Nette Framework<br></pre>
+					</div></div>
+
+
+		<ul>
+			<li>Report generated at 2011/02/23 22:45:39</li>
+							<li><a href="http://lpstore/item/search/invule">http://lpstore/item/search/invule</a></li>
+						<li>PHP 5.3.3-1ubuntu9.3</li>
+			<li>Apache/2.2.16 (Ubuntu)</li>			<li>Nette Framework 2.0-dev <i>(revision bb2b723 released on 2011-02-06)</i></li>		</ul>
+	</div>
+</div>
+
+<script type="text/javascript">/*<![CDATA[*/var bs=document.getElementById("netteBluescreen");document.body.appendChild(bs);document.onkeyup=function(b){b=b||window.event;b.keyCode==27&&!b.shiftKey&&!b.altKey&&!b.ctrlKey&&!b.metaKey&&bs.onclick({target:document.getElementById("netteBluescreenIcon")})};
+for(var i=0,styles=document.styleSheets;i<styles.length;i++)if((styles[i].owningElement||styles[i].ownerNode).className!=="nette"){styles[i].oldDisabled=styles[i].disabled;styles[i].disabled=true}else styles[i].addRule?styles[i].addRule(".nette-collapsed","display: none"):styles[i].insertRule(".nette-collapsed { display: none }",0);
+bs.onclick=function(b){b=b||window.event;for(var a=b.target||b.srcElement;a&&a.tagName&&a.tagName.toLowerCase()!=="a";)a=a.parentNode;if(!a||!a.rel)return true;for(var d=a.getElementsByTagName("abbr")[0],c=a.rel==="next"?a.nextSibling:document.getElementById(a.rel);c.nodeType!==1;)c=c.nextSibling;b=c.currentStyle?c.currentStyle.display=="none":getComputedStyle(c,null).display=="none";try{d.innerHTML=String.fromCharCode(b?9660:9658)}catch(e){}c.style.display=b?c.tagName.toLowerCase()==="code"?"inline":
+"block":"none";if(a.id==="netteBluescreenIcon"){a=0;for(d=document.styleSheets;a<d.length;a++)if((d[a].owningElement||d[a].ownerNode).className!=="nette")d[a].disabled=b?true:d[a].oldDisabled}return false};/*]]>*/</script>
+</body>
+</html>

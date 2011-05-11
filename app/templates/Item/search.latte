@@ -1,0 +1,55 @@
+{* This is temporary page, you can delete it *}
+
+{block content}
+<div>
+	
+	{if $items}
+	<h2>Your search results.</h2>
+	<div>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>
+						ID
+					</th>
+					<th>
+						Name of item
+					</th>
+					<th>
+						Price in Jita
+					</th>					
+				</tr>
+			</thead>
+			<tbody>
+				{foreach $items as $item}
+				<tr>
+					<td class="right-align">
+						{$item->typeID}
+					</td>
+					<td>
+						<a href="{link Item:detail, 'name'=> $item->typeName }">
+							{$item->typeName}
+						</a>
+					</td>
+					<td class="right-align">
+						{$item->price|isk}
+					</td>
+				</tr>
+				{/foreach}
+			</tbody>
+		</table>
+		
+	</div>
+	{else}
+	<div>
+		<h2>Your query didn't returned any results</h2>
+	</div>
+	{/if}
+	<div>
+		{control vp}
+	</div>
+</div>
+
+{/block}
+

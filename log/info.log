@@ -1,0 +1,9 @@
+[2011-02-19 00-43-02] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=med
+[2011-02-19 00-43-02] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=medi
+[2011-02-19 00-43-02] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=mediu
+[2011-02-19 00-43-03] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=medium
+[2011-02-19 00-43-04] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=medium
+[2011-02-19 00-43-35] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=medium+g
+[2011-02-19 00-45-04] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=rav
+[2011-02-19 00-45-04] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=rave
+[2011-02-20 01-56-35] PHP Fatal error: Uncaught exception InvalidStateException with message 'session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13)' in /home/kubiq/php/lpstore/libs/Nette/Web/Session.php:79  @  http://lpstore/item/suggest-dibi?typedText=caldari+navy+a

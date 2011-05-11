@@ -1,0 +1,99 @@
+{* This is temporary page, you can delete it *}
+
+{block content}
+
+<h2>{$item->typeName}</h2>
+<div>
+
+	<table>
+
+		<tbody>
+
+			<tr>
+				<td>
+					{if $item->description}
+						{!$item->description}
+					{else}
+						There is no description.
+					{/if}
+				</td>
+				<td class="right-align">
+					{$item->price|isk}
+				</td>
+				<td>{control changePriceForm}</td>
+			</tr>
+
+		</tbody>
+	</table>
+
+</div>
+
+{if $transactions}
+<a href="{link Transaction:add, 'name'=>$item->typeName}">Add new transaction</a>
+<table>
+	<thead>
+		<tr>
+			<th>Loyality Points</th>
+			<th>Isk</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		{foreach $transactions as $trans}
+		<tr>
+			<td class="right-align">{$trans->lp|lp}</td>
+
+			<td class="right-align">{$trans->isk|isk}</td>
+			<td>
+				{ifset $trans->items}
+				<table>
+				{foreach $trans->items as $item}
+					<tr>
+						<td class="right-align">{$item->quantity}</td>
+						<td>x</td>
+						<td>{$item->typeName}</td>
+						<td class="right-align">{$item->price|isk}</td>
+						
+					</tr>
+				{/foreach}
+				</table>
+				{else}
+					None items are required
+				{/ifset}
+			</td>
+		</tr>
+		<tr>
+			
+			<td>Bulk</td>
+			<td class="right-align">{$trans->bulk} items</td>
+			<td></td>
+		</tr>
+		<tr>
+			
+			<td>Market sell price for bulk</td>
+			<td class="right-align">{$trans->marketPrice|isk}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Costs</td>
+			<td class="right-align">{$trans->itemsPrice|isk}</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Earnings</td>
+			<td class="right-align">{$trans->earnings|isk}</td>
+			<td>/ {$trans->lp|lp} = {$trans->earnings/$trans->lp|isk} for 1 LP</td>
+		</tr>
+		{/foreach}
+
+	</tbody>
+</table>
+
+{else}
+	There are no transactions in db. But you can <a href="{link Transaction:add, 'name'=>$item->typeName}">Add one.</a>
+
+{/if}
+<pre>
+<?php //print_r ($xml) ?>
+</pre>
+{/block}
