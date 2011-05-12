@@ -45,8 +45,6 @@ class ItemPresenter extends BasePresenter {
 		Debug::barDump($this->template->transactions);
 	}
 
-	
-
 	/**
 	 * Search page
 	 * @param string $q 
@@ -84,6 +82,21 @@ class ItemPresenter extends BasePresenter {
 		return new VisualPaginator;
 	}
 
-	
+	public function handleAutoComplete($term) {
+		$this->payload->autoComplete = array();
+
+		$term = trim($term);
+		if ($term !== '') {
+			$list = $this->itemModel->getAllForAC($term);
+			
+			$json = new JsonResponse($list);
+			
+			$this->sendResponse($json);
+			
+		}
+
+		// činnost presenteru tímto můžeme ukončit
+		$this->terminate();
+	}
 
 }

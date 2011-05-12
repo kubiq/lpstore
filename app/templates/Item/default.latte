@@ -1,5 +1,35 @@
-{* This is temporary page, you can delete it *}
+{block head}
+<script>
+			
+			$(function() {
+				$( "#hledat" ).autocomplete({
+					source: "?do=autoComplete",
+					//source: ["aaaaaaa", "aaaaaaab", "aaaaaaac"],
+					minLength: 3
+					,
+					select: function( event, ui ) {
+						var url = document.location + '?name=' + ui.item.label + '&action=detail';    
+						$(location).attr('href',url);
+					}
+				});
+			});
+			
+			//ajax formulare
+			$(function () {
+				// odeslání na formulářích
+				$("form").submit(function () {
+					$(this).ajaxSubmit();
+					return false;
+				});
 
+				// odeslání pomocí tlačítek
+				$("form :submit").click(function () {
+					$(this).ajaxSubmit();
+					return false;
+				});
+			});
+		</script>
+{/block head}
 {block content}
 <div>
 

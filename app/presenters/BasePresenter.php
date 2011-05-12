@@ -91,11 +91,13 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 		$form = new AppForm;
 
 
-		$form->addSuggestInput('q', "Item:")
-			->addJsOptions('itemsPerPage', 10)
-			->addJsOptions('minchars', 3)
-			->setSuggestLink($this->link('suggestDibi'))
-			->addRule(AppForm::MIN_LENGTH, 'You have to give me at least three characters!', 3);
+//		$form->addSuggestInput('q', "Item:")
+//			->addJsOptions('itemsPerPage', 10)
+//			->addJsOptions('minchars', 3)
+//			->setSuggestLink($this->link('suggestDibi'))
+//			->addRule(AppForm::MIN_LENGTH, 'You have to give me at least three characters!', 3);
+		$form->addText('q', 'Item:')
+			->setHtmlId('hledat');
 
 		$form['q']->getControlPrototype()->setSize(50);
 		

@@ -164,6 +164,31 @@ class ItemModel extends BaseModel {
 		return $p->update();
 		
 	}
+	
+	public function getAllForAC($name) {
+
+		if (!(bool) $name) {
+			throw new InvalidArgumentException("Item name has to be given");
+		}
+		
+		$name = '%' . $name . '%';
+		$ret = dibi::query("
+			SELECT 
+				typeId id,
+				typeName label,
+				typeName value
+			FROM [invTypes] 
+			WHERE [typeName] like %s", $name, 
+			'AND [published] = 1', 
+			'ORDER BY typeName',
+			'LIMIT 10',
+			'OFFSET 0')
+				->setRowClass("Item")
+				->fetchAll();
+
+		return $ret;
+	}
+
 
 }
 

@@ -7,3 +7,4 @@
 [2011-02-19 00-45-04] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=rav
 [2011-02-19 00-45-04] PHP Fatal error: Class 'JsonResponse' not found in /home/kubiq/php/lpstore/app/presenters/BasePresenter.php:79  @  http://lpstore/item/suggest-dibi?typedText=rave
 [2011-02-20 01-56-35] PHP Fatal error: Uncaught exception InvalidStateException with message 'session_start(): ps_files_cleanup_dir: opendir(/var/lib/php5) failed: Permission denied (13)' in /home/kubiq/php/lpstore/libs/Nette/Web/Session.php:79  @  http://lpstore/item/suggest-dibi?typedText=caldari+navy+a
+[2011-05-12 13-33-47] PHP Fatal error: Trying to get property of non-object in /home/kubiq/php/lpstore/app/models/ItemModel.php:190  @  http://localhost/lpstore//?do=autoComplete&term=rave
