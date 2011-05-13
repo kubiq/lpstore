@@ -33,6 +33,11 @@ class Transaction extends DibiRow {
 	 * @var int
 	 */
 	public $bulk;
+	/**
+	 * corporation which sells this item
+	 * @var int
+	 */
+	public $corp;
 	
 	public function __construct($arr = array()) {
 		parent::__construct($arr);

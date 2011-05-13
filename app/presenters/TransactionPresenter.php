@@ -21,21 +21,26 @@ use \Requirement;
 class TransactionPresenter extends BasePresenter {
 
 	/**
+	 * Current item
+	 * @var Item 
+	 */
+	private $item;
+	/**
 	 * Add transaction to item
 	 * @param string $name 
 	 */
 	public function actionAdd($name = null) {
-		if (!(bool) $name) {
+		if ( ! $name) {
 			$this->redirect("Item:");
 		}
-		if (!(bool) $this->itemModel->getItemByName($name)) {
+		if ( ! $this->item = $this->itemModel->getItemByName($name)) {
 			$this->redirect("Item:");
 		}
 	}
 
 	public function renderAdd($name = null) {
 
-		$this->template->item = $this->itemModel->getItemByName($name);
+		$this->template->item = $this->item;
 	}
 	/**
 	 * Edit transaction to item
@@ -77,45 +82,55 @@ class TransactionPresenter extends BasePresenter {
 			->setDefaultValue(1)
 			->addRule(AppForm::RANGE, 'Bulk cant get under one!', array(1, 10000000000));
 
-		$form->addSuggestInput('item1', "Item 1")
-			->setSuggestLink($this->link('suggestDibi'));
+		$form->addText('item1', "Item 1")
+			->setHtmlId('item1');
 		$form->addText('q1', 'Quantity:')
-			 ->setDefaultValue(0)
-			 ->addRule(AppForm::NUMERIC, 'Enter number pls!');
+			->setDefaultValue(0)
+			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
-		$form->addSuggestInput('item2', "Item 2")
-			->setSuggestLink($this->link('suggestDibi'));
+		$form->addText('item2', "Item 2")
+			->setHtmlId('item2');
 		$form->addText('q2', 'Quantity:')
 			->setDefaultValue(0)
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
-		$form->addSuggestInput('item3', "Item 3")
-			->setSuggestLink($this->link('suggestDibi'));
+		$form->addText('item3', "Item 3")
+			->setHtmlId('item3');
 		$form->addText('q3', 'Quantity:')
 			->setDefaultValue(0)
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
-		$form->addSuggestInput('item4', "Item 4")
-			->setSuggestLink($this->link('suggestDibi'));
+		$form->addText('item4', "Item 4")
+			->setHtmlId('item4');
 		$form->addText('q4', 'Quantity:')
 			->setDefaultValue(0)
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
-		$form->addSuggestInput('item5', "Item 5")
-			->setSuggestLink($this->link('suggestDibi'));
+		$form->addText('item5', "Item 5")
+			->setHtmlId('item5');
 		$form->addText('q5', 'Quantity:')
 			->setDefaultValue(0)
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
+		$form->addText('corp', "Corporation:")
+			->addRule(AppForm::FILLED,"Select corporation please.")
+			->setHtmlId('corp');
+		
+		$form['item1']	->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		
 		$form['item1']->getControlPrototype()->setSize(50);
 		$form['item2']->getControlPrototype()->setSize(50);
 		$form['item3']->getControlPrototype()->setSize(50);
 		$form['item4']->getControlPrototype()->setSize(50);
 		$form['item5']->getControlPrototype()->setSize(50);
+		$form['corp']->getControlPrototype()->setSize(50);
 		
 		$form->addProtection("security protection alert...try refresh page");
 
-		$form->addSubmit('s', 'Add items');
+		$form->addSubmit('s', 'Add deal');
 
 		$form->onSubmit[] = callback($this, 'transFormSubmitted');
 
@@ -138,6 +153,10 @@ class TransactionPresenter extends BasePresenter {
 		$t->lp = $values['lp'];
 		$t->itemID = $typeID;
 		$t->bulk = $values['bulk'];
+		
+		$corp = $this->corporationModel->getCorpByName($values['corp']);
+		
+		$t->corp = $corp->corporationID;
 
 		$insertID = $this->transactionModel->createTransaction($t);
 		
@@ -167,12 +186,33 @@ class TransactionPresenter extends BasePresenter {
 		$this->redirect("Item:detail", array('name' => $values['name']));
 	}
 
-	public function actionSuggestDibi($typedText = '') {
-		$this->matches = $this['dibiSuggester']->getSuggestions($typedText);
-	}
+	public function handleAutoComplete($term) {
+		$this->payload->autoComplete = array();
 
-	public function renderSuggestDibi() {
-		$this->sendResponse(new JsonResponse($this->matches));
+		$term = trim($term);
+		if ($term !== '') {
+			$list = $this->itemModel->getAllForAC($term);
+			
+			$json = new JsonResponse($list);
+			
+			$this->sendResponse($json);	
+		}
+		// činnost presenteru tímto můžeme ukončit
+		$this->terminate();
 	}
+	
+	public function handleAutoCompleteCorp($term) {
+		$this->payload->autoComplete = array();
 
+		$term = trim($term);
+		if ($term !== '') {
+			$list = $this->corporationModel->getAllForAC($term);
+			
+			$json = new JsonResponse($list);
+			
+			$this->sendResponse($json);	
+		}
+		// činnost presenteru tímto můžeme ukončit
+		$this->terminate();
+	}
 }

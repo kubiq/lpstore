@@ -1,12 +1,29 @@
-{* This is temporary page, you can delete it *}
+{block head}
+<style>
+#dealsList a.dealName {
+	cursor:pointer;
+	display:block;
+	margin-top: 0;
+	text-decoration: none;
+	outline:0;
+	clear: both;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.dealName').click(function() {
+		$(this).next().toggle();
+		return false;
+	}).next().hide();
+});
+</script>
+{/block head}
 
 {block content}
 
-<h2>{$item->typeName}</h2>
+<a href="#" onclick="CCPEVE.showInfo({$item->typeID})"><h2 class="typeName">{$item->typeName}</h2></a>
 <div>
-
 	<table>
-
 		<tbody>
 
 			<tr>
@@ -17,10 +34,10 @@
 						There is no description.
 					{/if}
 				</td>
-				<td class="right-align">
+<!--				<td class="right-align">
 					{$item->price|isk}
-				</td>
-				<td>{control changePriceForm}</td>
+				</td>-->
+				<td><a href="#" onclick="CCPEVE.showMarketDetails({$item->typeID})" class="marketInfo">{$item->price|isk}</a>{control changePriceForm}</td>
 			</tr>
 
 		</tbody>
@@ -30,67 +47,71 @@
 
 {if $transactions}
 <a href="{link Transaction:add, 'name'=>$item->typeName}">Add new transaction</a>
-<table>
-	<thead>
-		<tr>
-			<th>Loyality Points</th>
-			<th>Isk</th>
-		</tr>
-	</thead>
-	<tbody>
 
+<div id="dealsList">
 		{foreach $transactions as $trans}
-		<tr>
-			<td class="right-align">{$trans->lp|lp}</td>
+	<a class="dealName" href="#section{$iterator->getCounter()}"><h3>{$trans->corp}</h3></a>
+	<div>
+	<table>
+		<tbody>
+			<tr>
+				<td class="right-align">{$trans->lp|lp}</td>
 
-			<td class="right-align">{$trans->isk|isk}</td>
-			<td>
+				<td class="right-align">{$trans->isk|isk}</td>
+				<td>
 				{ifset $trans->items}
-				<table>
+					<table>
 				{foreach $trans->items as $item}
-					<tr>
-						<td class="right-align">{$item->quantity}</td>
-						<td>x</td>
-						<td>{$item->typeName}</td>
-						<td class="right-align">{$item->price|isk}</td>
-						
-					</tr>
+						<tr>
+							<td class="right-align">{$item->quantity}</td>
+							<td>x</td>
+							<td>{$item->typeName}</td>
+							<td class="right-align">{$item->price|isk}</td>
+
+						</tr>
 				{/foreach}
-				</table>
+					</table>
 				{else}
 					None items are required
 				{/ifset}
-			</td>
-		</tr>
-		<tr>
-			
-			<td>Bulk</td>
-			<td class="right-align">{$trans->bulk} items</td>
-			<td></td>
-		</tr>
-		<tr>
-			
-			<td>Market sell price for bulk</td>
-			<td class="right-align">{$trans->marketPrice|isk}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>Costs</td>
-			<td class="right-align">{$trans->itemsPrice|isk}</td>
-			<td></td>
-		</tr>
-		<tr>
-			<td>Earnings</td>
-			<td class="right-align">{$trans->earnings|isk}</td>
-			<td>/ {$trans->lp|lp} = {$trans->earnings/$trans->lp|isk} for 1 LP</td>
-		</tr>
-		{/foreach}
+				</td>
+			</tr>
+			<tr>
 
-	</tbody>
-</table>
+				<td>Bulk</td>
+				<td class="right-align">{$trans->bulk} items</td>
+				<td></td>
+			</tr>
+			<tr>
+
+				<td>Market sell price for bulk</td>
+				<td class="right-align">{$trans->marketPrice|isk}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Costs</td>
+				<td class="right-align red">{$trans->itemsPrice|isk}</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Earnings</td>
+				<td class="right-align green">{$trans->earnings|isk}</td>
+			{if $trans->lp == 0}
+				<td>No lp required for this deal.</td>
+			{else}	
+				<td>/ {$trans->lp|lp} = {$trans->earnings/$trans->lp|isk} for 1 LP</td>
+			{/if}
+			</tr>
+		</tbody>
+	</table>
+	</div>
+
+		{/foreach}
+</div>
+
 
 {else}
-	There are no transactions in db. But you can <a href="{link Transaction:add, 'name'=>$item->typeName}">Add one.</a>
+	There are no transactions in db. But you can <a href="{link Transaction:add, 'name'=>$item->typeName}">add one.</a>
 
 {/if}
 <pre>

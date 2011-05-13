@@ -65,13 +65,10 @@ class ItemPresenter extends BasePresenter {
 		
 		if($this->paginator->itemCount == 1) {
 			$item = $this->itemModel->getItems($q,0,1);
-			Debug::barDump($item);
 			$this->redirect("Item:detail", array('name'=> $item[0]->typeName));
 		}
 	}
 	public function renderSearch($q = null, $page = 1) {
-
-		
 
 		$this->template->items = $this->itemModel->getItems($q, 
 			$this->paginator->offset, 
@@ -91,10 +88,8 @@ class ItemPresenter extends BasePresenter {
 			
 			$json = new JsonResponse($list);
 			
-			$this->sendResponse($json);
-			
+			$this->sendResponse($json);	
 		}
-
 		// činnost presenteru tímto můžeme ukončit
 		$this->terminate();
 	}

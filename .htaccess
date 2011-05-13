@@ -4,7 +4,7 @@
 Options -Indexes
 
 # allows symbolic links in this directory
-Options +FollowSymLinks
+Options -FollowSymLinks
 
 # configure PHP
 # <IfModule mod_php5.c>

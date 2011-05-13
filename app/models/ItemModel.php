@@ -106,7 +106,7 @@ class ItemModel extends BaseModel {
 			throw new InvalidArgumentException("Item name has to be given");
 		}
 
-		$name = '%' . $name . '%';
+		$name = $name . '%';
 		return dibi::query('SELECT typeName name',
 			'FROM [invTypes] ',
 			'WHERE [typeName] like %s', $name,
@@ -165,25 +165,36 @@ class ItemModel extends BaseModel {
 		
 	}
 	
-	public function getAllForAC($name) {
+	public function getAllForAC($itemName) {
 
-		if (!(bool) $name) {
+		if (!(bool) $itemName) {
 			throw new InvalidArgumentException("Item name has to be given");
 		}
 		
-		$name = '%' . $name . '%';
+		
 		$ret = dibi::query("
+		SELECT DISTINCT S.id, S.label, S.value FROM (
 			SELECT 
 				typeId id,
 				typeName label,
-				typeName value
+				typeName value,
+				'1' razeni
 			FROM [invTypes] 
-			WHERE [typeName] like %s", $name, 
-			'AND [published] = 1', 
-			'ORDER BY typeName',
-			'LIMIT 10',
-			'OFFSET 0')
-				->setRowClass("Item")
+			WHERE [typeName] like %s", $itemName . '%', 
+			"AND [published] = 1
+			UNION DISTINCT
+			SELECT 
+				typeId id,
+				typeName label,
+				typeName value,
+				'2' razeni
+			FROM [invTypes] 
+			WHERE [typeName] like %s", '%' . $itemName . '%', 
+			"AND [published] = 1
+			ORDER BY razeni, label
+			LIMIT 20) 
+		AS S
+			")
 				->fetchAll();
 
 		return $ret;

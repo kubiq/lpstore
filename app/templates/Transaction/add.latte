@@ -1,6 +1,15 @@
-
+{block head}
+<script>
+	$(function() {	$( "#item1" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
+	$(function() {	$( "#item2" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
+	$(function() {	$( "#item3" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
+	$(function() {	$( "#item4" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
+	$(function() {	$( "#item5" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
+	$(function() {	$( "#corp" ).autocomplete({ source: "?do=autoCompleteCorp&presenter=Transaction",	minLength: 3});	});
+</script>
+{/block head}
 
 {block content}
 
+<h2>{$item->typeName}</h2>
 {control transactionForm}
-		

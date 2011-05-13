@@ -39,6 +39,11 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 	 */
 	protected $eveCentralModel;
 	/**
+	 * Corporations instance
+	 * @var CorporationModel
+	 */
+	protected $corporationModel;
+	/**
 	 * @var array Items matched for current query 
 	 */
 	protected $matches;
@@ -50,6 +55,7 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 		$this->transactionModel = new TransactionModel();
 		$this->reqModel = new RequirementModel();
 		$this->eveCentralModel = new EveCentralModel();
+		$this->corporationModel = new CorporationModel();
 
 		Form::extensionMethod('addSuggestInput', 'SuggestInput::addSuggestInput');
 	}
@@ -90,14 +96,9 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 	public function createComponentSearchForm() {
 		$form = new AppForm;
 
-
-//		$form->addSuggestInput('q', "Item:")
-//			->addJsOptions('itemsPerPage', 10)
-//			->addJsOptions('minchars', 3)
-//			->setSuggestLink($this->link('suggestDibi'))
-//			->addRule(AppForm::MIN_LENGTH, 'You have to give me at least three characters!', 3);
 		$form->addText('q', 'Item:')
-			->setHtmlId('hledat');
+			->setHtmlId('hledat')
+			->addRule(AppForm::MIN_LENGTH, 'You have fill at least 3 characters.', 3);
 
 		$form['q']->getControlPrototype()->setSize(50);
 		

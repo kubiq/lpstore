@@ -30,16 +30,19 @@ class TransactionModel extends BaseModel {
 
 		$itemModel = new ItemModel();
 
-		$trans = dibi::query('SELECT id, itemID,  lp, isk, price * bulk marketPrice, bulk
-			FROM [transaction] 
-			JOIN [price] ON (itemID = typeID)
-			WHERE [itemID] = ' . $typeID)
+		$trans = dibi::query('SELECT T.id, T.itemID,  T.lp, T.isk, P.price * T.bulk marketPrice, T.bulk, N.itemName corp, NF.itemName faction
+				FROM transaction T
+				JOIN price P ON (T.itemID = P.typeID)
+				JOIN crpNPCCorporations C ON (T.corp = C.corporationID)
+				JOIN eveNames N ON (T.corp = N.itemID)
+				JOIN eveNames NF ON (C.factionID = NF.itemID)
+				WHERE T.itemID = %s;' , $typeID)
 				->setRowClass('Transaction')
 				->fetchAll();
 		
 		foreach ($trans as $t) {
 			$itemsPrice = 0;
-			if ((bool) $t) {//pokud jsou nejaky veci potreba
+			if ($t) {//pokud jsou nejaky veci potreba
 				$req = dibi::query("SELECT id,transactionID, typeID, quantity
 					FROM requirement r 
 					WHERE transactionID = %i", $t->id)
