@@ -1,15 +1,15 @@
-<?php //netteCache[01]000373a:2:{s:4:"time";s:21:"0.21237800 1305290980";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"/home/kubiq/php/lpstore/app/templates/@layout.latte";i:2;i:1305290959;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"bb2b723 released on 2011-02-06";}}}?><?php
+<?php //netteCache[01]000373a:2:{s:4:"time";s:21:"0.20935900 1305390611";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:51:"/home/kubiq/php/lpstore/app/templates/@layout.latte";i:2;i:1305305043;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"539fdec released on 2011-04-13";}}}?><?php
 
 // source file: /home/kubiq/php/lpstore/app/templates/@layout.latte
 
 ?><?php
-$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, 'y40w4ao6mm'); unset($_extends);
+$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, 'v88qgegxcq'); unset($_extends);
 
 
 //
 // block head
 //
-if (!function_exists($_l->blocks['head'][] = '_lb2cce1a32c7_head')) { function _lb2cce1a32c7_head($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['head'][] = '_lb8b231843f9_head')) { function _lb8b231843f9_head($_l, $_args) { extract($_args)
 ;
 }}
 
@@ -22,13 +22,12 @@ if ($_l->extends) {
 } elseif (isset($presenter, $control) && $presenter->isAjax() && $control->isControlInvalid()) {
 	return Nette\Templates\LatteMacros::renderSnippets($control, $_l, get_defined_vars());
 }
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-		<meta name="description" content="Nette Framework web application skeleton" /><?php if (isset($robots)): ?>
+		<meta name="description" content="Nette Framework web application skeleton" /><?php if (isset($robots)): ?>
 		<meta name="robots" content="<?php echo Nette\Templates\TemplateHelpers::escapeHtml($robots) ?>" />
 <?php endif ?>
 
@@ -74,7 +73,7 @@ if ($_l->extends) {
 			<div id="page">
 				<div id="page-bgtop">
 					<div id="page-bgbtm">
-						<div id="content"><?php foreach ($iterator = $_l->its[] = new Nette\SmartCachingIterator($flashes) as $flash): ?>
+						<div id="content"><?php foreach ($iterator = $_l->its[] = new Nette\SmartCachingIterator($flashes) as $flash): ?>
 							<div class="flash <?php echo Nette\Templates\TemplateHelpers::escapeHtml($flash->type) ?>"><?php echo Nette\Templates\TemplateHelpers::escapeHtml($flash->message) ?></div>
 <?php endforeach; array_pop($_l->its); $iterator = end($_l->its) ;Nette\Templates\LatteMacros::callBlock($_l, 'content', $template->getParams()) ?>
 						</div>

@@ -1,22 +1,22 @@
-<?php //netteCache[01]000381a:2:{s:4:"time";s:21:"0.98185800 1305285080";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:59:"/home/kubiq/php/lpstore/app/templates/Transaction/add.latte";i:2;i:1305285079;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"bb2b723 released on 2011-02-06";}}}?><?php
+<?php //netteCache[01]000381a:2:{s:4:"time";s:21:"0.87532000 1305309279";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:59:"/home/kubiq/php/lpstore/app/templates/Transaction/add.latte";i:2;i:1305309276;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"539fdec released on 2011-04-13";}}}?><?php
 
 // source file: /home/kubiq/php/lpstore/app/templates/Transaction/add.latte
 
 ?><?php
-$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, 'mt323327gs'); unset($_extends);
+$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, 'kd4u4nmihp'); unset($_extends);
 
 
 //
 // block head
 //
-if (!function_exists($_l->blocks['head'][] = '_lb884ac80a90_head')) { function _lb884ac80a90_head($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['head'][] = '_lb9dfa2a5295_head')) { function _lb9dfa2a5295_head($_l, $_args) { extract($_args)
 ?>
 <script>
-	$(function() {	$( "#item1" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
-	$(function() {	$( "#item2" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
-	$(function() {	$( "#item3" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
-	$(function() {	$( "#item4" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
-	$(function() {	$( "#item5" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
+	$(function() {	$( "#item1" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $("#q1").val("1");}, minLength: 3});});
+	$(function() {	$( "#item2" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $("#q2").val("1");}, minLength: 3});});
+	$(function() {	$( "#item3" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $("#q3").val("1");}, minLength: 3});});
+	$(function() {	$( "#item4" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $("#q4").val("1");}, minLength: 3});});
+	$(function() {	$( "#item5" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $("#q5").val("1");}, minLength: 3});});
 	$(function() {	$( "#corp" ).autocomplete({ source: "?do=autoCompleteCorp&presenter=Transaction",	minLength: 3});	});
 </script>
 <?php
@@ -26,7 +26,7 @@ if (!function_exists($_l->blocks['head'][] = '_lb884ac80a90_head')) { function _
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb6831da2c27_content')) { function _lb6831da2c27_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb1adfc7e569_content')) { function _lb1adfc7e569_content($_l, $_args) { extract($_args)
 ?>
 
 <h2><?php echo Nette\Templates\TemplateHelpers::escapeHtml($item->typeName) ?></h2>

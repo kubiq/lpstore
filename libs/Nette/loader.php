@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Nette Framework (version 2.0-dev released on 2011-02-06, http://nette.org)
+ * Nette Framework (version 2.0-dev released on 2011-04-13, http://nette.org)
  *
  * Copyright (c) 2004, 2011 David Grudl (http://davidgrudl.com)
  *
@@ -32,13 +32,38 @@ define('NETTE_PACKAGE', '5.3');
 
 
 
-require_once __DIR__ . '/Utils/shortcuts.php';
-require_once __DIR__ . '/Utils/exceptions.php';
-require_once __DIR__ . '/Utils/Object.php';
-require_once __DIR__ . '/Loaders/LimitedScope.php';
+require_once __DIR__ . '/common/exceptions.php';
+require_once __DIR__ . '/common/Object.php';
+require_once __DIR__ . '/Utils/LimitedScope.php';
 require_once __DIR__ . '/Loaders/AutoLoader.php';
 require_once __DIR__ . '/Loaders/NetteLoader.php';
-require_once __DIR__ . '/Debug/DebugHelpers.php';
+require_once __DIR__ . '/Diagnostics/Helpers.php';
 
 
 Nette\Loaders\NetteLoader::getInstance()->register();
+
+Nette\SafeStream::register();
+
+
+
+/**
+ * Nette\Callback factory.
+ * @param  mixed   class, object, function, callback
+ * @param  string  method
+ * @return Nette\Callback
+ */
+function callback($callback, $m = NULL)
+{
+	return ($m === NULL && $callback instanceof Nette\Callback) ? $callback : new Nette\Callback($callback, $m);
+}
+
+
+
+/**
+ * Nette\Debug::dump shortcut.
+ */
+function dump($var)
+{
+	foreach (func_get_args() as $arg) Nette\Debug::dump($arg);
+	return $var;
+}

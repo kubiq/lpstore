@@ -397,7 +397,7 @@ a:hover {
 	text-align: left;
 }
 
-.red {
+.red, .error{
 	color: #dd0101;
 	
 	font-weight: bold;

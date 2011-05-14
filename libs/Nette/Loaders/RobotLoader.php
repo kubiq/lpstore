@@ -280,8 +280,7 @@ class RobotLoader extends AutoLoader
 			return;
 		}
 
-		foreach (token_get_all($s) as $token)
-		{
+		foreach (token_get_all($s) as $token) {
 			if (is_array($token)) {
 				switch ($token[0]) {
 				case T_COMMENT:
@@ -340,7 +339,7 @@ class RobotLoader extends AutoLoader
 
 
 	/**
-	 * @param  Nette\Caching\Cache
+	 * @param  Nette\Caching\ICacheStorage
 	 * @return RobotLoader
 	 */
 	public function setCacheStorage(Nette\Caching\ICacheStorage $storage)
@@ -352,7 +351,7 @@ class RobotLoader extends AutoLoader
 
 
 	/**
-	 * @return Nette\Caching\Cache
+	 * @return Nette\Caching\ICacheStorage
 	 */
 	public function getCacheStorage()
 	{

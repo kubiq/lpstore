@@ -1,66 +1,89 @@
 /**
  * AJAX form plugin for jQuery
  *
- * @copyright  Copyright (c) 2009 Jan Marek
+ * @copyright  Copyright (c) 2009 Jan Kuchař, Copyright (c) 2009 Jan Marek
  * @license    MIT
- * @link       http://nettephp.com/cs/extras/ajax-form
+ * @link       http://addons.nette.org/cs/ajax-form-s-eventy
  * @version    0.1
  */
 
 jQuery.fn.extend({
-	ajaxSubmit: function (callback) {
-		var form;
-		var sendValues = {};
+    ajaxSubmit: function (e,callback) {
+        var form;
+        var sendValues = {};
 
-		// submit button
-		if (this.is(":submit")) {
-			form = this.parents("form");
-			sendValues[this.attr("name")] = this.val() || "";
+        // submit button
+        if (this.is(":submit")) {
+            form = this.parents("form");
+            sendValues[this.attr("name")] = this.val() || "";
 
-		// form
-		} else if (this.is("form")) {
-			form = this;
+        // form
+        } else if (this.is("form")) {
+            form = this;
 
-		// invalid element, do nothing
-		} else {
-			return null;
-		}
+        // invalid element, do nothing
+        } else {
+            return null;
+        }
 
-		// validation
-		if (form.get(0).onsubmit && !form.get(0).onsubmit()) return null;
+        // Vynecháme výchozí akci prohlížeče
+        e.preventDefault();
 
-		// get values
-		var values = form.serializeArray();
+        // validation
+        if (form.get(0).onsubmit && !form.get(0).onsubmit()) {
+            // Zastavíme vykonávání jakýchkoli dalších eventů
+            e.stopImmediatePropagation();
+            return null;
+        }
 
-		for (var i = 0; i < values.length; i++) {
-			var name = values[i].name;
+        // Abychom formulář neodeslali zbytečně vícekrát
+        if(form.data("ajaxSubmitCalled")==true)
+            return null;
 
-			// multi
-			if (name in sendValues) {
-				var val = sendValues[name];
+        form.data("ajaxSubmitCalled",true);
 
-				if (!(val instanceof Array)) {
-					val = [val];
-				}
+        // Tím, že zaregistruji ajaxové odeslání až teď, tak se provede jako poslední. (až po všech ostatních)
+        form.one("submit",function(){
+            // get values
+            var values = form.serializeArray();
 
-				val.push(values[i].value);
-				sendValues[name] = val;
-			} else {
-				sendValues[name] = values[i].value;
-			}
-		}
+            for (var i = 0; i < values.length; i++) {
+                var name = values[i].name;
 
-		// send ajax request
-		var ajaxOptions = {
-			url: form.attr("action"),
-			data: sendValues,
-			type: form.attr("method") || "get"
-		};
+                // multi
+                if (name in sendValues) {
+                    var val = sendValues[name];
 
-		if (callback) {
-			ajaxOptions.success = callback;
-		}
+                    if (!(val instanceof Array)) {
+                        val = [val];
+                    }
 
-		return jQuery.ajax(ajaxOptions);
-	}
+                    val.push(values[i].value);
+                    sendValues[name] = val;
+                } else {
+                    sendValues[name] = values[i].value;
+                }
+            }
+
+            // send ajax request
+            var ajaxOptions = {
+                url: form.attr("action"),
+                data: sendValues,
+                type: form.attr("method") || "get"
+            };
+
+            ajaxOptions.complete = function(){
+                form.data("ajaxSubmitCalled",false);
+            }
+
+            if (callback) {
+                ajaxOptions.success = callback;
+            }
+            return jQuery.ajax(ajaxOptions);
+        })
+
+        e.stopImmediatePropagation();
+        form.submit();
+        return null;
+    }
 });

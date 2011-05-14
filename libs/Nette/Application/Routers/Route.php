@@ -18,7 +18,7 @@ use Nette,
 
 /**
  * The bidirectional route is responsible for mapping
- * HTTP request to a PresenterRoute object for dispatch and vice-versa.
+ * HTTP request to a PresenterRequest object for dispatch and vice-versa.
  *
  * @author     David Grudl
  */
@@ -30,25 +30,22 @@ class Route extends Nette\Object implements IRouter
 	/** flag */
 	const CASE_SENSITIVE = 256;
 
-	/**#@+ @internal uri type */
-	const HOST = 1;
-	const PATH = 2;
-	const RELATIVE = 3;
-	/**#@-*/
+	/** @internal uri type */
+	const HOST = 1,
+		PATH = 2,
+		RELATIVE = 3;
 
-	/**#@+ key used in {@link Route::$styles} or metadata {@link Route::__construct} */
+	/** key used in {@link Route::$styles} or metadata {@link Route::__construct} */
 	const VALUE = 'value';
 	const PATTERN = 'pattern';
 	const FILTER_IN = 'filterIn';
 	const FILTER_OUT = 'filterOut';
 	const FILTER_TABLE = 'filterTable';
-	/**#@-*/
 
-	/**#@+ @internal fixity types - how to handle default value? {@link Route::$metadata} */
-	const OPTIONAL = 0;
-	const PATH_OPTIONAL = 1;
-	const CONSTANT = 2;
-	/**#@-*/
+	/** @internal fixity types - how to handle default value? {@link Route::$metadata} */
+	const OPTIONAL = 0,
+		PATH_OPTIONAL = 1,
+		CONSTANT = 2;
 
 	/** @var bool */
 	public static $defaultFlags = 0;
@@ -122,7 +119,7 @@ class Route extends Nette\Object implements IRouter
 			}
 			$metadata = array(
 				self::PRESENTER_KEY => substr($metadata, 0, $a),
-				'action' => $a === strlen($metadata) - 1 ? 'default' : substr($metadata, $a + 1),
+				'action' => $a === strlen($metadata) - 1 ? Presenter::DEFAULT_ACTION : substr($metadata, $a + 1),
 			);
 		}
 
@@ -407,14 +404,16 @@ class Route extends Nette\Object implements IRouter
 		}
 
 		// PARSE MASK
-		$parts = String::split($mask, '/<([^>#= ]+)(=[^># ]*)? *([^>#]*)(#?[^>\[\]]*)>|(\[!?|\]|\s*\?.*)/'); // <parameter-name[=default] [pattern] [#class]> or [ or ] or ?...
+		// <parameter-name[=default] [pattern] [#class]> or [ or ] or ?...
+		$parts = String::split($mask, '/<([^>#= ]+)(=[^># ]*)? *([^>#]*)(#?[^>\[\]]*)>|(\[!?|\]|\s*\?.*)/');
 
 		$this->xlat = array();
 		$i = count($parts) - 1;
 
 		// PARSE QUERY PART OF MASK
 		if (isset($parts[$i - 1]) && substr(ltrim($parts[$i - 1]), 0, 1) === '?') {
-			$matches = String::matchAll($parts[$i - 1], '/(?:([a-zA-Z0-9_.-]+)=)?<([^># ]+) *([^>#]*)(#?[^>]*)>/'); // name=<parameter-name [pattern][#class]>
+			// name=<parameter-name [pattern][#class]>
+			$matches = String::matchAll($parts[$i - 1], '/(?:([a-zA-Z0-9_.-]+)=)?<([^># ]+) *([^>#]*)(#?[^>]*)>/');
 
 			foreach ($matches as $match) {
 				list(, $param, $name, $pattern, $class) = $match;  // $pattern is not used

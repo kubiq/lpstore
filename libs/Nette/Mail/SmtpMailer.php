@@ -82,8 +82,11 @@ class SmtpMailer extends Nette\Object implements IMailer
 			$this->write("MAIL FROM:<$from[0]>", 250);
 		}
 
-		$recipients = array_merge((array) $mail->getHeader('To'), (array) $mail->getHeader('Cc'), (array) $mail->getHeader('Bcc'));
-		foreach ($recipients as $email => $name) {
+		foreach (array_merge(
+			(array) $mail->getHeader('To'),
+			(array) $mail->getHeader('Cc'),
+			(array) $mail->getHeader('Bcc')
+		) as $email => $name) {
 			$this->write("RCPT TO:<$email>", array(250, 251));
 		}
 
@@ -182,4 +185,15 @@ class SmtpMailer extends Nette\Object implements IMailer
 		return $s;
 	}
 
+}
+
+
+
+/**
+ * SMTP mailer exception.
+ *
+ * @author     David Grudl
+ */
+class SmtpException extends \Exception
+{
 }

@@ -347,7 +347,7 @@ class Finder extends Object implements \IteratorAggregate
 			$operator = $operator ? $operator : '=';
 		}
 		return $this->filter(function($file) use ($operator, $size) {
-			return Tools::compare($file->getSize(), $operator, $size);
+			return Finder::compare($file->getSize(), $operator, $size);
 		});
 	}
 
@@ -368,10 +368,40 @@ class Finder extends Object implements \IteratorAggregate
 			list(, $operator, $date) = $matches;
 			$operator = $operator ? $operator : '=';
 		}
-		$date = Tools::createDateTime($date)->format('U');
+		$date = DateTime::from($date)->format('U');
 		return $this->filter(function($file) use ($operator, $date) {
-			return Tools::compare($file->getMTime(), $operator, $date);
+			return Finder::compare($file->getMTime(), $operator, $date);
 		});
+	}
+
+
+
+	/**
+	 * Compares two values.
+	 * @param  mixed
+	 * @param  mixed
+	 * @return bool
+	 */
+	public static function compare($l, $operator, $r)
+	{
+		switch ($operator) {
+		case '>':
+			return $l > $r;
+		case '>=':
+			return $l >= $r;
+		case '<':
+			return $l < $r;
+		case '<=':
+			return $l <= $r;
+		case '=':
+		case '==':
+			return $l == $r;
+		case '!':
+		case '!=':
+		case '<>':
+			return $l != $r;
+		}
+		throw new \InvalidArgumentException("Unknown operator $operator.");
 	}
 
 }

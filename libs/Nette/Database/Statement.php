@@ -13,6 +13,7 @@ namespace Nette\Database;
 
 use Nette,
 	Nette\ObjectMixin,
+	Nette\Database\Reflection\DatabaseReflection,
 	PDO;
 
 
@@ -29,6 +30,9 @@ class Statement extends \PDOStatement
 
 	/** @var float */
 	public $time;
+
+	/** @var array */
+	private $types;
 
 
 
@@ -57,7 +61,9 @@ class Statement extends \PDOStatement
 	 */
 	public function execute($params = array())
 	{
-		static $types = array('boolean' => PDO::PARAM_BOOL, 'integer' => PDO::PARAM_INT, 'resource' => PDO::PARAM_LOB, 'NULL' => PDO::PARAM_NULL);
+		static $types = array('boolean' => PDO::PARAM_BOOL, 'integer' => PDO::PARAM_INT,
+			'resource' => PDO::PARAM_LOB, 'NULL' => PDO::PARAM_NULL);
+
 		foreach ($params as $key => $value) {
 			$type = gettype($value);
 			$this->bindValue(is_int($key) ? $key + 1 : $key, $value, isset($types[$type]) ? $types[$type] : PDO::PARAM_STR);
@@ -96,6 +102,33 @@ class Statement extends \PDOStatement
 	 */
 	public function normalizeRow($row)
 	{
+		if ($this->types === NULL) {
+			try {
+				$this->types = array();
+				foreach ($row as $key => $foo) {
+					$type = $this->getColumnMeta(count($this->types));
+					if (isset($type['native_type'])) {
+						$this->types[$key] = DatabaseReflection::detectType($type['native_type']);
+					}
+				}
+			} catch (\PDOException $e) {
+			}
+		}
+		foreach ($this->types as $key => $type) {
+			$value = $row[$key];
+			if ($value === NULL || $value === FALSE || $type === DatabaseReflection::FIELD_TEXT) {
+
+			} elseif ($type === DatabaseReflection::FIELD_INTEGER) {
+				$row[$key] = is_float($tmp = $value * 1) ? $value : $tmp;
+
+			} elseif ($type === DatabaseReflection::FIELD_FLOAT) {
+				$row[$key] = (string) ($tmp = (float) $value) === $value ? $tmp : $value;
+
+			} elseif ($type === DatabaseReflection::FIELD_BOOL) {
+				$row[$key] = ((bool) $value) && $value !== 'f' && $value !== 'F';
+			}
+		}
+
 		return $this->connection->getSupplementalDriver()->normalizeRow($row, $this);
 	}
 
@@ -187,7 +220,7 @@ class Statement extends \PDOStatement
 
 	public function __unset($name)
 	{
-		throw new \MemberAccessException("Cannot unset the property {$this->reflection->name}::\$$name.");
+		ObjectMixin::remove($this, $name);
 	}
 
 }

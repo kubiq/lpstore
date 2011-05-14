@@ -57,7 +57,7 @@ class Connection extends PDO
 
 		$this->preprocessor = new SqlPreprocessor($this);
 
-		$this->databaseReflection = new Nette\Database\Reflection\DatabaseReflection; // TODO
+		$this->databaseReflection = new Reflection\DatabaseReflection; // TODO
 
 		if (!Nette\Debug::$productionMode) {
 			Nette\Debug::addPanel($panel = new DatabasePanel($dsn));
@@ -195,7 +195,7 @@ class Connection extends PDO
 	 */
 	public function table($table)
 	{
-		return new Nette\Database\Selector\TableSelection($table, $this);
+		return new Selector\TableSelection($table, $this);
 	}
 
 
@@ -215,7 +215,7 @@ class Connection extends PDO
 
 		$handle = @fopen($file, 'r'); // intentionally @
 		if (!$handle) {
-			throw new FileNotFoundException("Cannot open file '$file'.");
+			throw new \FileNotFoundException("Cannot open file '$file'.");
 		}
 
 		$count = 0;
@@ -320,7 +320,7 @@ class Connection extends PDO
 
 	public function __unset($name)
 	{
-		throw new \MemberAccessException("Cannot unset the property {$this->reflection->name}::\$$name.");
+		ObjectMixin::remove($this, $name);
 	}
 
 }

@@ -84,7 +84,7 @@ final class AnnotationsParser
 		}
 
 		if (self::$useReflection === NULL) { // detects whether is reflection available
-			self::$useReflection = (bool) Nette\Reflection\ClassReflection::from(__CLASS__)->getDocComment();
+			self::$useReflection = (bool) ClassReflection::from(__CLASS__)->getDocComment();
 		}
 
 		if (self::$useReflection) {
@@ -132,8 +132,7 @@ final class AnnotationsParser
 		);
 
 		$res = array();
-		foreach ($matches as $match)
-		{
+		foreach ($matches as $match) {
 			list(, $name, $value) = $match;
 
 			if (substr($value, 0, 1) === '(') {
@@ -141,7 +140,10 @@ final class AnnotationsParser
 				$key = '';
 				$val = TRUE;
 				$value[0] = ',';
-				while ($m = String::match($value, '#\s*,\s*(?>('.self::RE_IDENTIFIER.')\s*=\s*)?('.self::RE_STRING.'|[^\'"),\s][^\'"),]*)#A')) {
+				while ($m = String::match(
+					$value,
+					'#\s*,\s*(?>(' . self::RE_IDENTIFIER . ')\s*=\s*)?(' . self::RE_STRING . '|[^\'"),\s][^\'"),]*)#A')
+				) {
 					$value = substr($value, strlen($m[0]));
 					list(, $key, $val) = $m;
 					if ($val[0] === "'" || $val[0] === '"') {
@@ -209,8 +211,8 @@ final class AnnotationsParser
 		$expected = $namespace = $class = $docComment = NULL;
 		$level = $classLevel = 0;
 
-		foreach (token_get_all($s) as $token)
-		{
+		foreach (token_get_all($s) as $token) {
+
 			if (is_array($token)) {
 				switch ($token[0]) {
 				case T_DOC_COMMENT:

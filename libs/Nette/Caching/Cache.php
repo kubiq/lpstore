@@ -22,18 +22,17 @@ use Nette;
  */
 class Cache extends Nette\Object implements \ArrayAccess
 {
-	/**#@+ dependency */
-	const PRIORITY = 'priority';
-	const EXPIRATION = 'expire';
-	const EXPIRE = 'expire';
-	const SLIDING = 'sliding';
-	const TAGS = 'tags';
-	const FILES = 'files';
-	const ITEMS = 'items';
-	const CONSTS = 'consts';
-	const CALLBACKS = 'callbacks';
-	const ALL = 'all';
-	/**#@-*/
+	/** dependency */
+	const PRIORITY = 'priority',
+		EXPIRATION = 'expire',
+		EXPIRE = 'expire',
+		SLIDING = 'sliding',
+		TAGS = 'tags',
+		FILES = 'files',
+		ITEMS = 'items',
+		CONSTS = 'consts',
+		CALLBACKS = 'callbacks',
+		ALL = 'all';
 
 	/** @internal */
 	const NAMESPACE_SEPARATOR = "\x00";
@@ -130,7 +129,7 @@ class Cache extends Nette\Object implements \ArrayAccess
 
 		// convert expire into relative amount of seconds
 		if (isset($dp[Cache::EXPIRATION])) {
-			$dp[Cache::EXPIRATION] = Nette\Tools::createDateTime($dp[Cache::EXPIRATION])->format('U') - time();
+			$dp[Cache::EXPIRATION] = Nette\DateTime::from($dp[Cache::EXPIRATION])->format('U') - time();
 		}
 
 		// convert FILES into CALLBACKS
@@ -159,9 +158,9 @@ class Cache extends Nette\Object implements \ArrayAccess
 		}
 
 		if ($data instanceof Nette\Callback || $data instanceof \Closure) {
-			Nette\Tools::enterCriticalSection();
+			Nette\CriticalSection::enter();
 			$data = $data->__invoke();
-			Nette\Tools::leaveCriticalSection();
+			Nette\CriticalSection::leave();
 		}
 
 		if (is_object($data)) {
