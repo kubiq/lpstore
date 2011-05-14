@@ -1,10 +1,10 @@
 {block head}
 <script>
-	$(function() {	$( "#item1" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
-	$(function() {	$( "#item2" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
-	$(function() {	$( "#item3" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
-	$(function() {	$( "#item4" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
-	$(function() {	$( "#item5" ).autocomplete({ source: "?do=autoComplete",	minLength: 3});	});
+	$(function() {	$( "#item1" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $('#q1').val('1'); }, minLength: 3}); });
+	$(function() {	$( "#item2" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $('#q2').val('1'); }, minLength: 3});	});
+	$(function() {	$( "#item3" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $('#q3').val('1'); }, minLength: 3});	});
+	$(function() {	$( "#item4" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $('#q4').val('1'); }, minLength: 3});	});
+	$(function() {	$( "#item5" ).autocomplete({ source: "?do=autoComplete", select: function(event, ui) { $('#q5').val('1'); }, minLength: 3});	});
 	$(function() {	$( "#corp" ).autocomplete({ source: "?do=autoCompleteCorp&presenter=Transaction",	minLength: 3});	});
 </script>
 {/block head}

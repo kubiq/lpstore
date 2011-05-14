@@ -64,6 +64,13 @@ class TransactionPresenter extends BasePresenter {
 
 		$form = new AppForm;
 
+		$renderer = $form->getRenderer();
+		$renderer->wrappers['form']['errors'] = FALSE;
+		$renderer->wrappers['error']['container'] = NULL;
+		$renderer->wrappers['error']['item'] = "span class=error";
+		$renderer->wrappers['control']['errors'] = TRUE;
+		$renderer->wrappers['label']['errors'] = NULL;
+		
 		$form->addHidden('name', $this->getParam('name'));
 
 		$form->addText('isk', 'Isk price:')
@@ -86,30 +93,35 @@ class TransactionPresenter extends BasePresenter {
 			->setHtmlId('item1');
 		$form->addText('q1', 'Quantity:')
 			->setDefaultValue(0)
+			->setHtmlId('q1')
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
 		$form->addText('item2', "Item 2")
 			->setHtmlId('item2');
 		$form->addText('q2', 'Quantity:')
 			->setDefaultValue(0)
+			->setHtmlId('q2')
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
 		$form->addText('item3', "Item 3")
 			->setHtmlId('item3');
 		$form->addText('q3', 'Quantity:')
 			->setDefaultValue(0)
+			->setHtmlId('q3')
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
 		$form->addText('item4', "Item 4")
 			->setHtmlId('item4');
 		$form->addText('q4', 'Quantity:')
 			->setDefaultValue(0)
+			->setHtmlId('q4')
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
 		$form->addText('item5', "Item 5")
 			->setHtmlId('item5');
 		$form->addText('q5', 'Quantity:')
 			->setDefaultValue(0)
+			->setHtmlId('q5')
 			->addRule(AppForm::NUMERIC, 'Enter number pls!');
 
 		$form->addText('corp', "Corporation:")

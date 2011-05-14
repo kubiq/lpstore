@@ -1,15 +1,15 @@
-<?php //netteCache[01]000377a:2:{s:4:"time";s:21:"0.66586100 1305310495";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"/home/kubiq/php/lpstore/app/templates/Item/detail.latte";i:2;i:1305308254;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"539fdec released on 2011-04-13";}}}?><?php
+<?php //netteCache[01]000377a:2:{s:4:"time";s:21:"0.30218300 1305390746";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"/home/kubiq/php/lpstore/app/templates/Item/detail.latte";i:2;i:1305305043;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"539fdec released on 2011-04-13";}}}?><?php
 
 // source file: /home/kubiq/php/lpstore/app/templates/Item/detail.latte
 
 ?><?php
-$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, '14kmrauv09'); unset($_extends);
+$_l = Nette\Templates\LatteMacros::initRuntime($template, NULL, 'h0bf2q5zv2'); unset($_extends);
 
 
 //
 // block head
 //
-if (!function_exists($_l->blocks['head'][] = '_lbc07ea08c7f_head')) { function _lbc07ea08c7f_head($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['head'][] = '_lb1b5e49b452_head')) { function _lb1b5e49b452_head($_l, $_args) { extract($_args)
 ?>
 <style>
 #dealsList a.dealName {
@@ -36,7 +36,7 @@ $(document).ready(function(){
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb669180fac3_content')) { function _lb669180fac3_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lbc4cff375ad_content')) { function _lbc4cff375ad_content($_l, $_args) { extract($_args)
 ?>
 
 <a href="#" onclick="CCPEVE.showInfo(<?php echo Nette\Templates\TemplateHelpers::escapeHtmlJs($item->typeID) ?>)"><h2 class="typeName"><?php echo Nette\Templates\TemplateHelpers::escapeHtml($item->typeName) ?></h2></a>
