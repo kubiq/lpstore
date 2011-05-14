@@ -128,10 +128,35 @@ class TransactionPresenter extends BasePresenter {
 			->addRule(AppForm::FILLED,"Select corporation please.")
 			->setHtmlId('corp');
 		
-		$form['item1']	->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
+		$form['item1']	->addCondition(AppForm::FILLED)
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
 				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
 				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
 				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		
+		$form['item2']	->addCondition(AppForm::FILLED)
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item1'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		
+		$form['item3']	->addCondition(AppForm::FILLED)
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item1'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		
+		$form['item4']	->addCondition(AppForm::FILLED)
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item1'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		
+		$form['item5']	->addCondition(AppForm::FILLED)
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
+				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item1']);
 		
 		$form['item1']->getControlPrototype()->setSize(50);
 		$form['item2']->getControlPrototype()->setSize(50);
