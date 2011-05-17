@@ -6,7 +6,7 @@
  * @copyright  Copyright (c) 2011 Kubiq
  * @package    LpStore
  */
-use Nette\Debug;
+
 use Nette\Application\AppForm;
 use Nette\Application\JsonResponse;
 
@@ -42,7 +42,6 @@ class ItemPresenter extends BasePresenter {
 		$this->template->item = $this->itemModel->getItemByName($name);
 		
 		$this->template->transactions = $this->transactionModel->getTransactions($this->template->item->typeID);
-		Debug::barDump($this->template->transactions);
 	}
 
 	/**

@@ -14,33 +14,35 @@ use Nette\Application\Route;
 use Nette\Application\SimpleRouter;
 
 
-// Step 1: Load Nette Framework
+// Step 1: Load Nette Framework 
 // this allows load Nette Framework classes automatically so that
 // you don't have to litter your code with 'require' statements
 require LIBS_DIR . '/Nette/loader.php';
 
 
-
 // Step 2: Configure environment
 // 2a) enable Nette\Debug for better exception and error visualisation
 Debug::$strictMode = TRUE;
-Debug::enable();
+Debug::enable(Debug::DEVELOPMENT);
+
 
 // 2b) load configuration from config.ini file
 Environment::loadConfig();
  
-
+//Environment::setMode(Debug::PRODUCTION);
 
 // Step 3: Configure application
 // 3a) get and setup a front controller
 $application = Environment::getApplication();
 $application->errorPresenter = 'Error';
-$application->catchExceptions = TRUE;
+$application->catchExceptions = false;
 
 
 
 // Step 4: Setup application router
 $router = $application->getRouter();
+
+
 
 $router[] = new SimpleRouter(array(
     'presenter' => 'Item',

@@ -6,7 +6,7 @@
  * @copyright  Copyright (c) 2011 Kubiq
  * @package    LpStore
  */
-use Nette\Forms\Form;
+
 use Nette\Application\AppForm;
 use Nette\Application\JsonResponse;
 
@@ -57,7 +57,7 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 		$this->eveCentralModel = new EveCentralModel();
 		$this->corporationModel = new CorporationModel();
 
-		Form::extensionMethod('addSuggestInput', 'SuggestInput::addSuggestInput');
+		AppForm::extensionMethod('addSuggestInput', 'SuggestInput::addSuggestInput');
 	}
 
 	protected function createComponentDibiSuggester() {
@@ -149,4 +149,6 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 		$this->flashMessage("Price has been changed!");
 		$this->redirect("Item:detail", array('name' => $values['name']));
 	}
+
+	
 }

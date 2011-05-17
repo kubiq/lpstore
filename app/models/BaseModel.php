@@ -20,7 +20,7 @@ abstract class BaseModel {
 	 * Establishes the database connection.
 	 */
 	public static function connect() {
-		// use configuration from config.ini
+		// use configuration from 
 		self::$defaultConnection = dibi::connect(Nette\Environment::getConfig('database'));
 	}
 

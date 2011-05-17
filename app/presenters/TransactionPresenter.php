@@ -174,7 +174,7 @@ class TransactionPresenter extends BasePresenter {
 		return $form;
 	}
 
-	public function transFormSubmitted(AppForm $form) {
+	public function transFormSubmitted(Form $form) {
 
 		$values = $form->getValues();
 

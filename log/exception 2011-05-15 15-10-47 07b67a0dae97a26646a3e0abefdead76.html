@@ -1,0 +1,794 @@
+<!-- "' --></script></style></pre></xmp></table>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="robots" content="noindex,noarchive">
+	<meta name="generator" content="Nette Framework">
+
+	<title>Fatal Error</title><!-- Class 'Nette\Application\JsonResponse' not found -->
+
+	<style type="text/css" class="nette">
+
+		html {
+			overflow-y: scroll;
+		}
+
+		body {
+			margin: 0 0 2em;
+			padding: 0;
+		}
+
+		#netteBluescreen {
+			font: 9pt/1.5 Verdana, sans-serif;
+			background: white;
+			color: #333;
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			z-index: 23178;
+			text-align: left;
+		}
+
+		#netteBluescreen * {
+			font: inherit;
+			color: inherit;
+			background: transparent;
+			border: none;
+			margin: 0;
+			padding: 0;
+			text-align: inherit;
+			text-indent: 0;
+		}
+
+		#netteBluescreen b {
+			font-weight: bold;
+		}
+
+		#netteBluescreen i {
+			font-style: italic;
+		}
+
+		#netteBluescreen a {
+			text-decoration: none;
+			color: #328ADC;
+			padding: 2px 4px;
+			margin: -2px -4px;
+		}
+
+		#netteBluescreen a:hover, #netteBluescreen a:active, #netteBluescreen a:focus {
+			color: #085AA3;
+		}
+
+		#netteBluescreen a abbr {
+			font-family: sans-serif;
+			color: #BBB;
+		}
+
+		#netteBluescreenIcon {
+			position: absolute;
+			right: .5em;
+			top: .5em;
+			z-index: 23179;
+			text-decoration: none;
+			background: #CD1818;
+			padding: 3px;
+		}
+
+		#netteBluescreenError {
+			background: #CD1818;
+			color: white;
+			font: 13pt/1.5 Verdana, sans-serif !important;
+			display: block;
+		}
+
+		#netteBluescreenError #netteBsSearch {
+			color: #CD1818;
+			font-size: .7em;
+		}
+
+		#netteBluescreenError:hover #netteBsSearch {
+			color: #ED8383;
+		}
+
+		#netteBluescreen h1 {
+			font-size: 18pt;
+			font-weight: normal;
+			text-shadow: 1px 1px 0 rgba(0, 0, 0, .4);
+			margin: .7em 0;
+		}
+
+		#netteBluescreen h2 {
+			font: 14pt/1.5 sans-serif !important;
+			color: #888;
+			margin: .6em 0;
+		}
+
+		#netteBluescreen h3 {
+			font: bold 10pt/1.5 Verdana, sans-serif !important;
+			margin: 1em 0;
+			padding: 0;
+		}
+
+		#netteBluescreen p, #netteBluescreen pre {
+			margin: .8em 0
+		}
+
+		#netteBluescreen pre, #netteBluescreen code, #netteBluescreen table {
+			font: 9pt/1.5 Consolas, monospace !important;
+		}
+
+		#netteBluescreen pre, #netteBluescreen table {
+			background: #FDF5CE;
+			padding: .4em .7em;
+			border: 1px dotted silver;
+			overflow: auto;
+		}
+
+		#netteBluescreen table pre {
+			padding: 0;
+			margin: 0;
+			border: none;
+		}
+
+		#netteBluescreen pre.nette-dump span {
+			color: #C22;
+		}
+
+		#netteBluescreen pre.nette-dump a {
+			color: #333;
+		}
+
+		#netteBluescreen div.panel {
+			padding: 1px 25px;
+		}
+
+		#netteBluescreen div.inner {
+			background: #F4F3F1;
+			padding: .1em 1em 1em;
+			border-radius: 8px;
+			-moz-border-radius: 8px;
+			-webkit-border-radius: 8px;
+		}
+
+		#netteBluescreen table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		#netteBluescreen .outer {
+			overflow: auto;
+		}
+
+		#netteBluescreen td, #netteBluescreen th {
+			vertical-align: top;
+			text-align: left;
+			padding: 2px 6px;
+			border: 1px solid #e6dfbf;
+		}
+
+		#netteBluescreen th {
+			width: 10%;
+			font-weight: bold;
+		}
+
+		#netteBluescreen tr:nth-child(2n), #netteBluescreen tr:nth-child(2n) pre {
+			background-color: #F7F0CB;
+		}
+
+		#netteBluescreen ol {
+			margin: 1em 0;
+			padding-left: 2.5em;
+		}
+
+		#netteBluescreen ul {
+			font: 7pt/1.5 Verdana, sans-serif !important;
+			padding: 2em 4em;
+			margin: 1em 0 0;
+			color: #777;
+			background: #F6F5F3 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFEAAAAjCAMAAADbuxbOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBQTFRF/fz24d7Y7Onj5uLd9vPu3drUzMvG09LN39zW8e7o2NbQ3NnT29jS0M7J1tXQAAAApvmsFgAAABB0Uk5T////////////////////AOAjXRkAAAKlSURBVHja7FbbsqQgDAwENEgc//9vN+SCWDtbtXPmZR/Wc6o02mlC58LA9ckFAOszvMV8xNgyUjyXhojfMVKvRL0ZHavxXYy5JrmchMdzou8YlTClxajtK8ZGGpWRoBr1+gFjKfHkJPbizabLgzE3pH7Iu4K980xgFvlrVzMZoVBWhtvouCDdcTDmTgMCJdVxJ9MKO6XxnliM7hxi5lbj2ZVM4l8DqYyKoNLYcfqBB1/LpHYxEcfVG6ZpMDgyFUVWY/Q1sSYPpIdSAKWqLWL0XqWiMWc4hpH0OQOMOAgdycY4N9Sb7wWANQs3rsDSdLAYiuxi5siVfOhBWIrtH0G3kNaF/8Q4kCPE1kMucG/ZMUBUCOgiKJkPuWWTLGVgLGpwns1DraUayCtoBqERyaYtVsm85NActRooezvSLO/sKZP/nq8n4+xcyjNsRu8zW6KWpdb7wjiQd4WrtFZYFiKHENSmWp6xshh96c2RQ+c7Lt+qbijyEjHWUJ/pZsy8MGIUuzNiPySK2Gqoh6ZTRF6ko6q3nVTkaA//itIrDpW6l3SLo8juOmqMXkYknu5FdQxWbhCfKHEGDhxxyTVaXJF3ZjSl3jMksjSOOKmne9pI+mcG5QvaUJhI9HpkmRo2NpCrDJvsktRhRE2MM6F2n7dt4OaMUq8bCctk0+PoMRzL+1l5PZ2eyM/Owr86gf8z/tOM53lom5+nVcFuB+eJVzlXwAYy9TZ9s537tfqcsJWbEU4nBngZo6FfO9T9CdhfBtmk2dLiAy8uS4zwOpMx2HqYbTC+amNeAYTpsP4SIgvWfUBWXxn3CMHW3ffd7k3+YIkx7w0t/CVGvcPejoeOlzOWzeGbawOHqXQGUTMZRcfj4XPCgW9y/fuvVn8zD9P1QHzv80uAAQA0i3Jer7Jr7gAAAABJRU5ErkJggg==') 99% 10px no-repeat;
+			border-top: 1px solid #DDD;
+		}
+
+		#netteBluescreen .highlight {
+			background: #CD1818;
+			color: white;
+			font-weight: bold;
+			font-style: normal;
+			display: block;
+			padding: 0 .4em;
+			margin: 0 -.4em;
+		}
+
+		#netteBluescreen .line {
+			color: #9F9C7F;
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		#netteBluescreen a[href^=editor\:] {
+			color: inherit;
+			border-bottom: 1px dotted #C1D2E1;
+		}
+	</style>
+</head>
+
+
+
+<body>
+<div id="netteBluescreen">
+	<a id="netteBluescreenIcon" href="#" rel="next"><abbr>&#x25bc;</abbr></a
+
+	><div>
+		<div id="netteBluescreenError" class="panel">
+			<h1>Fatal Error</h1>
+
+			<p>Class 'Nette\Application\JsonResponse' not found <a href="http://www.google.cz/search?sourceid=nette&amp;q=Fatal+Error+Class++not+found" id="netteBsSearch">search&#x25ba;</a></p>
+		</div>
+
+
+
+				
+			
+
+
+									
+
+
+												<div class="panel">
+			<h2><a href="#" rel="netteBsPnl1">Source file <abbr>&#x25bc;</abbr></a></h2>
+
+			<div id="netteBsPnl1" class="inner">
+				<p><b>File:</b> <a href="editor://open/?file=%2Fhome%2Fkubiq%2Fphp%2Flpstore%2Fapp%2Fpresenters%2FItemPresenter.php&amp;line=89" title="/home/kubiq/php/lpstore/app/presenters/ItemPresenter.php:89">/home/kubiq/php/lpstore/app/presenters/<b>ItemPresenter.php</b></a> &nbsp; <b>Line:</b> 89</p>
+				<pre><code><span style="color: #06B"><span style="color: #D24; font-weight: bold"><span class='line'>82:</span>    &nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;</span><span style="color: #000">handleAutoComplete</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$term</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>83:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">payload</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">autoComplete&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;array();
+<span class='line'>84:</span>    
+<span class='line'>85:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$term&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">trim</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$term</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>86:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #000">$term&nbsp;</span><span style="color: #D24; font-weight: bold">!==&nbsp;</span><span style="color: #080">''</span><span style="color: #D24; font-weight: bold">)&nbsp;{
+<span class='line'>87:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$list&nbsp;</span><span style="color: #D24; font-weight: bold">=&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">itemModel</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">getAllForAC</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$term</span><span style="color: #D24; font-weight: bold">);
+<span class='line'>88:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class='highlight'>89:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$json&nbsp;=&nbsp;new&nbsp;JsonResponse($list);
+</span></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"></span><span style="color: #000"></span><span style="color: #D24; font-weight: bold"><span class='line'>90:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span class='line'>91:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">sendResponse</span><span style="color: #D24; font-weight: bold">(</span><span style="color: #000">$json</span><span style="color: #D24; font-weight: bold">);&nbsp;&nbsp;&nbsp;&nbsp;
+<span class='line'>92:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>93:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #999; font-style: italic">//&nbsp;činnost&nbsp;presenteru&nbsp;tímto&nbsp;můžeme&nbsp;ukončit
+<span class='line'>94:</span>    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #000">$this</span><span style="color: #D24; font-weight: bold">-&gt;</span><span style="color: #000">terminate</span><span style="color: #D24; font-weight: bold">();
+<span class='line'>95:</span>    &nbsp;&nbsp;&nbsp;&nbsp;}
+<span class='line'>96:</span>    
+</span></span></code></pre>
+			</div></div>
+			
+
+
+						
+
+
+			
+				
+
+
+								<div class="panel">
+			<h2><a href="#" rel="netteBsPnl2">Nette Application <abbr>&#x25ba;</abbr></a></h2>
+
+			<div id="netteBsPnl2" class="nette-collapsed inner">
+			<h3>Requests</h3><pre class="nette-dump"><a href='#' rel='next'><span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>[
+   <a href='#' rel='next'>0 => <span>Nette\Application\Request</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "GET" (3)
+      <a href='#' rel='next'>"flags" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+         "secured" => FALSE
+      }</code>
+      "name" <span>private</span> => "Item" (4)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+         "do" => "autoComplete" (12)
+         "term" => "rav" (3)
+         "action" => "default" (7)
+         "q" => NULL
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      "frozen" <span>private</span> => TRUE
+   }</code>
+]</code>
+</pre><h3>Presenter</h3><pre class="nette-dump"><a href='#' rel='next'><span>ItemPresenter</span>(34) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+   <a href='#' rel='next'>"paginator" <span>private</span> => NULL
+   "itemModel" <span>protected</span> => <span>ItemModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "transactionModel" <span>protected</span> => <span>TransactionModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "reqModel" <span>protected</span> => <span>RequirementModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "eveCentralModel" <span>protected</span> => <span>EveCentralModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      <a href='#' rel='next'>"primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   }</code>
+   "corporationModel" <span>protected</span> => <span>CorporationModel</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"connection" <span>protected</span> => <span>DibiConnection</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+         "config" <span>private</span> => <span>array</span>(11) { ... }
+         "driver" <span>private</span> => <span>DibiMySqlDriver</span>(3) { ... }
+         "translator" <span>private</span> => <span>DibiTranslator</span>(11) { ... }
+         "profiler" <span>private</span> => <span>DibiProfiler</span>(4) { ... }
+         "connected" <span>private</span> => TRUE
+         "substitutes" <span>private</span> => <span>DibiHashMap</span>(1) { ... }
+      }</code>
+      "name" <span>protected</span> => NULL
+      "primary" <span>protected</span> => NULL
+      "autoIncrement" <span>protected</span> => TRUE
+   <a href='#' rel='next'>}</code>
+   "matches" <span>protected</span> => NULL
+   "onShutdown" => NULL
+   "request" <span>private</span> => <span>Nette\Application\Request</span>(7) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+      "method" <span>private</span> => "GET" (3)
+      <a href='#' rel='next'>"flags" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+         "secured" => FALSE
+      }</code>
+      "name" <span>private</span> => "Item" (4)
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+         "do" => "autoComplete" (12)
+         "term" => "rav" (3)
+         "action" => "default" (7)
+         "q" => NULL
+      }</code>
+      "post" <span>private</span> => <span>array</span>(0) 
+      "files" <span>private</span> => <span>array</span>(0) 
+      "frozen" <span>private</span> => TRUE
+   }</code>
+   "response" <span>private</span> => NULL
+   "autoCanonicalize" => TRUE
+   "absoluteUrls" => FALSE
+   "globalParams" <span>private</span> => <span>array</span>(0) 
+   "globalState" <span>private</span> => NULL
+   "globalStateSinces" <span>private</span> => NULL
+   "action" <span>private</span> => "default" (7)
+   "view" <span>private</span> => "default" (7)
+   <a href='#' rel='next'>"layout" <span>private</span> => NULL
+   "payload" <span>private</span> => <span>stdClass</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      "autoComplete" => <span>array</span>(0) 
+   }</code>
+   "signalReceiver" <span>private</span> => ""
+   "signal" <span>private</span> => "autoComplete" (12)
+   "ajaxMode" <span>private</span> => TRUE
+   "startupCheck" <span>private</span> => TRUE
+   <a href='#' rel='next'>"lastCreatedRequest" <span>private</span> => NULL
+   "lastCreatedRequestFlag" <span>private</span> => NULL
+   "context" <span>private</span> => <span>Nette\DI\Container</span>(6) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"params" <span>private</span> => <span>array</span>(5) <abbr>&#x25bc;</abbr> </a><code>{
+         "appDir" => "/home/kubiq/php/lpstore/app" (27)
+         "libsDir" => "/home/kubiq/php/lpstore/libs" (28)
+         "tempDir" => "/home/kubiq/php/lpstore/temp" (28)
+         "productionMode" => FALSE
+         "environment" => "development" (11)
+      <a href='#' rel='next'>}</code>
+      "registry" <span>private</span> => <span>array</span>(13) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "application" => <span>Nette\Application\Application</span>(11) { ... }
+         "presenterFactory" => <span>Nette\Application\PresenterFactory</span>(4) { ... }
+         "httpContext" => NULL
+         "httpRequest" => <span>Nette\Http\Request</span>(9) { ... }
+         "httpResponse" => <span>Nette\Http\Response</span>(5) { ... }
+         "user" => NULL
+         "cacheStorage" => <span>Nette\Caching\Storages\FileStorage</span>(3) { ... }
+         "cacheJournal" => <span>Nette\Caching\Storages\FileJournal</span>(9) { ... }
+         "mailer" => NULL
+         "session" => <span>Nette\Http\Session</span>(4) { ... }
+         "templateCacheStorage" => NULL
+         "config" => <span>Nette\ArrayHash</span>(3) { ... }
+         "robotLoader" => <span>Nette\Loaders\RobotLoader</span>(8) { ... }
+      <a href='#' rel='next'>}</code>
+      "factories" <span>private</span> => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+         "httpContext" => <span>array</span>(2) [ ... ]
+         "user" => <span>array</span>(2) [ ... ]
+         "mailer" => <span>array</span>(2) [ ... ]
+         "templateCacheStorage" => <span>array</span>(2) [ ... ]
+      <a href='#' rel='next'>}</code>
+      "types" <span>private</span> => <span>array</span>(13) <abbr>&#x25ba;</abbr> </a><code class="nette-collapsed">{
+         "application" => NULL
+         "presenterFactory" => NULL
+         "httpContext" => NULL
+         "httpRequest" => NULL
+         "httpResponse" => "Nette\Http\Response" (19)
+         "user" => NULL
+         "cacheStorage" => NULL
+         "cacheJournal" => NULL
+         "mailer" => NULL
+         "session" => NULL
+         "robotLoader" => NULL
+         "templateCacheStorage" => NULL
+         "config" => NULL
+      }</code>
+      "creating" <span>private</span> => <span>array</span>(0) 
+      "frozen" <span>private</span> => FALSE
+   }</code>
+   "template" <span>private</span> => NULL
+   "invalidSnippets" <span>private</span> => <span>array</span>(0) 
+   <a href='#' rel='next'>"params" <span>protected</span> => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>{
+      "do" => "autoComplete" (12)
+      "term" => "rav" (3)
+      "action" => "default" (7)
+      "q" => NULL
+   }</code>
+   "components" <span>private</span> => <span>array</span>(0) 
+   "cloning" <span>private</span> => NULL
+   "parent" <span>private</span> => NULL
+   "name" <span>private</span> => "Item" (4)
+   <a href='#' rel='next'>"monitors" <span>private</span> => <span>array</span>(1) <abbr>&#x25bc;</abbr> </a><code>{
+      <a href='#' rel='next'>"Nette\Application\UI\Presenter" => <span>array</span>(4) <abbr>&#x25bc;</abbr> </a><code>[
+         0 => NULL
+         1 => NULL
+         2 => NULL
+         3 => TRUE
+      ]</code>
+   }</code>
+}</code>
+</pre>		</div></div>
+		
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl3">Environment <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl3" class="nette-collapsed inner">
+						<h3><a href="#" rel="netteBsPnl-env-const">Constants <abbr>&#x25bc;</abbr></a></h3>
+			<div class="outer">
+			<table id="netteBsPnl-env-const">
+			<tr><th>SITE</th><td><pre class="nette-dump">"lp store" (8)
+</pre></td></tr>
+<tr><th>WWW_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore" (23)
+</pre></td></tr>
+<tr><th>APP_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/app" (27)
+</pre></td></tr>
+<tr><th>LIBS_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/libs" (28)
+</pre></td></tr>
+<tr><th>TEMP_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/temp" (28)
+</pre></td></tr>
+<tr><th>NETTE</th><td><pre class="nette-dump">TRUE
+</pre></td></tr>
+<tr><th>NETTE_DIR</th><td><pre class="nette-dump">"/home/kubiq/php/lpstore/libs/Nette" (34)
+</pre></td></tr>
+<tr><th>NETTE_VERSION_ID</th><td><pre class="nette-dump">20000
+</pre></td></tr>
+<tr><th>NETTE_PACKAGE</th><td><pre class="nette-dump">"5.3" (3)
+</pre></td></tr>
+			</table>
+			</div>
+			
+
+			<h3><a href="#" rel="netteBsPnl-env-files">Included files <abbr>&#x25ba;</abbr></a> (108)</h3>
+			<div class="outer">
+			<table id="netteBsPnl-env-files" class="nette-collapsed">
+			<tr><td>/home/kubiq/php/lpstore/index.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/bootstrap.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/loader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/exceptions.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/Object.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/LimitedScope.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/AutoLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/NetteLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/SafeStream.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/Debugger.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/Helpers.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Html.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Strings.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/Logger.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/FireLogger.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/BlueScreen.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/Bar.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/DefaultBarPanel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/IBarPanel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/Environment.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/Configurator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/DI/Container.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/FreezableObject.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/IFreezable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/DI/IContainer.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/Callback.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/DI/ServiceBuilder.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/DI/IServiceBuilder.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/Config.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/IniAdapter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Config/IAdapter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Arrays.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/ArrayHash.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Loaders/RobotLoader.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/Storages/FileStorage.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/IStorage.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/Storages/FileJournal.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/Storages/IJournal.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Caching/Cache.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/Framework.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Http/RequestFactory.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Http/UrlScript.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Http/Url.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/ObjectMixin.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Http/Request.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Http/IRequest.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Http/Response.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Http/IResponse.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Http/Session.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/PresenterFactory.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPresenterFactory.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/Presenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/Control.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/PresenterComponent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/Container.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/Component.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/IComponent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/ComponentModel/IContainer.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/ISignalReceiver.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/IStatePersistent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/IPartiallyRenderable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/IRenderable.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IPresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Application.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Routers/RouteList.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/common/ArrayList.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/IRouter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Routers/SimpleRouter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/ClassType.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/Property.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/BaseModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/dibi.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/interfaces.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDateTime.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiObject.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiHashMap.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiException.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiConnection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiResult.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiResultIterator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiRow.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiTranslator.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDataSource.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiFluent.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiDatabaseInfo.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/libs/DibiProfiler.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/drivers/mysql.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/dibi/drivers/mysql.reflector.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/CriticalSection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Utils/Finder.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Iterators/RecursiveFilter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Iterators/Filter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Diagnostics/RoutingPanel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/Request.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/presenters/ItemPresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/presenters/BasePresenter.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/PresenterComponentReflection.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/AnnotationsParser.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/ItemModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/TransactionModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/RequirementModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/EveCentralModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/app/models/CorporationModel.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Application/UI/Form.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Form.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Forms/Container.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Reflection/Method.php</td></tr>
+<tr><td>/home/kubiq/php/lpstore/libs/Nette/Diagnostics/templates/bluescreen.phtml</td></tr>
+			</table>
+			</div>
+
+
+			<h3>$_SERVER</h3>
+						<div class="outer">
+			<table>
+			<tr><th>HTTP_HOST</th><td><pre class="nette-dump">"localhost" (9)
+</pre></td></tr>
+<tr><th>HTTP_CONNECTION</th><td><pre class="nette-dump">"keep-alive" (10)
+</pre></td></tr>
+<tr><th>HTTP_REFERER</th><td><pre class="nette-dump">"http://localhost/lpstore/" (25)
+</pre></td></tr>
+<tr><th>HTTP_X_REQUESTED_WITH</th><td><pre class="nette-dump">"XMLHttpRequest" (14)
+</pre></td></tr>
+<tr><th>HTTP_USER_AGENT</th><td><pre class="nette-dump">"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.57 Safari/534.24" (103)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT</th><td><pre class="nette-dump">"application/json, text/javascript, */*; q=0.01" (46)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_ENCODING</th><td><pre class="nette-dump">"gzip,deflate,sdch" (17)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_LANGUAGE</th><td><pre class="nette-dump">"cs,cs-CZ;q=0.8,en-GB;q=0.6" (26)
+</pre></td></tr>
+<tr><th>HTTP_ACCEPT_CHARSET</th><td><pre class="nette-dump">"windows-1250,utf-8;q=0.7,*;q=0.3" (32)
+</pre></td></tr>
+<tr><th>HTTP_COOKIE</th><td><pre class="nette-dump">"nette-debug-bar=-116:-120; PHPSESSID=5hqbjedrhvpn4d3ht5ikf3rjj6; nette-browser=ywz43e2swj" (89)
+</pre></td></tr>
+<tr><th>PATH</th><td><pre class="nette-dump">"/usr/local/bin:/usr/bin:/bin" (28)
+</pre></td></tr>
+<tr><th>SERVER_SIGNATURE</th><td><pre class="nette-dump">"&lt;address&gt;Apache/2.2.16 (Ubuntu) Server at localhost Port 80&lt;/address&gt;
+" (70)
+</pre></td></tr>
+<tr><th>SERVER_SOFTWARE</th><td><pre class="nette-dump">"Apache/2.2.16 (Ubuntu)" (22)
+</pre></td></tr>
+<tr><th>SERVER_NAME</th><td><pre class="nette-dump">"localhost" (9)
+</pre></td></tr>
+<tr><th>SERVER_ADDR</th><td><pre class="nette-dump">"127.0.0.1" (9)
+</pre></td></tr>
+<tr><th>SERVER_PORT</th><td><pre class="nette-dump">"80" (2)
+</pre></td></tr>
+<tr><th>REMOTE_ADDR</th><td><pre class="nette-dump">"127.0.0.1" (9)
+</pre></td></tr>
+<tr><th>DOCUMENT_ROOT</th><td><pre class="nette-dump">"/var/www" (8)
+</pre></td></tr>
+<tr><th>SERVER_ADMIN</th><td><pre class="nette-dump">"webmaster@localhost" (19)
+</pre></td></tr>
+<tr><th>SCRIPT_FILENAME</th><td><pre class="nette-dump">"/var/www/lpstore/index.php" (26)
+</pre></td></tr>
+<tr><th>REMOTE_PORT</th><td><pre class="nette-dump">"38316" (5)
+</pre></td></tr>
+<tr><th>GATEWAY_INTERFACE</th><td><pre class="nette-dump">"CGI/1.1" (7)
+</pre></td></tr>
+<tr><th>SERVER_PROTOCOL</th><td><pre class="nette-dump">"HTTP/1.1" (8)
+</pre></td></tr>
+<tr><th>REQUEST_METHOD</th><td><pre class="nette-dump">"GET" (3)
+</pre></td></tr>
+<tr><th>QUERY_STRING</th><td><pre class="nette-dump">"do=autoComplete&amp;term=rav" (24)
+</pre></td></tr>
+<tr><th>REQUEST_URI</th><td><pre class="nette-dump">"/lpstore/?do=autoComplete&amp;term=rav" (34)
+</pre></td></tr>
+<tr><th>SCRIPT_NAME</th><td><pre class="nette-dump">"/lpstore/index.php" (18)
+</pre></td></tr>
+<tr><th>PHP_SELF</th><td><pre class="nette-dump">"/lpstore/index.php" (18)
+</pre></td></tr>
+<tr><th>REQUEST_TIME</th><td><pre class="nette-dump">1305465047
+</pre></td></tr>
+			</table>
+			</div>
+					</div></div>
+
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl4">HTTP request <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl4" class="nette-collapsed inner">
+						<h3>Headers</h3>
+			<div class="outer">
+			<table>
+			<tr><th>Host</th><td>localhost</td></tr>
+<tr><th>Connection</th><td>keep-alive</td></tr>
+<tr><th>Referer</th><td>http://localhost/lpstore/</td></tr>
+<tr><th>X-Requested-With</th><td>XMLHttpRequest</td></tr>
+<tr><th>User-Agent</th><td>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.57 Safari/534.24</td></tr>
+<tr><th>Accept</th><td>application/json, text/javascript, */*; q=0.01</td></tr>
+<tr><th>Accept-Encoding</th><td>gzip,deflate,sdch</td></tr>
+<tr><th>Accept-Language</th><td>cs,cs-CZ;q=0.8,en-GB;q=0.6</td></tr>
+<tr><th>Accept-Charset</th><td>windows-1250,utf-8;q=0.7,*;q=0.3</td></tr>
+<tr><th>Cookie</th><td>nette-debug-bar=-116:-120; PHPSESSID=5hqbjedrhvpn4d3ht5ikf3rjj6; nette-browser=ywz43e2swj</td></tr>
+			</table>
+			</div>
+			
+
+						<h3>$_GET</h3>
+						<div class="outer">
+			<table>
+			<tr><th>do</th><td><pre class="nette-dump">"autoComplete" (12)
+</pre></td></tr>
+<tr><th>term</th><td><pre class="nette-dump">"rav" (3)
+</pre></td></tr>
+			</table>
+			</div>
+									<h3>$_POST</h3>
+						<p><i>empty</i></p>
+									<h3>$_COOKIE</h3>
+						<div class="outer">
+			<table>
+			<tr><th>nette-debug-bar</th><td><pre class="nette-dump">"-116:-120" (9)
+</pre></td></tr>
+<tr><th>PHPSESSID</th><td><pre class="nette-dump">"5hqbjedrhvpn4d3ht5ikf3rjj6" (26)
+</pre></td></tr>
+<tr><th>nette-browser</th><td><pre class="nette-dump">"ywz43e2swj" (10)
+</pre></td></tr>
+			</table>
+			</div>
+								</div></div>
+
+
+
+		<div class="panel">
+		<h2><a href="#" rel="netteBsPnl5">HTTP response <abbr>&#x25ba;</abbr></a></h2>
+
+		<div id="netteBsPnl5" class="nette-collapsed inner">
+			<h3>Headers</h3>
+						<pre>X-Powered-By: Nette Framework<br>Expires: Thu, 19 Nov 1981 08:52:00 GMT<br>Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0<br>Pragma: no-cache<br>Set-Cookie: PHPSESSID=5hqbjedrhvpn4d3ht5ikf3rjj6; path=/; httponly<br>Set-Cookie: nette-browser=ywz43e2swj; path=/; httponly<br></pre>
+					</div></div>
+
+
+		<ul>
+			<li>Report generated at 2011/05/15 15:10:47</li>
+							<li><a href="http://localhost/lpstore/?do=autoComplete&amp;term=rav">http://localhost/lpstore/?do=autoComplete&amp;term=rav</a></li>
+						<li>PHP 5.3.3-1ubuntu9.3</li>
+			<li>Apache/2.2.16 (Ubuntu)</li>			<li>Nette Framework 2.0-dev <i>(revision $WCREV$ released on $WCDATE$)</i></li>		</ul>
+	</div>
+</div>
+
+<script type="text/javascript">
+	var bs = document.getElementById('netteBluescreen');
+	document.body.appendChild(bs);
+	document.onkeyup = function(e) {
+		e = e || window.event;
+		if (e.keyCode == 27 && !e.shiftKey && !e.altKey && !e.ctrlKey && !e.metaKey) {
+			bs.onclick({target: document.getElementById('netteBluescreenIcon')});
+		}
+	};
+
+	for (var i = 0, styles = document.styleSheets; i < styles.length; i++) {
+		if ((styles[i].owningElement || styles[i].ownerNode).className !== 'nette') {
+			styles[i].oldDisabled = styles[i].disabled;
+			styles[i].disabled = true;
+
+		} else if (styles[i].addRule) {
+			styles[i].addRule('.nette-collapsed', 'display: none');
+		} else {
+			styles[i].insertRule('.nette-collapsed { display: none }', 0);
+		}
+	}
+
+	bs.onclick = function(e) {
+		e = e || window.event;
+		var link = e.target || e.srcElement;
+		while (link && link.tagName && link.tagName.toLowerCase() !== 'a') {
+			link = link.parentNode;
+		}
+		if (!link || !link.rel) {
+			return true;
+		}
+		var arrow = link.getElementsByTagName('abbr')[0];
+		var panel = link.rel === 'next' ? link.nextSibling : document.getElementById(link.rel);
+		while (panel.nodeType !== 1) panel = panel.nextSibling;
+		var collapsed = panel.currentStyle ? panel.currentStyle.display == 'none' : getComputedStyle(panel, null).display == 'none';
+
+		try { arrow.innerHTML = String.fromCharCode(collapsed ? 0x25bc : 0x25ba); } catch(e){} // ie6
+		panel.style.display = collapsed ? (panel.tagName.toLowerCase() === 'code' ? 'inline' : 'block') : 'none';
+
+		if (link.id === 'netteBluescreenIcon') {
+			for (var i = 0, styles = document.styleSheets; i < styles.length; i++) {
+				if ((styles[i].owningElement || styles[i].ownerNode).className !== 'nette') {
+					styles[i].disabled = collapsed ? true : styles[i].oldDisabled;
+				}
+			}
+		}
+		return false;
+	};
+</script>
+</body>
+</html>
