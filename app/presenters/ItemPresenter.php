@@ -8,7 +8,7 @@
  */
 
 use Nette\Application\AppForm;
-use Nette\Application\JsonResponse;
+use Nette\Application\Responses\JsonResponse;
 
 /**
  * Homepage presenter.
@@ -91,6 +91,16 @@ class ItemPresenter extends BasePresenter {
 		}
 		// činnost presenteru tímto můžeme ukončit
 		$this->terminate();
+	}
+	
+	public function handleDelete($id)
+	{
+		if(! $id) {
+			throw new \InvalidArgumentException;
+		}
+		$this->transactionModel->deleteTransaction($id);
+		
+		$this->redirect('this');
 	}
 
 }

@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette;
+namespace Nette\Utils;
 
 use Nette;
 
@@ -28,7 +28,7 @@ final class MimeTypeDetector
 	 */
 	final public function __construct()
 	{
-		throw new \LogicException("Cannot instantiate static class " . get_class($this));
+		throw new Nette\StaticClassException;
 	}
 
 
@@ -41,7 +41,7 @@ final class MimeTypeDetector
 	public static function fromFile($file)
 	{
 		if (!is_file($file)) {
-			throw new \FileNotFoundException("File '$file' not found.");
+			throw new Nette\FileNotFoundException("File '$file' not found.");
 		}
 
 		$info = @getimagesize($file); // @ - files smaller than 12 bytes causes read error

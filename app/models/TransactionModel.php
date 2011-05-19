@@ -61,12 +61,41 @@ class TransactionModel extends BaseModel {
 			$t->itemsPrice = $itemsPrice + $t->isk;
 			if($t->marketPrice != 0) {
 				$t->earnings = ($t->marketPrice - $t->itemsPrice) ;
+				
+				if (($t->earnings != 0) || ($t->lp != 0)) {
+					$t->lpPrice = ($t->earnings / $t->lp);
+				} else {
+					$t->lpPrice = 0;
+				}
+				
 			} else {
 				$t->earnings = 0;
+				$t->lpPrice = 0;
 			}
+			
 		}
 
 
+		return $trans;
+	}
+	
+	public function deleteTransaction($id) {
+		if(! $id) {
+			throw new \InvalidArgumentException;
+		}
+		$check = dibi::query('SELECT * FROM `transaction`
+					WHERE (`id` = %s)
+					LIMIT 1;' , $id)
+				->fetchSingle();
+		
+		if (! $check) {
+			throw new \InvalidStateException('transaction wasn\'t found');
+		}
+		
+		//delete all requirements thru cascade...
+		$trans = dibi::query('DELETE FROM `transaction`
+					WHERE (`id` = %s)
+					LIMIT 1;' , $id);
 		return $trans;
 	}
 

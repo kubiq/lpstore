@@ -20,8 +20,11 @@ use Nette;
  *
  * @author     David Grudl
  */
-class PdoOdbcDriver extends Nette\Object implements Nette\Database\ISupplementalDriver
+class OdbcDriver extends Nette\Object implements Nette\Database\ISupplementalDriver
 {
+	/** @var array */
+	public $supports = array('meta' => TRUE);
+
 	/** @var Nette\Database\Connection */
 	private $connection;
 
@@ -80,7 +83,7 @@ class PdoOdbcDriver extends Nette\Object implements Nette\Database\ISupplemental
 		}
 
 		if ($offset) {
-			throw new \InvalidArgumentException('Offset is not implemented in driver odbc.');
+			throw new Nette\InvalidArgumentException('Offset is not implemented in driver odbc.');
 		}
 	}
 

@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette;
+namespace Nette\Iterators;
 
 use Nette;
 
@@ -20,7 +20,7 @@ use Nette;
  *
  * @author     David Grudl
  */
-class RecursiveCallbackFilterIterator extends \FilterIterator implements \RecursiveIterator
+class RecursiveFilter extends \FilterIterator implements \RecursiveIterator
 {
 	/** @var callback */
 	private $callback;
@@ -34,7 +34,7 @@ class RecursiveCallbackFilterIterator extends \FilterIterator implements \Recurs
 	 * @param
 	 * @param  callback
 	 */
-	function __construct(\RecursiveIterator $iterator, $callback, $childrenCallback = NULL)
+	public function __construct(\RecursiveIterator $iterator, $callback, $childrenCallback = NULL)
 	{
 		parent::__construct($iterator);
 		$this->callback = $callback;
@@ -43,14 +43,14 @@ class RecursiveCallbackFilterIterator extends \FilterIterator implements \Recurs
 
 
 
-	function accept()
+	public function accept()
 	{
 		return $this->callback === NULL || call_user_func($this->callback, $this);
 	}
 
 
 
-	function hasChildren()
+	public function hasChildren()
 	{
 		return $this->getInnerIterator()->hasChildren()
 			&& ($this->childrenCallback === NULL || call_user_func($this->childrenCallback, $this));
@@ -58,9 +58,9 @@ class RecursiveCallbackFilterIterator extends \FilterIterator implements \Recurs
 
 
 
-	function getChildren()
+	public function getChildren()
 	{
-		return new self($this->getInnerIterator()->getChildren(), $this->callback, $this->childrenCallback);
+		return new static($this->getInnerIterator()->getChildren(), $this->callback, $this->childrenCallback);
 	}
 
 }

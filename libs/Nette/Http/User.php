@@ -9,10 +9,9 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette\Web;
+namespace Nette\Http;
 
 use Nette,
-	Nette\Environment,
 	Nette\Security\IAuthenticator,
 	Nette\Security\IAuthorizator,
 	Nette\Security\IIdentity;
@@ -50,17 +49,21 @@ class User extends Nette\Object implements IUser
 	/** @var array of function(User $sender); Occurs when the user is logged out */
 	public $onLoggedOut;
 
-	/** @var Nette\Security\IAuthenticator */
-	private $authenticationHandler;
-
-	/** @var Nette\Security\IAuthorizator */
-	private $authorizationHandler;
-
 	/** @var string */
 	private $namespace = '';
 
 	/** @var SessionNamespace */
 	private $session;
+
+	/** @var Nette\DI\IContainer */
+	private $context;
+
+
+
+	public function __construct(Nette\DI\IContainer $context)
+	{
+		$this->context = $context;
+	}
 
 
 
@@ -77,15 +80,9 @@ class User extends Nette\Object implements IUser
 	 */
 	public function login($username = NULL, $password = NULL)
 	{
-		$handler = $this->getAuthenticationHandler();
-		if ($handler === NULL) {
-			throw new \InvalidStateException('Authentication handler has not been set.');
-		}
-
 		$this->logout(TRUE);
-
 		$credentials = func_get_args();
-		$this->setIdentity($handler->authenticate($credentials));
+		$this->setIdentity($this->context->authenticator->authenticate($credentials));
 		$this->setAuthenticated(TRUE);
 		$this->onLoggedIn($this);
 	}
@@ -154,7 +151,7 @@ class User extends Nette\Object implements IUser
 	 */
 	public function setAuthenticationHandler(IAuthenticator $handler)
 	{
-		$this->authenticationHandler = $handler;
+		$this->context->authenticator = $handler;
 		return $this;
 	}
 
@@ -166,10 +163,7 @@ class User extends Nette\Object implements IUser
 	 */
 	final public function getAuthenticationHandler()
 	{
-		if ($this->authenticationHandler === NULL) {
-			$this->authenticationHandler = Environment::getService('Nette\\Security\\IAuthenticator');
-		}
-		return $this->authenticationHandler;
+		return $this->context->authenticator;
 	}
 
 
@@ -251,12 +245,11 @@ class User extends Nette\Object implements IUser
 			return $this->session;
 		}
 
-		$sessionHandler = $this->getSession();
-		if (!$need && !$sessionHandler->exists()) {
+		if (!$need && !$this->context->session->exists()) {
 			return NULL;
 		}
 
-		$this->session = $session = $sessionHandler->getNamespace('Nette.Web.User/' . $this->namespace);
+		$this->session = $session = $this->context->session->getNamespace('Nette.Web.User/' . $this->namespace);
 
 		if (!$session->identity instanceof IIdentity || !is_bool($session->authenticated)) {
 			$session->remove();
@@ -304,7 +297,7 @@ class User extends Nette\Object implements IUser
 		$session->authenticated = (bool) $state;
 
 		// Session Fixation defence
-		$this->getSession()->regenerateId();
+		$this->context->session->regenerateId();
 
 		if ($state) {
 			$session->reason = NULL;
@@ -373,13 +366,11 @@ class User extends Nette\Object implements IUser
 	 */
 	public function isAllowed($resource = IAuthorizator::ALL, $privilege = IAuthorizator::ALL)
 	{
-		$handler = $this->getAuthorizationHandler();
-		if (!$handler) {
-			throw new \InvalidStateException("Authorization handler has not been set.");
-		}
-
+		$authorizator = $this->context->authorizator;
 		foreach ($this->getRoles() as $role) {
-			if ($handler->isAllowed($role, $resource, $privilege)) return TRUE;
+			if ($authorizator->isAllowed($role, $resource, $privilege)) {
+				return TRUE;
+			}
 		}
 
 		return FALSE;
@@ -394,7 +385,7 @@ class User extends Nette\Object implements IUser
 	 */
 	public function setAuthorizationHandler(IAuthorizator $handler)
 	{
-		$this->authorizationHandler = $handler;
+		$this->context->authorizator = $handler;
 		return $this;
 	}
 
@@ -406,25 +397,7 @@ class User extends Nette\Object implements IUser
 	 */
 	final public function getAuthorizationHandler()
 	{
-		if ($this->authorizationHandler === NULL) {
-			$this->authorizationHandler = Environment::getService('Nette\\Security\\IAuthorizator');
-		}
-		return $this->authorizationHandler;
-	}
-
-
-
-	/********************* backend ****************d*g**/
-
-
-
-	/**
-	 * Returns session handler.
-	 * @return Session
-	 */
-	protected function getSession()
-	{
-		return Environment::getSession();
+		return $this->context->authorizator;
 	}
 
 }

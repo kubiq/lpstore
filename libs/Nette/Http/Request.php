@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette\Web;
+namespace Nette\Http;
 
 use Nette;
 
@@ -20,25 +20,25 @@ use Nette;
  *
  * @author     David Grudl
  *
- * @property   UriScript $uri
+ * @property   UrlScript $url
  * @property-read array $query
  * @property-read array $post
  * @property-read array $files
  * @property-read array $cookies
  * @property-read string $method
  * @property-read array $headers
- * @property-read Uri $referer
+ * @property-read Url $referer
  * @property-read string $remoteAddress
  * @property-read string $remoteHost
  * @property-read bool $secured
  */
-class HttpRequest extends Nette\Object implements IHttpRequest
+class Request extends Nette\Object implements IRequest
 {
 	/** @var string */
 	private $method;
 
-	/** @var UriScript */
-	private $uri;
+	/** @var UrlScript */
+	private $url;
 
 	/** @var array */
 	private $query;
@@ -63,13 +63,13 @@ class HttpRequest extends Nette\Object implements IHttpRequest
 
 
 
-	public function __construct(UriScript $uri, $query = NULL, $post = NULL, $files = NULL, $cookies = NULL,
+	public function __construct(UrlScript $url, $query = NULL, $post = NULL, $files = NULL, $cookies = NULL,
 		$headers = NULL, $method = NULL, $remoteAddress = NULL, $remoteHost = NULL)
 	{
-		$this->uri = $uri;
-		$this->uri->freeze();
+		$this->url = $url;
+		$this->url->freeze();
 		if ($query === NULL) {
-			parse_str($uri->query, $this->query);
+			parse_str($url->query, $this->query);
 		} else {
 			$this->query = (array) $query;
 		}
@@ -86,11 +86,20 @@ class HttpRequest extends Nette\Object implements IHttpRequest
 
 	/**
 	 * Returns URL object.
-	 * @return UriScript
+	 * @return UrlScript
 	 */
-	final public function getUri()
+	final public function getUrl()
 	{
-		return $this->uri;
+		return $this->url;
+	}
+
+
+
+	/** @deprecated */
+	function getUri()
+	{
+		trigger_error(__METHOD__ . '() is deprecated; use ' . __CLASS__ . '::getUrl() instead.', E_USER_WARNING);
+		return $this->getUrl();
 	}
 
 
@@ -146,12 +155,12 @@ class HttpRequest extends Nette\Object implements IHttpRequest
 	/**
 	 * Returns uploaded file.
 	 * @param  string key (or more keys)
-	 * @return HttpUploadedFile
+	 * @return FileUpload
 	 */
 	final public function getFile($key)
 	{
 		$args = func_get_args();
-		return Nette\ArrayTools::get($this->files, $args);
+		return Nette\Utils\Arrays::get($this->files, $args);
 	}
 
 
@@ -269,11 +278,11 @@ class HttpRequest extends Nette\Object implements IHttpRequest
 
 	/**
 	 * Returns referrer.
-	 * @return Uri|NULL
+	 * @return Url|NULL
 	 */
 	final public function getReferer()
 	{
-		return isset($this->headers['referer']) ? new Uri($this->headers['referer']) : NULL;
+		return isset($this->headers['referer']) ? new Url($this->headers['referer']) : NULL;
 	}
 
 
@@ -284,7 +293,7 @@ class HttpRequest extends Nette\Object implements IHttpRequest
 	 */
 	public function isSecured()
 	{
-		return $this->uri->scheme === 'https';
+		return $this->url->scheme === 'https';
 	}
 
 

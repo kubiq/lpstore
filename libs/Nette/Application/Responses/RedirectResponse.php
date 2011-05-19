@@ -9,9 +9,10 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette\Application;
+namespace Nette\Application\Responses;
 
-use Nette;
+use Nette,
+	Nette\Http;
 
 
 
@@ -20,10 +21,10 @@ use Nette;
  *
  * @author     David Grudl
  */
-class RedirectingResponse extends Nette\Object implements IPresenterResponse
+class RedirectResponse extends Nette\Object implements Nette\Application\IResponse
 {
 	/** @var string */
-	private $uri;
+	private $url;
 
 	/** @var int */
 	private $code;
@@ -34,9 +35,9 @@ class RedirectingResponse extends Nette\Object implements IPresenterResponse
 	 * @param  string  URI
 	 * @param  int     HTTP code 3xx
 	 */
-	public function __construct($uri, $code = Nette\Web\IHttpResponse::S302_FOUND)
+	public function __construct($url, $code = Http\IResponse::S302_FOUND)
 	{
-		$this->uri = (string) $uri;
+		$this->url = (string) $url;
 		$this->code = (int) $code;
 	}
 
@@ -45,9 +46,9 @@ class RedirectingResponse extends Nette\Object implements IPresenterResponse
 	/**
 	 * @return string
 	 */
-	final public function getUri()
+	final public function getUrl()
 	{
-		return $this->uri;
+		return $this->url;
 	}
 
 
@@ -66,9 +67,9 @@ class RedirectingResponse extends Nette\Object implements IPresenterResponse
 	 * Sends response to output.
 	 * @return void
 	 */
-	public function send(Nette\Web\IHttpRequest $httpRequest, Nette\Web\IHttpResponse $httpResponse)
+	public function send(Http\IRequest $httpRequest, Http\IResponse $httpResponse)
 	{
-		$httpResponse->redirect($this->uri, $this->code);
+		$httpResponse->redirect($this->url, $this->code);
 	}
 
 }

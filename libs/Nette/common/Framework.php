@@ -26,7 +26,7 @@ final class Framework
 	/** Nette Framework version identification */
 	const NAME = 'Nette Framework',
 		VERSION = '2.0-dev',
-		REVISION = '539fdec released on 2011-04-13';
+		REVISION = '289e719 released on 2011-05-17';
 
 	/** @var bool set to TRUE if your host has disabled function ini_set */
 	public static $iAmUsingBadHost = FALSE;
@@ -38,7 +38,7 @@ final class Framework
 	 */
 	final public function __construct()
 	{
-		throw new \LogicException("Cannot instantiate static class " . get_class($this));
+		throw new StaticClassException;
 	}
 
 }

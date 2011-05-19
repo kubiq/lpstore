@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette;
+namespace Nette\Utils;
 
 use Nette;
 
@@ -20,7 +20,7 @@ use Nette;
  *
  * @author     David Grudl
  */
-class Neon extends Object
+class Neon extends Nette\Object
 {
 	const BLOCK = 1;
 
@@ -109,7 +109,7 @@ class Neon extends Object
 	public static function decode($input)
 	{
 		if (!is_string($input)) {
-			throw new \InvalidArgumentException("Argument must be a string, " . gettype($input) . " given.");
+			throw new Nette\InvalidArgumentException("Argument must be a string, " . gettype($input) . " given.");
 		}
 		if (!self::$tokenizer) {
 			self::$tokenizer = new Tokenizer(self::$patterns, 'mi');
@@ -118,7 +118,7 @@ class Neon extends Object
 		$input = str_replace("\r", '', $input);
 		self::$tokenizer->tokenize($input);
 
-		$parser = new self;
+		$parser = new static;
 		$res = $parser->parse(0);
 
 		while (isset(self::$tokenizer->tokens[$parser->n])) {
@@ -154,7 +154,11 @@ class Neon extends Object
 				if (!$hasValue || !$inlineParser) {
 					$this->error();
 				}
-				if ($hasKey) $result[$key] = $value; else $result[] = $value;
+				if ($hasKey) {
+					$result[$key] = $value;
+				} else {
+					$result[] = $value;
+				}
 				$hasKey = $hasValue = FALSE;
 
 			} elseif ($t === ':' || $t === '=') { // KeyValuePair separator
@@ -199,13 +203,19 @@ class Neon extends Object
 			} elseif ($t[0] === "\n") { // Indent
 				if ($inlineParser) {
 					if ($hasValue) {
-						if ($hasKey) $result[$key] = $value; else $result[] = $value;
+						if ($hasKey) {
+							$result[$key] = $value;
+						} else {
+							$result[] = $value;
+						}
 						$hasKey = $hasValue = FALSE;
 					}
 
 				} else {
 					while (isset($tokens[$n+1]) && $tokens[$n+1][0] === "\n") $n++; // skip to last indent
-					if (!isset($tokens[$n+1])) break;
+					if (!isset($tokens[$n+1])) {
+						break;
+					}
 
 					$newIndent = strlen($tokens[$n]) - 1;
 					if ($indent === NULL) { // first iteration
@@ -238,7 +248,11 @@ class Neon extends Object
 
 						} elseif ($hasKey) {
 							$value = $hasValue ? $value : NULL;
-							if ($key === NULL) $result[] = $value; else $result[$key] = $value;
+							if ($key === NULL) {
+								$result[] = $value;
+							} else {
+								$result[$key] = $value;
+							}
 							$hasKey = $hasValue = FALSE;
 						}
 					}
@@ -267,7 +281,7 @@ class Neon extends Object
 				} elseif (is_numeric($t)) {
 					$value = $t * 1;
 				} elseif (preg_match('#\d\d\d\d-\d\d?-\d\d?(?:(?:[Tt]| +)\d\d?:\d\d:\d\d(?:\.\d*)? *(?:Z|[-+]\d\d?(?::\d\d)?)?)?$#A', $t)) {
-					$value = new DateTime($t);
+					$value = new Nette\DateTime($t);
 				} else { // literal
 					$value = $t;
 				}
@@ -277,7 +291,11 @@ class Neon extends Object
 
 		if ($inlineParser) {
 			if ($hasValue) {
-				if ($hasKey) $result[$key] = $value; else $result[] = $value;
+				if ($hasKey) {
+					$result[$key] = $value;
+				} else {
+					$result[] = $value;
+				}
 			} elseif ($hasKey) {
 				$this->error();
 			}
@@ -290,7 +308,11 @@ class Neon extends Object
 				}
 			} elseif ($hasKey) {
 				$value = $hasValue ? $value : NULL;
-				if ($key === NULL) $result[] = $value; else $result[$key] = $value;
+				if ($key === NULL) {
+					$result[] = $value;
+				} else {
+					$result[$key] = $value;
+				}
 			}
 		}
 		return $result;
@@ -305,7 +327,7 @@ class Neon extends Object
 		if (isset($mapping[$sq[1]])) {
 			return $mapping[$sq[1]];
 		} elseif ($sq[1] === 'u' && strlen($sq) === 6) {
-			return String::chr(hexdec(substr($sq, 2)));
+			return Strings::chr(hexdec(substr($sq, 2)));
 		} elseif ($sq[1] === 'x' && strlen($sq) === 4) {
 			return chr(hexdec(substr($sq, 2)));
 		} else {
@@ -319,7 +341,7 @@ class Neon extends Object
 	{
 		list(, $line, $col) = self::$tokenizer->getOffset($this->n);
 		$token = isset(self::$tokenizer->tokens[$this->n])
-			? str_replace("\n", '<new line>', String::truncate(self::$tokenizer->tokens[$this->n], 40))
+			? str_replace("\n", '<new line>', Strings::truncate(self::$tokenizer->tokens[$this->n], 40))
 			: 'end';
 		throw new NeonException(str_replace('%s', $token, $message) . " on line $line, column $col.");
 	}

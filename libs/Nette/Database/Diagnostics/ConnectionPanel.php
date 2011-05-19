@@ -9,18 +9,20 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette\Database;
+namespace Nette\Database\Diagnostics;
 
-use Nette;
+use Nette,
+	Nette\Database\Connection,
+	Nette\Diagnostics\Debugger;
 
 
 
 /**
- * Debug panel for Nette\Database
+ * Debug panel for Nette\Database.
  *
  * @author     David Grudl
  */
-class DatabasePanel extends Nette\Object implements Nette\IDebugPanel
+class ConnectionPanel extends Nette\Object implements Nette\Diagnostics\IBarPanel
 {
 	/** @var int maximum SQL length */
 	static public $maxLength = 1000;
@@ -42,7 +44,19 @@ class DatabasePanel extends Nette\Object implements Nette\IDebugPanel
 
 
 
-	public function logQuery(Statement $result, array $params = NULL)
+	public static function initialize(Connection $connection)
+	{
+		if (!Debugger::$productionMode) {
+			$panel = new static;
+			$connection->onQuery[] = callback($panel, 'logQuery');
+			Debugger::$bar->addPanel($panel);
+			Debugger::$blueScreen->addPanel(callback($panel, 'renderException'), __CLASS__);
+		}
+	}
+
+
+
+	public function logQuery(Nette\Database\Statement $result, array $params = NULL)
 	{
 		if ($this->disabled) {
 			return;
@@ -60,9 +74,14 @@ class DatabasePanel extends Nette\Object implements Nette\IDebugPanel
 
 
 
-	public function getId()
+	public function renderException($e)
 	{
-		return 'database';
+		if ($e instanceof \PDOException && isset($e->queryString)) {
+			return array(
+				'tab' => 'SQL',
+				'panel' => Connection::highlightSql($e->queryString),
+			);
+		}
 	}
 
 
@@ -89,18 +108,20 @@ class DatabasePanel extends Nette\Object implements Nette\IDebugPanel
 			$explain = NULL; // EXPLAIN is called here to work SELECT FOUND_ROWS()
 			if ($this->explain && preg_match('#\s*SELECT\s#iA', $sql)) {
 				try {
-				    $explain = $connection->queryArgs('EXPLAIN ' . $sql, $params)->fetchAll();
+					$explain = $connection->queryArgs('EXPLAIN ' . $sql, $params)->fetchAll();
 				} catch (\PDOException $e) {}
 			}
 
 			$s .= '<tr><td>' . sprintf('%0.3f', $time * 1000);
 			if ($explain) {
-				$s .= "<br /><a href='#' class='nette-toggler' rel='#nette-debug-database-row-{$h($this->name)}-$i'>explain&nbsp;&#x25ba;</a>";
+				static $counter;
+				$counter++;
+				$s .= "<br /><a href='#' class='nette-toggler' rel='#nette-DbConnectionPanel-row-$counter'>explain&nbsp;&#x25ba;</a>";
 			}
 
-			$s .= '</td><td class="database-sql">' . Connection::highlightSql(Nette\String::truncate($sql, self::$maxLength));
+			$s .= '</td><td class="nette-DbConnectionPanel-sql">' . Connection::highlightSql(Nette\Utils\Strings::truncate($sql, self::$maxLength));
 			if ($explain) {
-				$s .= "<table id='nette-debug-database-row-{$h($this->name)}-$i' class='nette-collapsed'><tr>";
+				$s .= "<table id='nette-DbConnectionPanel-row-$counter' class='nette-collapsed'><tr>";
 				foreach ($explain[0] as $col => $foo) {
 					$s .= "<th>{$h($col)}</th>";
 				}
@@ -115,26 +136,23 @@ class DatabasePanel extends Nette\Object implements Nette\IDebugPanel
 				$s .= "</table>";
 			}
 			if ($source) {
-				list($file, $line) = $source;
-				$s .= (Nette\Debug::$editor ? "<a href='{$h(Nette\DebugHelpers::editorLink($file, $line))}'" : '<span')
-					. " class='database-source' title='{$h($file)}:$line'>"
-					. "{$h(basename(dirname($file)) . '/' . basename($file))}:$line" . (Nette\Debug::$editor ? '</a>' : '</span>');
+				$s .= Nette\Diagnostics\Helpers::editorLink($source[0], $source[1])->class('nette-DbConnectionPanel-source');
 			}
 
 			$s .= '</td><td>';
 			foreach ($params as $param) {
-				$s .= "{$h(Nette\String::truncate($param, self::$maxLength))}<br>";
+				$s .= Debugger::dump($param, TRUE);
 			}
 
 			$s .= '</td><td>' . $rows . '</td></tr>';
 		}
 
 		return empty($this->queries) ? '' :
-			'<style> #nette-debug-database td.database-sql { background: white !important }
-			#nette-debug-database .database-source { color: #BBB !important }
-			#nette-debug-database tr table { margin: 8px 0; max-height: 150px; overflow:auto } </style>
+			'<style> #nette-debug td.nette-DbConnectionPanel-sql { background: white !important }
+			#nette-debug .nette-DbConnectionPanel-source { color: #BBB !important }
+			#nette-debug nette-DbConnectionPanel tr table { margin: 8px 0; max-height: 150px; overflow:auto } </style>
 			<h1>Queries: ' . count($this->queries) . ($this->totalTime ? ', time: ' . sprintf('%0.3f', $this->totalTime * 1000) . ' ms' : '') . '</h1>
-			<div class="nette-inner">
+			<div class="nette-inner nette-DbConnectionPanel">
 			<table>
 				<tr><th>Time&nbsp;ms</th><th>SQL Statement</th><th>Params</th><th>Rows</th></tr>' . $s . '
 			</table>

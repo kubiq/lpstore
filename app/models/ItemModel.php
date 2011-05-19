@@ -25,14 +25,16 @@ class ItemModel extends BaseModel {
 
 		$name = '%' . $name . '%';
 		$ret = dibi::query("
-			SELECT typeID, groupID, typeName, description, 
-				graphicID, radius, mass, volume, capacity, portionSize, 
-				raceID, price, published, marketGroupID, chanceOfDuplicating, iconID 
-			FROM [invTypes] 
-			LEFT JOIN [price] USING (`typeID`) 
-			WHERE [typeName] like %s", $name, 
-			'AND [published] = 1', 
-			'ORDER BY typeName',
+			SELECT I.typeID, I.groupID, I.typeName, I.description, 
+				I.graphicID, I.radius, I.mass, I.volume, I.capacity, I.portionSize, 
+				I.raceID, P.price, I.published, I.marketGroupID, I.chanceOfDuplicating, I.iconID, C.categoryID
+			FROM invTypes I 
+			LEFT JOIN price P USING (`typeID`) 
+			JOIN invGroups G USING (groupID)
+			JOIN invCategories C USING (categoryID)
+			WHERE I.typeName like %s", $name, 
+			'AND I.published = 1', 
+			'ORDER BY I.typeName',
 			'LIMIT %i', $limit, 
 			'OFFSET %i', $offset)
 				->setRowClass("Item")
@@ -58,12 +60,14 @@ class ItemModel extends BaseModel {
 
 		$em = new EveCentralModel();
 		
-		$ret = dibi::query("SELECT typeID, groupID, typeName, description, 
-				graphicID, radius, mass, volume, capacity, portionSize, 
-				raceID, price, published, marketGroupID, chanceOfDuplicating, iconID 
-			FROM [invTypes] 
-			LEFT JOIN [price] USING (`typeID`) 
-			WHERE [typeID] = %i", $typeID, 'AND [published] = 1', 
+		$ret = dibi::query("SELECT I.typeID, I.groupID, I.typeName, I.description, 
+				I.graphicID, I.radius, I.mass, I.volume, I.capacity, I.portionSize, 
+				I.raceID, P.price, I.published, I.marketGroupID, I.chanceOfDuplicating, I.iconID, C.categoryID
+			FROM invTypes I 
+			LEFT JOIN price P USING (`typeID`)
+			JOIN invGroups G USING (groupID)
+			JOIN invCategories C USING (categoryID)
+			WHERE I.typeID = %i", $typeID, 'AND I.published = 1', 
 			'LIMIT 1')
 			->setRowClass("Item")
 			->fetch();
@@ -122,18 +126,23 @@ class ItemModel extends BaseModel {
 	 * @param string $name
 	 * @return Item
 	 */
-	public function getItemByName($name = null) {
+	public function getItemByName($name) {
 
-		if (!(bool) $name) {
+		if (!$name) {
 			throw new InvalidArgumentException("Item name has to be given");
 		}
 
-		$ret = dibi::query('SELECT typeID, groupID, typeName, description, 
-				graphicID, radius, mass, volume, capacity, portionSize, 
-				raceID, price, published, marketGroupID, chanceOfDuplicating, iconID ', 'FROM [invTypes]', 'LEFT JOIN [price] USING (`typeID`)', 'WHERE [typeName] like %s', $name)
+		$ret = dibi::query('
+			SELECT I.typeID, I.groupID, I.typeName, I.description, 
+				I.graphicID, I.radius, I.mass, I.volume, I.capacity, I.portionSize, 
+				I.raceID, P.price, I.published, I.marketGroupID, I.chanceOfDuplicating, I.iconID, C.categoryID
+			FROM invTypes I 
+			LEFT JOIN price P USING (`typeID`)
+			JOIN invGroups G USING (groupID)
+			JOIN invCategories C USING (categoryID)
+			WHERE [typeName] like %s', $name)
 				->setRowClass("Item")
 				->fetch();
-		
 		$em = new EveCentralModel();
 		$ret->price = $em->getItemPrice($ret->typeID)->price;
 		

@@ -9,10 +9,15 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette;
+namespace Nette\Diagnostics;
 
-use Nette,
-	Nette\Environment;
+use Nette;
+
+
+
+require_once __DIR__ . '/Helpers.php';
+require_once __DIR__ . '/../Utils/Html.php';
+require_once __DIR__ . '/../Utils/Strings.php';
 
 
 
@@ -25,7 +30,7 @@ use Nette,
  *
  * @author     David Grudl
  */
-final class Debug
+final class Debugger
 {
 	/** @var bool in production mode is suppressed any debugging output */
 	public static $productionMode;
@@ -36,32 +41,35 @@ final class Debug
 	/** @var int timestamp with microseconds of the start of the request */
 	public static $time;
 
-	/** @var bool is Firebug & FireLogger detected? */
-	private static $firebugDetected;
-
 	/** @var bool is AJAX request detected? */
 	private static $ajaxDetected;
 
 	/** @var string  requested URI or command line */
 	public static $source;
 
-	/********************* Debug::dump() ****************d*g**/
+	/** @var string URL pattern mask to open editor */
+	public static $editor = 'editor://open/?file=%file&line=%line';
 
-	/** @var int  how many nested levels of array/object properties display {@link Debug::dump()} */
+	/********************* Debugger::dump() ****************d*g**/
+
+	/** @var int  how many nested levels of array/object properties display {@link Debugger::dump()} */
 	public static $maxDepth = 3;
 
-	/** @var int  how long strings display {@link Debug::dump()} */
+	/** @var int  how long strings display {@link Debugger::dump()} */
 	public static $maxLen = 150;
 
-	/** @var int  display location? {@link Debug::dump()} */
+	/** @var int  display location? {@link Debugger::dump()} */
 	public static $showLocation = FALSE;
 
 	/********************* errors and exceptions reporing ****************d*g**/
 
-	/** server modes {@link Debug::enable()} */
+	/** server modes {@link Debugger::enable()} */
 	const DEVELOPMENT = FALSE,
 		PRODUCTION = TRUE,
 		DETECT = NULL;
+
+	/** @var BlueScreen */
+	public static $blueScreen;
 
 	/** @var bool determines whether any error will cause immediate death */
 	public static $strictMode = FALSE; // $immediateDeath
@@ -72,41 +80,46 @@ final class Debug
 	/** @var array of callbacks specifies the functions that are automatically called after fatal error */
 	public static $onFatalError = array();
 
+	/** @var bool {@link Debugger::enable()} */
+	private static $enabled = FALSE;
+
+	/** @var mixed {@link Debugger::tryError()} FALSE means catching is disabled */
+	private static $lastError = FALSE;
+
+	/********************* logging ****************d*g**/
+
+	/** @var Logger */
+	public static $logger;
+
+	/** @var FireLogger */
+	public static $fireLogger;
+
 	/** @var string name of the directory where errors should be logged; FALSE means that logging is disabled */
 	public static $logDirectory;
 
 	/** @var string email to sent error notifications */
 	public static $email;
 
-	/** @var callback handler for sending emails */
-	public static $mailer = array(__CLASS__, 'defaultMailer');
+	/** @deprecated */
+	public static $mailer;
 
-	/** @var int interval for sending email is 2 days */
-	public static $emailSnooze = 172800;
-
-	/** @var string URL pattern mask to open editor */
-	public static $editor = 'editor://open/?file=%file&line=%line';
-
-	/** @var bool {@link Debug::enable()} */
-	private static $enabled = FALSE;
-
-	/** @var mixed {@link Debug::tryError()} FALSE means catching is disabled */
-	private static $lastError = FALSE;
+	/** @deprecated */
+	public static $emailSnooze;
 
 	/********************* debug bar ****************d*g**/
 
-	/** @var bool determines whether show Debug Bar */
-	public static $showBar = TRUE;
+	/** @var Bar */
+	public static $bar;
 
-	/** @var array */
-	private static $panels = array();
+	/** @var DefaultBarPanel */
+	private static $errorPanel;
 
-	/** @var array payload filled by {@link Debug::_errorHandler()} */
-	private static $errors;
+	/** @var DefaultBarPanel */
+	private static $dumpPanel;
 
 	/********************* Firebug extension ****************d*g**/
 
-	/** {@link Debug::log()} and {@link Debug::fireLog()} */
+	/** {@link Debugger::log()} and {@link Debugger::fireLog()} */
 	const DEBUG = 'debug',
 		INFO = 'info',
 		WARNING = 'warning',
@@ -120,7 +133,7 @@ final class Debug
 	 */
 	final public function __construct()
 	{
-		throw new \LogicException("Cannot instantiate static class " . get_class($this));
+		throw new Nette\StaticClassException;
 	}
 
 
@@ -137,7 +150,6 @@ final class Debug
 		if (self::$consoleMode) {
 			self::$source = empty($_SERVER['argv']) ? 'cli' : 'cli: ' . implode(' ', $_SERVER['argv']);
 		} else {
-			self::$firebugDetected = isset($_SERVER['HTTP_X_FIRELOGGER']);
 			self::$ajaxDetected = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
 			if (isset($_SERVER['REQUEST_URI'])) {
 				self::$source = (isset($_SERVER['HTTPS']) && strcasecmp($_SERVER['HTTPS'], 'off') ? 'https://' : 'http://')
@@ -146,11 +158,31 @@ final class Debug
 			}
 		}
 
-		$tab = array('Nette\DebugHelpers', 'renderTab'); $panel = array('Nette\DebugHelpers', 'renderPanel');
-		self::addPanel(new DebugPanel('time', $tab, $panel));
-		self::addPanel(new DebugPanel('memory', $tab, $panel));
-		self::addPanel($tmp = new DebugPanel('errors', $tab, $panel)); $tmp->data = & self::$errors;
-		self::addPanel(new DebugPanel('dumps', $tab, $panel));
+		self::$logger = new Logger;
+		self::$logDirectory = & self::$logger->directory;
+		self::$email = & self::$logger->email;
+		self::$mailer = & self::$logger->mailer;
+		self::$emailSnooze = & Logger::$emailSnooze;
+
+		self::$fireLogger = new FireLogger;
+
+		self::$blueScreen = new BlueScreen;
+		self::$blueScreen->addPanel(function($e) {
+			if ($e instanceof Nette\Templating\FilterException) {
+				return array(
+					'tab' => 'Template',
+					'panel' => '<p><b>File:</b> ' . Helpers::editorLink($e->sourceFile, $e->sourceLine)
+					. '&nbsp; <b>Line:</b> ' . ($e->sourceLine ? $e->sourceLine : 'n/a') . '</p>'
+					. ($e->sourceLine ? '<pre>' . BlueScreen::highlightFile($e->sourceFile, $e->sourceLine) . '</pre>' : '')
+				);
+			}
+		});
+
+		self::$bar = new Bar;
+		self::$bar->addPanel(new DefaultBarPanel('time'));
+		self::$bar->addPanel(new DefaultBarPanel('memory'));
+		self::$bar->addPanel(self::$errorPanel = new DefaultBarPanel('errors')); // filled by _errorHandler()
+		self::$bar->addPanel(self::$dumpPanel = new DefaultBarPanel('dumps')); // filled by barDump()
 	}
 
 
@@ -184,7 +216,7 @@ final class Debug
 
 		if (self::$productionMode === self::DETECT) {
 			if (class_exists('Nette\Environment')) {
-				self::$productionMode = Environment::isProduction();
+				self::$productionMode = Nette\Environment::isProduction();
 
 			} elseif (isset($_SERVER['SERVER_ADDR']) || isset($_SERVER['LOCAL_ADDR'])) { // IP address based detection
 				$addrs = array();
@@ -215,7 +247,7 @@ final class Debug
 		if (is_string($logDirectory)) {
 			self::$logDirectory = realpath($logDirectory);
 			if (self::$logDirectory === FALSE) {
-				throw new \DirectoryNotFoundException("Directory '$logDirectory' is not found.");
+				throw new Nette\DirectoryNotFoundException("Directory '$logDirectory' is not found.");
 			}
 		} elseif ($logDirectory === FALSE) {
 			self::$logDirectory = FALSE;
@@ -234,12 +266,12 @@ final class Debug
 			ini_set('log_errors', FALSE);
 
 		} elseif (ini_get('display_errors') != !self::$productionMode && ini_get('display_errors') !== (self::$productionMode ? 'stderr' : 'stdout')) { // intentionally ==
-			throw new \NotSupportedException('Function ini_set() must be enabled.');
+			throw new Nette\NotSupportedException('Function ini_set() must be enabled.');
 		}
 
 		if ($email) {
 			if (!is_string($email)) {
-				throw new \InvalidArgumentException('Email address must be a string.');
+				throw new Nette\InvalidArgumentException('Email address must be a string.');
 			}
 			self::$email = $email;
 		}
@@ -276,7 +308,7 @@ final class Debug
 	/**
 	 * Logs message or exception to file (if not disabled) and sends email notification (if enabled).
 	 * @param  string|Exception
-	 * @param  int  one of constant Debug::INFO, WARNING, ERROR (sends email), CRITICAL (sends email)
+	 * @param  int  one of constant Debugger::INFO, WARNING, ERROR (sends email), CRITICAL (sends email)
 	 * @return void
 	 */
 	public static function log($message, $priority = self::INFO)
@@ -285,16 +317,13 @@ final class Debug
 			return;
 
 		} elseif (!self::$logDirectory) {
-			throw new \InvalidStateException('Logging directory is not specified in Nette\Debug::$logDirectory.');
-
-		} elseif (!is_dir(self::$logDirectory)) {
-			throw new \DirectoryNotFoundException("Directory '" . self::$logDirectory . "' is not found or is not directory.");
+			throw new Nette\InvalidStateException('Logging directory is not specified in Nette\Diagnostics\Debugger::$logDirectory.');
 		}
 
 		if ($message instanceof \Exception) {
 			$exception = $message;
 			$message = "PHP Fatal error: "
-				. ($message instanceof \FatalErrorException
+				. ($message instanceof Nette\FatalErrorException
 					? $exception->getMessage()
 					: "Uncaught exception " . get_class($exception) . " with message '" . $exception->getMessage() . "'")
 				. " in " . $exception->getFile() . ":" . $exception->getLine();
@@ -308,24 +337,17 @@ final class Debug
 			}
 		}
 
-		error_log(
-			@date('[Y-m-d H-i-s] ') . trim($message) .
-				(self::$source ? '  @  ' . self::$source : '') .
-				(!empty($exceptionFilename) ? '  @@  ' . $exceptionFilename : '') . PHP_EOL,
-			3, self::$logDirectory . '/' . strtolower($priority) . '.log'
-		);
-
-		if (($priority === self::ERROR || $priority === self::CRITICAL) && self::$email
-			&& @filemtime(self::$logDirectory . '/email-sent') + self::$emailSnooze < time() // @ - file may not exist
-			&& @file_put_contents(self::$logDirectory . '/email-sent', 'sent') // @ - file may not be writable
-		) {
-			call_user_func(self::$mailer, $message);
-		}
+		self::$logger->log(array(
+			@date('[Y-m-d H-i-s]'),
+			$message,
+			self::$source ? ' @  ' . self::$source : NULL,
+			!empty($exceptionFilename) ? ' @@  ' . $exceptionFilename : NULL
+		), $priority);
 
 		if (!empty($exceptionFilename) && $logHandle = @fopen(self::$logDirectory . '/'. $exceptionFilename, 'w')) {
 			ob_start(); // double buffer prevents sending HTTP headers in some PHP
 			ob_start(function($buffer) use ($logHandle) { fwrite($logHandle, $buffer); }, 1);
-			DebugHelpers::renderBlueScreen($exception);
+			self::$blueScreen->render($exception);
 			ob_end_flush();
 			ob_end_clean();
 			fclose($logHandle);
@@ -341,7 +363,7 @@ final class Debug
 	 */
 	public static function _shutdownHandler()
 	{
-		// 1) fatal error handler
+		// fatal error handler
 		static $types = array(
 			E_ERROR => 1,
 			E_CORE_ERROR => 1,
@@ -350,15 +372,14 @@ final class Debug
 		);
 		$error = error_get_last();
 		if (isset($types[$error['type']])) {
-			self::_exceptionHandler(new \FatalErrorException($error['message'], 0, $error['type'], $error['file'], $error['line'], NULL));
-			return;
+			self::_exceptionHandler(new Nette\FatalErrorException($error['message'], 0, $error['type'], $error['file'], $error['line'], NULL), TRUE);
 		}
 
-		// 2) debug bar (require HTML & development mode)
-		if (self::$showBar && !self::$productionMode && !self::$ajaxDetected && !self::$consoleMode
+		// debug bar (require HTML & development mode)
+		if (self::$bar && !self::$productionMode && !self::$ajaxDetected && !self::$consoleMode
 			&& !preg_match('#^Content-Type: (?!text/html)#im', implode("\n", headers_list()))
 		) {
-			DebugHelpers::renderDebugBar(self::$panels);
+			self::$bar->render();
 		}
 	}
 
@@ -370,7 +391,7 @@ final class Debug
 	 * @return void
 	 * @internal
 	 */
-	public static function _exceptionHandler(\Exception $exception)
+	public static function _exceptionHandler(\Exception $exception, $drawBar = FALSE)
 	{
 		if (!headers_sent()) { // for PHP < 5.2.4
 			header('HTTP/1.1 500 Internal Server Error');
@@ -394,7 +415,10 @@ final class Debug
 					echo "$exception\n";
 
 				} elseif ($htmlMode) { // dump to browser
-					DebugHelpers::renderBlueScreen($exception);
+					self::$blueScreen->render($exception);
+					if ($drawBar && self::$bar) {
+						self::$bar->render();
+					}
 
 				} elseif (!self::fireLog($exception, self::ERROR)) { // AJAX or non-HTML mode
 					self::log($exception);
@@ -407,8 +431,8 @@ final class Debug
 		} catch (\Exception $e) {
 			echo "\nNette\\Debug FATAL ERROR: thrown ", get_class($e), ': ', $e->getMessage(),
 				"\nwhile processing ", get_class($exception), ': ', $exception->getMessage(), "\n";
-			exit;
 		}
+		exit(255);
 	}
 
 
@@ -421,7 +445,7 @@ final class Debug
 	 * @param  int    line number the error was raised at
 	 * @param  array  an array of variables that existed in the scope the error was triggered in
 	 * @return bool   FALSE to call normal error handler, NULL otherwise
-	 * @throws \FatalErrorException
+	 * @throws Nette\FatalErrorException
 	 * @internal
 	 */
 	public static function _errorHandler($severity, $message, $file, $line, $context)
@@ -436,14 +460,13 @@ final class Debug
 		}
 
 		if ($severity === E_RECOVERABLE_ERROR || $severity === E_USER_ERROR) {
-			throw new \FatalErrorException($message, 0, $severity, $file, $line, $context);
+			throw new Nette\FatalErrorException($message, 0, $severity, $file, $line, $context);
 
 		} elseif (($severity & error_reporting()) !== $severity) {
 			return FALSE; // calls normal error handler to fill-in error_get_last()
 
 		} elseif (self::$strictMode && !self::$productionMode) {
-			self::_exceptionHandler(new \FatalErrorException($message, 0, $severity, $file, $line, $context));
-			exit;
+			self::_exceptionHandler(new Nette\FatalErrorException($message, 0, $severity, $file, $line, $context));
 		}
 
 		static $types = array(
@@ -458,7 +481,7 @@ final class Debug
 		);
 
 		$message = 'PHP ' . (isset($types[$severity]) ? $types[$severity] : 'Unknown error') . ": $message";
-		$count = & self::$errors["$message|$file|$line"];
+		$count = & self::$errorPanel->data["$message|$file|$line"];
 
 		if ($count++) { // repeated error
 			return NULL;
@@ -469,19 +492,10 @@ final class Debug
 
 		} else {
 			$ok = self::fireLog(new \ErrorException($message, 0, $severity, $file, $line), self::WARNING);
-			return self::$consoleMode || (!self::$showBar && !$ok) ? FALSE : NULL;
+			return self::$consoleMode || (!self::$bar && !$ok) ? FALSE : NULL;
 		}
 
 		return FALSE; // call normal error handler
-	}
-
-
-
-	/** @deprecated */
-	public static function processException(\Exception $exception)
-	{
-		trigger_error(__METHOD__ . '() is deprecated; use ' . __CLASS__ . '::log($exception, Debug::ERROR) instead.', E_USER_WARNING);
-		self::log($exception, self::ERROR);
 	}
 
 
@@ -498,7 +512,6 @@ final class Debug
 		} else {
 			trigger_error($exception->getMessage(), E_USER_ERROR);
 		}
-		exit;
 	}
 
 
@@ -534,31 +547,6 @@ final class Debug
 
 
 
-	/**
-	 * Default mailer.
-	 * @param  string
-	 * @return void
-	 */
-	private static function defaultMailer($message)
-	{
-		$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] :
-				(isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '');
-
-		$parts = str_replace(
-			array("\r\n", "\n"),
-			array("\n", PHP_EOL),
-			array(
-				'headers' => "From: noreply@$host\nX-Mailer: Nette Framework\n",
-				'subject' => "PHP: An error occurred on the server $host",
-				'body' => "[" . @date('Y-m-d H:i:s') . "] $message", // @ - timezone may not be set
-			)
-		);
-
-		mail(self::$email, $parts['subject'], $parts['body'], $parts['headers']);
-	}
-
-
-
 	/********************* useful tools ****************d*g**/
 
 
@@ -575,16 +563,25 @@ final class Debug
 			return $var;
 		}
 
-		$output = "<pre class=\"nette-dump\">" . DebugHelpers::htmlDump($var) . "</pre>\n";
+		$output = "<pre class=\"nette-dump\">" . Helpers::htmlDump($var) . "</pre>\n";
 
-		if (!$return && self::$showLocation) {
+		if (!$return) {
 			$trace = debug_backtrace();
-			$i = isset($trace[1]['class']) && $trace[1]['class'] === __CLASS__ ? 1 : 0;
-			if (isset($trace[$i]['file'], $trace[$i]['line'])) {
+			$i = !isset($trace[1]['class']) && isset($trace[1]['function']) && $trace[1]['function'] === 'dump' ? 1 : 0;
+			if (isset($trace[$i]['file'], $trace[$i]['line']) && is_file($trace[$i]['file'])) {
+				$lines = file($trace[$i]['file']);
+				preg_match('#dump\((.*)\)#', $lines[$trace[$i]['line'] - 1], $m);
 				$output = substr_replace(
 					$output,
-					' <small>' . htmlspecialchars("in file {$trace[$i]['file']} on line {$trace[$i]['line']}", ENT_NOQUOTES) . '</small>',
-					-8, 0);
+					' title="' . htmlspecialchars((isset($m[0]) ? "$m[0] \n" : '') . "in file {$trace[$i]['file']} on line {$trace[$i]['line']}") . '"',
+					4, 0);
+
+				if (self::$showLocation) {
+					$output = substr_replace(
+						$output,
+						' <small>in ' . Helpers::editorLink($trace[$i]['file'], $trace[$i]['line']) . ":{$trace[$i]['line']}</small>",
+						-8, 0);
+				}
 			}
 		}
 
@@ -619,22 +616,6 @@ final class Debug
 
 
 
-	/********************* debug bar ****************d*g**/
-
-
-
-	/**
-	 * Add custom panel.
-	 * @param  IDebugPanel
-	 * @return void
-	 */
-	public static function addPanel(IDebugPanel $panel)
-	{
-		self::$panels[] = $panel;
-	}
-
-
-
 	/**
 	 * Dumps information about a variable in Nette Debug Bar.
 	 * @param  mixed  variable to dump
@@ -646,110 +627,37 @@ final class Debug
 		if (!self::$productionMode) {
 			$dump = array();
 			foreach ((is_array($var) ? $var : array('' => $var)) as $key => $val) {
-				$dump[$key] = DebugHelpers::clickableDump($val);
+				$dump[$key] = Helpers::clickableDump($val);
 			}
-			self::$panels[3]->data[] = array('title' => $title, 'dump' => $dump);
+			self::$dumpPanel->data[] = array('title' => $title, 'dump' => $dump);
 		}
 		return $var;
 	}
 
 
 
-	/********************* Firebug extension ****************d*g**/
-
-
-
 	/**
 	 * Sends message to FireLogger console.
-	 * @see http://firelogger.binaryage.com
 	 * @param  mixed   message to log
 	 * @return bool    was successful?
 	 */
 	public static function fireLog($message)
 	{
-		if (self::$productionMode) {
-			return;
-
-		} elseif (!self::$firebugDetected || headers_sent()) {
-			return FALSE;
+		if (!self::$productionMode) {
+			return self::$fireLogger->log($message);
 		}
+	}
 
-		static $payload = array('logs' => array());
 
-		$item = array(
-			'name' => 'PHP',
-			'level' => 'debug',
-			'order' => count($payload['logs']),
-			'time' => str_pad(number_format((microtime(TRUE) - self::$time) * 1000, 1, '.', ' '), 8, '0', STR_PAD_LEFT) . ' ms',
-			'template' => '',
-			'message' => '',
-			'style' => 'background:#767ab6',
-		);
 
-		$args = func_get_args();
-		if (isset($args[0]) && is_string($args[0])) {
-			$item['template'] = array_shift($args);
-		}
-
-		if (isset($args[0]) && $args[0] instanceof \Exception) {
-			$e = array_shift($args);
-			$trace = $e->getTrace();
-			if (isset($trace[0]['class']) && $trace[0]['class'] === __CLASS__
-				&& ($trace[0]['function'] === '_shutdownHandler' || $trace[0]['function'] === '_errorHandler')
-			) {
-				unset($trace[0]);
-			}
-
-			$item['exc_info'] = array(
-				$e->getMessage(),
-				$e->getFile(),
-				array(),
-			);
-			$item['exc_frames'] = array();
-
-			foreach ($trace as $frame) {
-				$frame += array('file' => NULL, 'line' => NULL, 'class' => NULL, 'type' => NULL, 'function' => NULL, 'object' => NULL, 'args' => NULL);
-				$item['exc_info'][2][] = array($frame['file'], $frame['line'], "$frame[class]$frame[type]$frame[function]", $frame['object']);
-				$item['exc_frames'][] = $frame['args'];
-			}
-
-			$file = str_replace(dirname(dirname(dirname($e->getFile()))), "\xE2\x80\xA6", $e->getFile());
-			$item['template'] = ($e instanceof \ErrorException ? '' : get_class($e) . ': ')
-				. $e->getMessage() . ($e->getCode() ? ' #' . $e->getCode() : '') . ' in ' . $file . ':' . $e->getLine();
-			array_unshift($trace, array('file' => $e->getFile(), 'line' => $e->getLine()));
-
-		} else {
-			$trace = debug_backtrace();
-			if (isset($trace[0]['class']) && $trace[0]['class'] === __CLASS__
-				&& ($trace[0]['function'] === '_shutdownHandler' || $trace[0]['function'] === '_errorHandler')
-			) {
-				unset($trace[0]);
-			}
-		}
-
-		if (isset($args[0]) && in_array($args[0], array(self::DEBUG, self::INFO, self::WARNING, self::ERROR, self::CRITICAL), TRUE)) {
-			$item['level'] = array_shift($args);
-		}
-
-		$item['args'] = $args;
-
-		foreach ($trace as $frame) {
-			if (isset($frame['file']) && is_file($frame['file'])) {
-				$item['pathname'] = $frame['file'];
-				$item['lineno'] = $frame['line'];
-				break;
-			}
-		}
-
-		$payload['logs'][] = DebugHelpers::jsonDump($item, -1);
-		foreach (str_split(base64_encode(@json_encode($payload)), 4990) as $k => $v) {
-			header("FireLogger-de11e-$k:$v");
-		}
-		return TRUE;
+	/** @deprecated */
+	public static function addPanel(IBarPanel $panel, $id = NULL)
+	{
+		self::$bar->addPanel($panel, $id);
 	}
 
 }
 
 
 
-Debug::_init();
+Debugger::_init();

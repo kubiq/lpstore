@@ -20,8 +20,11 @@ use Nette;
  *
  * @author     David Grudl
  */
-class PdoMsSqlDriver extends Nette\Object implements Nette\Database\ISupplementalDriver
+class MsSqlDriver extends Nette\Object implements Nette\Database\ISupplementalDriver
 {
+	/** @var array */
+	public $supports = array('meta' => TRUE);
+
 	/** @var Nette\Database\Connection */
 	private $connection;
 
@@ -81,7 +84,7 @@ class PdoMsSqlDriver extends Nette\Object implements Nette\Database\ISupplementa
 		}
 
 		if ($offset) {
-			throw new \NotImplementedException('Offset is not implemented.');
+			throw new Nette\NotImplementedException('Offset is not implemented.');
 		}
 	}
 

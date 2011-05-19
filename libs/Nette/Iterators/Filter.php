@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette;
+namespace Nette\Iterators;
 
 use Nette;
 
@@ -20,7 +20,7 @@ use Nette;
  *
  * @author     David Grudl
  */
-class CallbackFilterIterator extends \FilterIterator
+class Filter extends \FilterIterator
 {
 	/** @var callback */
 	private $callback;
@@ -31,7 +31,7 @@ class CallbackFilterIterator extends \FilterIterator
 	 * @param
 	 * @param  callback
 	 */
-	function __construct(\Iterator $iterator, $callback)
+	public function __construct(\Iterator $iterator, $callback)
 	{
 		parent::__construct($iterator);
 		$this->callback = $callback;
@@ -39,7 +39,7 @@ class CallbackFilterIterator extends \FilterIterator
 
 
 
-	function accept()
+	public function accept()
 	{
 		return call_user_func($this->callback, $this);
 	}

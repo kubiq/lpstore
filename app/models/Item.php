@@ -24,6 +24,7 @@ class Item extends DibiRow{
 	public $marketGroupID;
 	public $chanceOfDuplicating;
 	public $iconID;
+	public $categoryID;
 	
 	public function __construct($arr = array()) {
 		parent::__construct($arr);

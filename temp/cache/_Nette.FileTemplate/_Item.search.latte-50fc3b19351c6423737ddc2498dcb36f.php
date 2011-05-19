@@ -1,15 +1,15 @@
-<?php //netteCache[01]000375a:2:{s:4:"time";s:21:"0.94372400 1305465384";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"/home/kubiq/php/lpstore/app/templates/Item/search.latte";i:2;i:1305305043;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:28:"$WCREV$ released on $WCDATE$";}}}?><?php
+<?php //netteCache[01]000377a:2:{s:4:"time";s:21:"0.25407700 1305752062";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:55:"/home/kubiq/php/lpstore/app/templates/Item/search.latte";i:2;i:1305305043;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"289e719 released on 2011-05-17";}}}?><?php
 
 // source file: /home/kubiq/php/lpstore/app/templates/Item/search.latte
 
 ?><?php
-$_l = Nette\Latte\DefaultMacros::initRuntime($template, NULL, 'swgwtbh44y'); unset($_extends);
+$_l = Nette\Latte\DefaultMacros::initRuntime($template, NULL, '2v0xpsrdv3'); unset($_extends);
 
 
 //
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lbec685adc7f_content')) { function _lbec685adc7f_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lbef9c8dd45e_content')) { function _lbef9c8dd45e_content($_l, $_args) { extract($_args)
 ?>
 <div>
 	

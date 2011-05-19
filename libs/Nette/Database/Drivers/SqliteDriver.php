@@ -20,8 +20,11 @@ use Nette;
  *
  * @author     David Grudl
  */
-class PdoSqliteDriver extends Nette\Object implements Nette\Database\ISupplementalDriver
+class SqliteDriver extends Nette\Object implements Nette\Database\ISupplementalDriver
 {
+	/** @var array */
+	public $supports = array('meta' => FALSE);
+
 	/** @var Nette\Database\Connection */
 	private $connection;
 
@@ -78,8 +81,9 @@ class PdoSqliteDriver extends Nette\Object implements Nette\Database\ISupplement
 	 */
 	public function applyLimit(&$sql, $limit, $offset)
 	{
-		if ($limit < 0 && $offset < 1) return;
-		$sql .= ' LIMIT ' . $limit . ($offset > 0 ? ' OFFSET ' . (int) $offset : '');
+		if ($limit >= 0 || $offset > 0) {
+			$sql .= ' LIMIT ' . $limit . ($offset > 0 ? ' OFFSET ' . (int) $offset : '');
+		}
 	}
 
 

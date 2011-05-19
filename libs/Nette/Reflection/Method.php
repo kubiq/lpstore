@@ -21,13 +21,13 @@ use Nette,
  *
  * @author     David Grudl
  */
-class MethodReflection extends \ReflectionMethod
+class Method extends \ReflectionMethod
 {
 
 	/**
 	 * @param  string|object
 	 * @param  string
-	 * @return MethodReflection
+	 * @return Method
 	 */
 	public static function from($class, $method)
 	{
@@ -41,17 +41,7 @@ class MethodReflection extends \ReflectionMethod
 	 */
 	public function getDefaultParameters()
 	{
-		$res = array();
-		foreach (parent::getParameters() as $param) {
-			$res[$param->getName()] = $param->isDefaultValueAvailable()
-				? $param->getDefaultValue()
-				: NULL;
-
-			if ($param->isArray()) {
-				settype($res[$param->getName()], 'array');
-			}
-		}
-		return $res;
+		return self::buildDefaultParameters(parent::getParameters());
 	}
 
 
@@ -64,20 +54,7 @@ class MethodReflection extends \ReflectionMethod
 	 */
 	public function invokeNamedArgs($object, $args)
 	{
-		$res = array();
-		$i = 0;
-		foreach ($this->getDefaultParameters() as $name => $def) {
-			if (isset($args[$name])) { // NULL treats as none value
-				$val = $args[$name];
-				if ($def !== NULL) {
-					settype($val, gettype($def));
-				}
-				$res[$i++] = $val;
-			} else {
-				$res[$i++] = $def;
-			}
-		}
-		return $this->invokeArgs($object, $res);
+		return $this->invokeArgs($object, self::combineArgs($this->getDefaultParameters(), $args));
 	}
 
 
@@ -85,7 +62,7 @@ class MethodReflection extends \ReflectionMethod
 	/**
 	 * @return Nette\Callback
 	 */
-	public function getCallback()
+	public function toCallback()
 	{
 		return new Nette\Callback(parent::getDeclaringClass()->getName(), $this->getName());
 	}
@@ -104,32 +81,32 @@ class MethodReflection extends \ReflectionMethod
 
 
 	/**
-	 * @return ClassReflection
+	 * @return ClassType
 	 */
 	public function getDeclaringClass()
 	{
-		return new ClassReflection(parent::getDeclaringClass()->getName());
+		return new ClassType(parent::getDeclaringClass()->getName());
 	}
 
 
 
 	/**
-	 * @return MethodReflection
+	 * @return Method
 	 */
 	public function getPrototype()
 	{
 		$prototype = parent::getPrototype();
-		return new MethodReflection($prototype->getDeclaringClass()->getName(), $prototype->getName());
+		return new Method($prototype->getDeclaringClass()->getName(), $prototype->getName());
 	}
 
 
 
 	/**
-	 * @return ExtensionReflection
+	 * @return Extension
 	 */
 	public function getExtension()
 	{
-		return ($name = $this->getExtensionName()) ? new ExtensionReflection($name) : NULL;
+		return ($name = $this->getExtensionName()) ? new Extension($name) : NULL;
 	}
 
 
@@ -138,7 +115,7 @@ class MethodReflection extends \ReflectionMethod
 	{
 		$me = array(parent::getDeclaringClass()->getName(), $this->getName());
 		foreach ($res = parent::getParameters() as $key => $val) {
-			$res[$key] = new ParameterReflection($me, $val->getName());
+			$res[$key] = new Parameter($me, $val->getName());
 		}
 		return $res;
 	}
@@ -186,16 +163,27 @@ class MethodReflection extends \ReflectionMethod
 
 
 
+	/**
+	 * Returns value of annotation 'description'.
+	 * @return string
+	 */
+	public function getDescription()
+	{
+		return $this->getAnnotation('description');
+	}
+
+
+
 	/********************* Nette\Object behaviour ****************d*g**/
 
 
 
 	/**
-	 * @return ClassReflection
+	 * @return ClassType
 	 */
 	public static function getReflection()
 	{
-		return new ClassReflection(get_called_class());
+		return new ClassType(get_called_class());
 	}
 
 
@@ -231,6 +219,49 @@ class MethodReflection extends \ReflectionMethod
 	public function __unset($name)
 	{
 		ObjectMixin::remove($this, $name);
+	}
+
+
+
+	/********************* helpers ****************d*g**/
+
+
+
+	/** @internal */
+	public static function buildDefaultParameters($params)
+	{
+		$res = array();
+		foreach ($params as $param) {
+			$res[$param->getName()] = $param->isDefaultValueAvailable()
+				? $param->getDefaultValue()
+				: NULL;
+
+			if ($param->isArray()) {
+				settype($res[$param->getName()], 'array');
+			}
+		}
+		return $res;
+	}
+
+
+
+	/** @internal */
+	public static function combineArgs($params, $args)
+	{
+		$res = array();
+		$i = 0;
+		foreach ($params as $name => $def) {
+			if (isset($args[$name])) { // NULL treats as none value
+				$val = $args[$name];
+				if ($def !== NULL) {
+					settype($val, gettype($def));
+				}
+				$res[$i++] = $val;
+			} else {
+				$res[$i++] = $def;
+			}
+		}
+		return $res;
 	}
 
 }

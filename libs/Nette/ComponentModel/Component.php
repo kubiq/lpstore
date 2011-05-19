@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette;
+namespace Nette\ComponentModel;
 
 use Nette;
 
@@ -23,11 +23,11 @@ use Nette;
  * @author     David Grudl
  *
  * @property-read string $name
- * @property IComponentContainer $parent
+ * @property IContainer $parent
  */
-abstract class Component extends Object implements IComponent
+abstract class Component extends Nette\Object implements IComponent
 {
-	/** @var IComponentContainer */
+	/** @var IContainer */
 	private $parent;
 
 	/** @var string */
@@ -40,7 +40,7 @@ abstract class Component extends Object implements IComponent
 
 	/**
 	 */
-	public function __construct(IComponentContainer $parent = NULL, $name = NULL)
+	public function __construct(IContainer $parent = NULL, $name = NULL)
 	{
 		if ($parent !== NULL) {
 			$parent->addComponent($this, $name);
@@ -65,11 +65,15 @@ abstract class Component extends Object implements IComponent
 			$path = self::NAME_SEPARATOR . $this->name;
 			$depth = 1;
 			while ($obj !== NULL) {
-				if ($obj instanceof $type) break;
+				if ($obj instanceof $type) {
+					break;
+				}
 				$path = self::NAME_SEPARATOR . $obj->getName() . $path;
 				$depth++;
 				$obj = $obj->getParent(); // IComponent::getParent()
-				if ($obj === $this) $obj = NULL; // prevent cycling
+				if ($obj === $this) {
+					$obj = NULL; // prevent cycling
+				}
 			}
 
 			if ($obj) {
@@ -81,7 +85,7 @@ abstract class Component extends Object implements IComponent
 		}
 
 		if ($need && $this->monitors[$type][0] === NULL) {
-			throw new \InvalidStateException("Component '$this->name' is not attached to '$type'.");
+			throw new Nette\InvalidStateException("Component '$this->name' is not attached to '$type'.");
 		}
 
 		return $this->monitors[$type][0];
@@ -173,7 +177,7 @@ abstract class Component extends Object implements IComponent
 
 	/**
 	 * Returns the container if any.
-	 * @return IComponentContainer|NULL
+	 * @return IContainer|NULL
 	 */
 	final public function getParent()
 	{
@@ -185,13 +189,13 @@ abstract class Component extends Object implements IComponent
 	/**
 	 * Sets the parent of this component. This method is managed by containers and should
 	 * not be called by applications
-	 * @param  IComponentContainer  New parent or null if this component is being removed from a parent
+	 * @param  IContainer  New parent or null if this component is being removed from a parent
 	 * @param  string
 	 * @return Component  provides a fluent interface
-	 * @throws \InvalidStateException
+	 * @throws Nette\InvalidStateException
 	 * @internal
 	 */
-	public function setParent(IComponentContainer $parent = NULL, $name = NULL)
+	public function setParent(IContainer $parent = NULL, $name = NULL)
 	{
 		if ($parent === NULL && $this->parent === NULL && $name !== NULL) {
 			$this->name = $name; // just rename
@@ -203,7 +207,7 @@ abstract class Component extends Object implements IComponent
 
 		// A component cannot be given a parent if it already has a parent.
 		if ($this->parent !== NULL && $parent !== NULL) {
-			throw new \InvalidStateException("Component '$this->name' already has a parent.");
+			throw new Nette\InvalidStateException("Component '$this->name' already has a parent.");
 		}
 
 		// remove from parent?
@@ -214,7 +218,9 @@ abstract class Component extends Object implements IComponent
 		} else { // add to parent
 			$this->validateParent($parent);
 			$this->parent = $parent;
-			if ($name !== NULL) $this->name = $name;
+			if ($name !== NULL) {
+				$this->name = $name;
+			}
 
 			$tmp = array();
 			$this->refreshMonitors(0, $tmp);
@@ -226,12 +232,12 @@ abstract class Component extends Object implements IComponent
 
 	/**
 	 * Is called by a component when it is about to be set new parent. Descendant can
-	 * override this method to disallow a parent change by throwing an \InvalidStateException
-	 * @param  IComponentContainer
+	 * override this method to disallow a parent change by throwing an Nette\InvalidStateException
+	 * @param  IContainer
 	 * @return void
-	 * @throws \InvalidStateException
+	 * @throws Nette\InvalidStateException
 	 */
-	protected function validateParent(IComponentContainer $parent)
+	protected function validateParent(IContainer $parent)
 	{
 	}
 
@@ -246,7 +252,7 @@ abstract class Component extends Object implements IComponent
 	 */
 	private function refreshMonitors($depth, & $missing = NULL, & $listeners = array())
 	{
-		if ($this instanceof IComponentContainer) {
+		if ($this instanceof IContainer) {
 			foreach ($this->getComponents() as $component) {
 				if ($component instanceof Component) {
 					$component->refreshMonitors($depth + 1, $missing, $listeners);
@@ -311,7 +317,7 @@ abstract class Component extends Object implements IComponent
 		if ($this->parent === NULL) {
 			return;
 
-		} elseif ($this->parent instanceof ComponentContainer) {
+		} elseif ($this->parent instanceof Container) {
 			$this->parent = $this->parent->_isCloning();
 			if ($this->parent === NULL) { // not cloning
 				$this->refreshMonitors(0);
@@ -330,7 +336,7 @@ abstract class Component extends Object implements IComponent
 	 */
 	final public function __wakeup()
 	{
-		throw new \NotImplementedException;
+		throw new Nette\NotImplementedException;
 	}
 
 }

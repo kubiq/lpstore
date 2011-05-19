@@ -22,7 +22,7 @@ use Nette;
  */
 final class Callback extends Object
 {
-	/** @var callback */
+	/** @var string|array|\Closure */
 	private $cb;
 
 
@@ -35,13 +35,21 @@ final class Callback extends Object
 	public function __construct($t, $m = NULL)
 	{
 		if ($m === NULL) {
-			$this->cb = $t;
+			if (is_string($t)) {
+				$t = explode('::', $t, 2);
+				$this->cb = isset($t[1]) ? $t : $t[0];
+			} elseif (is_object($t)) {
+				$this->cb = $t instanceof \Closure ? $t : array($t, '__invoke');
+			} else {
+				$this->cb = $t;
+			}
+
 		} else {
 			$this->cb = array($t, $m);
 		}
 
 		if (!is_callable($this->cb, TRUE)) {
-			throw new \InvalidArgumentException("Invalid callback.");
+			throw new InvalidArgumentException("Invalid callback.");
 		}
 	}
 
@@ -54,7 +62,7 @@ final class Callback extends Object
 	public function __invoke()
 	{
 		if (!is_callable($this->cb)) {
-			throw new \InvalidStateException("Callback '$this' is not callable.");
+			throw new InvalidStateException("Callback '$this' is not callable.");
 		}
 		$args = func_get_args();
 		return call_user_func_array($this->cb, $args);
@@ -69,7 +77,7 @@ final class Callback extends Object
 	public function invoke()
 	{
 		if (!is_callable($this->cb)) {
-			throw new \InvalidStateException("Callback '$this' is not callable.");
+			throw new InvalidStateException("Callback '$this' is not callable.");
 		}
 		$args = func_get_args();
 		return call_user_func_array($this->cb, $args);
@@ -85,9 +93,26 @@ final class Callback extends Object
 	public function invokeArgs(array $args)
 	{
 		if (!is_callable($this->cb)) {
-			throw new \InvalidStateException("Callback '$this' is not callable.");
+			throw new InvalidStateException("Callback '$this' is not callable.");
 		}
 		return call_user_func_array($this->cb, $args);
+	}
+
+
+
+	/**
+	 * Invokes callback using named parameters.
+	 * @param  array
+	 * @return mixed
+	 */
+	public function invokeNamedArgs(array $args)
+	{
+		$ref = $this->toReflection();
+		if (is_array($this->cb)) {
+			return $ref->invokeNamedArgs(is_object($this->cb[0]) ? $this->cb[0] : NULL, $args);
+		} else {
+			return $ref->invokeNamedArgs($args);
+		}
 	}
 
 
@@ -105,11 +130,26 @@ final class Callback extends Object
 
 	/**
 	 * Returns PHP callback pseudotype.
-	 * @return callback
+	 * @return string|array|\Closure
 	 */
 	public function getNative()
 	{
 		return $this->cb;
+	}
+
+
+
+	/**
+	 * Returns callback reflection.
+	 * @return Nette\Reflection\GlobalFunction|Nette\Reflection\Method
+	 */
+	public function toReflection()
+	{
+		if (is_array($this->cb)) {
+			return new Nette\Reflection\Method($this->cb[0], $this->cb[1]);
+		} else {
+			return new Nette\Reflection\GlobalFunction($this->cb);
+		}
 	}
 
 
@@ -129,8 +169,14 @@ final class Callback extends Object
 	 */
 	public function __toString()
 	{
-		is_callable($this->cb, TRUE, $textual);
-		return $textual;
+		if ($this->cb instanceof \Closure) {
+			return '{closure}';
+		} elseif (is_string($this->cb) && $this->cb[0] === "\0") {
+			return '{lambda}';
+		} else {
+			is_callable($this->cb, TRUE, $textual);
+			return $textual;
+		}
 	}
 
 }

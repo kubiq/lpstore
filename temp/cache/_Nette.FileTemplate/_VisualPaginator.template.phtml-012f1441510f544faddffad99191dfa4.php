@@ -1,9 +1,9 @@
-<?php //netteCache[01]000379a:2:{s:4:"time";s:21:"0.98256900 1305465384";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:59:"/home/kubiq/php/lpstore/libs/VisualPaginator/template.phtml";i:2;i:1305384540;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:28:"$WCREV$ released on $WCDATE$";}}}?><?php
+<?php //netteCache[01]000381a:2:{s:4:"time";s:21:"0.29540800 1305752062";s:9:"callbacks";a:2:{i:0;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:9:"checkFile";}i:1;s:59:"/home/kubiq/php/lpstore/libs/VisualPaginator/template.phtml";i:2;i:1305384540;}i:1;a:3:{i:0;a:2:{i:0;s:19:"Nette\Caching\Cache";i:1;s:10:"checkConst";}i:1;s:25:"Nette\Framework::REVISION";i:2;s:30:"289e719 released on 2011-05-17";}}}?><?php
 
 // source file: /home/kubiq/php/lpstore/libs/VisualPaginator/template.phtml
 
 ?><?php
-$_l = Nette\Latte\DefaultMacros::initRuntime($template, NULL, '8xruc51yow'); unset($_extends);
+$_l = Nette\Latte\DefaultMacros::initRuntime($template, NULL, '44pjy7hj9j'); unset($_extends);
 
 if (isset($presenter, $control) && $presenter->isAjax() && $control->isControlInvalid()) {
 	return Nette\Latte\DefaultMacros::renderSnippets($control, $_l, get_defined_vars());

@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette\Web;
+namespace Nette\Utils;
 
 use Nette;
 
@@ -71,7 +71,7 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 		}
 
 		if (isset($parts[1])) {
-			foreach (Nette\String::matchAll($parts[1] . ' ', '#([a-z0-9:-]+)(?:=(["\'])?(.*?)(?(2)\\2|\s))?#i') as $m) {
+			foreach (Strings::matchAll($parts[1] . ' ', '#([a-z0-9:-]+)(?:=(["\'])?(.*?)(?(2)\\2|\s))?#i') as $m) {
 				$el->attrs[$m[1]] = isset($m[3]) ? $m[3] : TRUE;
 			}
 		}
@@ -86,12 +86,12 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 	 * @param  string
 	 * @param  bool  Is element empty?
 	 * @return Html  provides a fluent interface
-	 * @throws \InvalidArgumentException
+	 * @throws Nette\InvalidArgumentException
 	 */
 	final public function setName($name, $isEmpty = NULL)
 	{
 		if ($name !== NULL && !is_string($name)) {
-			throw new \InvalidArgumentException("Name must be string or NULL, " . gettype($name) ." given.");
+			throw new Nette\InvalidArgumentException("Name must be string or NULL, " . gettype($name) ." given.");
 		}
 
 		$this->name = $name;
@@ -223,7 +223,9 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 	{
 		if ($query) {
 			$query = http_build_query($query, NULL, '&');
-			if ($query !== '') $path .= '?' . $query;
+			if ($query !== '') {
+				$path .= '?' . $query;
+			}
 		}
 		$this->attrs['href'] = $path;
 		return $this;
@@ -235,7 +237,7 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 	 * Sets element's HTML content.
 	 * @param  string
 	 * @return Html  provides a fluent interface
-	 * @throws \InvalidArgumentException
+	 * @throws Nette\InvalidArgumentException
 	 */
 	final public function setHtml($html)
 	{
@@ -243,7 +245,7 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 			$html = '';
 
 		} elseif (is_array($html)) {
-			throw new \InvalidArgumentException("Textual content must be a scalar, " . gettype($html) ." given.");
+			throw new Nette\InvalidArgumentException("Textual content must be a scalar, " . gettype($html) ." given.");
 
 		} else {
 			$html = (string) $html;
@@ -279,7 +281,7 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 	 * Sets element's textual content.
 	 * @param  string
 	 * @return Html  provides a fluent interface
-	 * @throws \InvalidArgumentException
+	 * @throws Nette\InvalidArgumentException
 	 */
 	final public function setText($text)
 	{
@@ -347,7 +349,7 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 			}
 
 		} else {
-			throw new \InvalidArgumentException("Child node must be scalar or Html object, " . (is_object($child) ? get_class($child) : gettype($child)) ." given.");
+			throw new Nette\InvalidArgumentException("Child node must be scalar or Html object, " . (is_object($child) ? get_class($child) : gettype($child)) ." given.");
 		}
 
 		return $this;
@@ -438,10 +440,10 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 	{
 		if ($deep) {
 			$deep = $deep > 0 ? \RecursiveIteratorIterator::SELF_FIRST : \RecursiveIteratorIterator::CHILD_FIRST;
-			return new \RecursiveIteratorIterator(new Nette\GenericRecursiveIterator(new \ArrayIterator($this->children)), $deep);
+			return new \RecursiveIteratorIterator(new Nette\Iterators\Recursor(new \ArrayIterator($this->children)), $deep);
 
 		} else {
-			return new Nette\GenericRecursiveIterator(new \ArrayIterator($this->children));
+			return new Nette\Iterators\Recursor(new \ArrayIterator($this->children));
 		}
 	}
 
@@ -538,15 +540,15 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 
 		$s = '';
 		foreach ($this->attrs as $key => $value) {
-			// skip NULLs and false boolean attributes
-			if ($value === NULL || $value === FALSE) continue;
+			if ($value === NULL || $value === FALSE) {
+				continue;
 
-			// true boolean attribute
-			if ($value === TRUE) {
-				// in XHTML must use unminimized form
-				if (self::$xhtml) $s .= ' ' . $key . '="' . $key . '"';
-				// in HTML should use minimized form
-				else $s .= ' ' . $key;
+			} elseif ($value === TRUE) {
+				if (self::$xhtml) {
+					$s .= ' ' . $key . '="' . $key . '"';
+				} else {
+					$s .= ' ' . $key;
+				}
 				continue;
 
 			} elseif (is_array($value)) {
@@ -559,16 +561,16 @@ class Html extends Nette\Object implements \ArrayAccess, \Countable, \IteratorAg
 					continue;
 				}
 
-				// prepare into temporary array
 				$tmp = NULL;
 				foreach ($value as $k => $v) {
-					// skip NULLs & empty string; composite 'style' vs. 'others'
-					if ($v == NULL) continue; // intentionally ==
-
-					//  composite 'style' vs. 'others'
-					$tmp[] = $v === TRUE ? $k : (is_string($k) ? $k . ':' . $v : $v);
+					if ($v != NULL) { // intentionally ==, skip NULLs & empty string
+						//  composite 'style' vs. 'others'
+						$tmp[] = $v === TRUE ? $k : (is_string($k) ? $k . ':' . $v : $v);
+					}
 				}
-				if ($tmp === NULL) continue;
+				if ($tmp === NULL) {
+					continue;
+				}
 
 				$value = implode($key === 'style' || !strncmp($key, 'on', 2) ? ';' : ' ', $tmp);
 

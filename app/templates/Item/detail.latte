@@ -1,14 +1,4 @@
 {block head}
-<style>
-#dealsList a.dealName {
-	cursor:pointer;
-	display:block;
-	margin-top: 0;
-	text-decoration: none;
-	outline:0;
-	clear: both;
-}
-</style>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.dealName').click(function() {
@@ -22,6 +12,9 @@ $(document).ready(function(){
 {block content}
 
 <a href="#" onclick="CCPEVE.showInfo({$item->typeID})"><h2 class="typeName">{$item->typeName}</h2></a>
+{if $item->categoryID == 6}
+	<img src="images/types/shiptypes_png/128_128/{$item->typeID}.png" class="shipImg" />
+{/if}
 <div>
 	<table>
 		<tbody>
@@ -50,8 +43,12 @@ $(document).ready(function(){
 
 <div id="dealsList">
 		{foreach $transactions as $trans}
-	<a class="dealName" href="#section{$iterator->getCounter()}"><h3>{$trans->corp}</h3></a>
-	<div>
+	<a class="dealName" href="#section{$iterator->getCounter()}">
+		<h3 class="inline">{$trans->corp}</h3>
+		<h4 class="lpPrice inline">({$trans->lpPrice|isk} for 1 LP)</h4>
+	</a>
+	
+	<div><a href="{link delete!, 'id'=>$trans->id}">Delete</a>  
 	<table>
 		<tbody>
 			<tr>

@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette;
+namespace Nette\Iterators;
 
 use Nette;
 
@@ -20,7 +20,7 @@ use Nette;
  *
  * @author     David Grudl
  */
-class MapIterator extends \IteratorIterator
+class Mapper extends \IteratorIterator
 {
 	/** @var callback */
 	private $callback;
@@ -31,7 +31,7 @@ class MapIterator extends \IteratorIterator
 	 * @param
 	 * @param  callback
 	 */
-	function __construct(\Traversable $iterator, $callback)
+	public function __construct(\Traversable $iterator, $callback)
 	{
 		parent::__construct($iterator);
 		$this->callback = $callback;
@@ -39,7 +39,7 @@ class MapIterator extends \IteratorIterator
 
 
 
-	function current()
+	public function current()
 	{
 		return call_user_func($this->callback, parent::current(), parent::key());
 	}

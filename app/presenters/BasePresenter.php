@@ -7,8 +7,9 @@
  * @package    LpStore
  */
 
-use Nette\Application\AppForm;
-use Nette\Application\JsonResponse;
+use Nette\Application\UI\Form;
+use Nette\Application\Responses\JsonResponse;
+use Nette\Application\UI\Presenter;
 
 /**
  * Base class for all application presenters.
@@ -16,7 +17,7 @@ use Nette\Application\JsonResponse;
  * @author     Kubiq
  * @package    LpStore
  */
-abstract class BasePresenter extends Nette\Application\Presenter {
+abstract class BasePresenter extends Nette\Application\UI\Presenter {
 
 	/**
 	 * ItemModel instance
@@ -56,8 +57,7 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 		$this->reqModel = new RequirementModel();
 		$this->eveCentralModel = new EveCentralModel();
 		$this->corporationModel = new CorporationModel();
-
-		AppForm::extensionMethod('addSuggestInput', 'SuggestInput::addSuggestInput');
+		
 	}
 
 	protected function createComponentDibiSuggester() {
@@ -91,14 +91,14 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 	
 	/**
 	 * Search form component factory.
-	 * @return Nette\Application\AppForm
+	 * @return Nette\Application\UI\Form
 	 */
 	public function createComponentSearchForm() {
-		$form = new AppForm;
+		$form = new Form;
 
 		$form->addText('q', 'Item:')
 			->setHtmlId('hledat')
-			->addRule(AppForm::MIN_LENGTH, 'You have fill at least 3 characters.', 3);
+			->addRule(Form::MIN_LENGTH, 'You have fill at least 3 characters.', 3);
 
 		$form['q']->getControlPrototype()->setSize(50);
 		
@@ -109,7 +109,7 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 		return $form;
 	}
 
-	public function searchFormSubmitted(AppForm $form) {
+	public function searchFormSubmitted(Form $form) {
 
 		$values = $form->getValues();
 		$this->redirect("Item:search", array('q' => $values['q']));
@@ -117,18 +117,18 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 	
 	/**
 	 * Search form component factory.
-	 * @return Nette\Application\AppForm
+	 * @return Nette\Application\UI\Form
 	 */
 	public function createComponentChangePriceForm() {
-		$form = new AppForm;
+		$form = new Form;
 
 		$typeName = $this->getParam('name');
 
 		$form->addText('price', 'New price:')
 			->setDefaultValue(0)
-			->addRule(AppForm::FILLED, 'Enter number pls!')
-			->addRule(AppForm::NUMERIC, 'Enter number pls!')
-			->addRule(AppForm::RANGE, 'Price cant be negative!',array(0,100000000000));
+			->addRule(Form::FILLED, 'Enter number pls!')
+			->addRule(Form::NUMERIC, 'Enter number pls!')
+			->addRule(Form::RANGE, 'Price cant be negative!',array(0,100000000000));
 
 		$form->addHidden('name', $typeName);
 		
@@ -139,7 +139,7 @@ abstract class BasePresenter extends Nette\Application\Presenter {
 		return $form;
 	}
 
-	public function changePriceFormSubmitted(AppForm $form) {
+	public function changePriceFormSubmitted(Form $form) {
 
 		$values = $form->getValues();
 		

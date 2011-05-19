@@ -1,10 +1,10 @@
 <?php
 
 // uncomment this line if you must temporarily take down your site for maintenance
-// require '.maintenance.php';
+//require __DIR__ . '/.maintenance.php';
 
 // the identification of this site
-define('SITE', 'lp store');
+define('SITE', 'lpstore');
 
 // absolute filesystem path to the web root
 define('WWW_DIR', __DIR__);

@@ -9,12 +9,12 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette\Templates;
+namespace Nette\Templating;
 
 use Nette,
-	Nette\String,
+	Nette\Utils\Strings,
 	Nette\Forms\Form,
-	Nette\Web\Html;
+	Nette\Utils\Html;
 
 
 
@@ -23,7 +23,7 @@ use Nette,
  *
  * @author     David Grudl
  */
-final class TemplateHelpers
+final class DefaultHelpers
 {
 
 	/** @var string default date format */
@@ -34,7 +34,7 @@ final class TemplateHelpers
 	 */
 	final public function __construct()
 	{
-		throw new \LogicException("Cannot instantiate static class " . get_class($this));
+		throw new Nette\StaticClassException;
 	}
 
 
@@ -46,11 +46,11 @@ final class TemplateHelpers
 	 */
 	public static function loader($helper)
 	{
-		$callback = callback('Nette\Templates\TemplateHelpers', $helper);
+		$callback = callback('Nette\Templating\DefaultHelpers', $helper);
 		if ($callback->isCallable()) {
 			return $callback;
 		}
-		$callback = callback('Nette\String', $helper);
+		$callback = callback('Nette\Utils\Strings', $helper);
 		if ($callback->isCallable()) {
 			return $callback;
 		}
@@ -61,14 +61,15 @@ final class TemplateHelpers
 	/**
 	 * Escapes string for use inside HTML template.
 	 * @param  mixed  UTF-8 encoding or 8-bit
+	 * @param  string optional attribute quotes
 	 * @return string
 	 */
-	public static function escapeHtml($s)
+	public static function escapeHtml($s, $quotes = NULL)
 	{
 		if (is_object($s) && ($s instanceof ITemplate || $s instanceof Html || $s instanceof Form)) {
 			return $s->__toString(TRUE);
 		}
-		return htmlSpecialChars($s, ENT_QUOTES);
+		return htmlSpecialChars($s, $quotes === '' ? ENT_NOQUOTES : ($quotes === '"' ? ENT_COMPAT : ENT_QUOTES));
 	}
 
 
@@ -136,7 +137,7 @@ final class TemplateHelpers
 		if (is_object($s) && ($s instanceof ITemplate || $s instanceof Html || $s instanceof Form)) {
 			$s = $s->__toString(TRUE);
 		}
-		return str_replace(']]>', ']]\x3E', Nette\Json::encode($s));
+		return str_replace(']]>', ']]\x3E', Nette\Utils\Json::encode($s));
 	}
 
 
@@ -144,11 +145,12 @@ final class TemplateHelpers
 	/**
 	 * Escapes string for use inside HTML JavaScript attribute.
 	 * @param  mixed  UTF-8 encoding
+	 * @param  string attribute quotes
 	 * @return string
 	 */
-	public static function escapeHtmlJs($s)
+	public static function escapeHtmlJs($s, $quotes = NULL)
 	{
-		return htmlSpecialChars(self::escapeJs($s), ENT_QUOTES);
+		return htmlSpecialChars(self::escapeJs($s), $quotes === '"' ? ENT_COMPAT : ENT_QUOTES);
 	}
 
 
@@ -160,7 +162,7 @@ final class TemplateHelpers
 	 */
 	public static function strip($s)
 	{
-		return String::replace(
+		return Strings::replace(
 			$s,
 			'#(</textarea|</pre|</script|^).*?(?=<textarea|<pre|<script|$)#si',
 			function($m) {
@@ -180,10 +182,10 @@ final class TemplateHelpers
 	public static function indent($s, $level = 1, $chars = "\t")
 	{
 		if ($level >= 1) {
-			$s = String::replace($s, '#<(textarea|pre).*?</\\1#si', function($m) {
+			$s = Strings::replace($s, '#<(textarea|pre).*?</\\1#si', function($m) {
 				return strtr($m[0], " \t\r\n", "\x1F\x1E\x1D\x1A");
 			});
-			$s = String::indent($s, $level, $chars);
+			$s = Strings::indent($s, $level, $chars);
 			$s = strtr($s, "\x1F\x1E\x1D\x1A", " \t\r\n");
 		}
 		return $s;
@@ -226,7 +228,9 @@ final class TemplateHelpers
 		$bytes = round($bytes);
 		$units = array('B', 'kB', 'MB', 'GB', 'TB', 'PB');
 		foreach ($units as $unit) {
-			if (abs($bytes) < 1024 || $unit === end($units)) break;
+			if (abs($bytes) < 1024 || $unit === end($units)) {
+				break;
+			}
 			$bytes = $bytes / 1024;
 		}
 		return round($bytes, $precision) . ' ' . $unit;
@@ -241,7 +245,7 @@ final class TemplateHelpers
 	 */
 	public static function length($var)
 	{
-		return is_string($var) ? String::length($var) : count($var);
+		return is_string($var) ? Strings::length($var) : count($var);
 	}
 
 
@@ -269,7 +273,7 @@ final class TemplateHelpers
 	public static function dataStream($data, $type = NULL)
 	{
 		if ($type === NULL) {
-			$type = Nette\MimeTypeDetector::fromString($data, NULL);
+			$type = Nette\Utils\MimeTypeDetector::fromString($data, NULL);
 		}
 		return 'data:' . ($type ? "$type;" : '') . 'base64,' . base64_encode($data);
 	}

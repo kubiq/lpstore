@@ -21,7 +21,7 @@ use Nette,
  *
  * @author     David Grudl
  */
-class PropertyReflection extends \ReflectionProperty
+class Property extends \ReflectionProperty
 {
 
 	public function __toString()
@@ -36,11 +36,11 @@ class PropertyReflection extends \ReflectionProperty
 
 
 	/**
-	 * @return ClassReflection
+	 * @return ClassType
 	 */
 	public function getDeclaringClass()
 	{
-		return new ClassReflection(parent::getDeclaringClass()->getName());
+		return new ClassType(parent::getDeclaringClass()->getName());
 	}
 
 
@@ -86,16 +86,27 @@ class PropertyReflection extends \ReflectionProperty
 
 
 
+	/**
+	 * Returns value of annotation 'description'.
+	 * @return string
+	 */
+	public function getDescription()
+	{
+		return $this->getAnnotation('description');
+	}
+
+
+
 	/********************* Nette\Object behaviour ****************d*g**/
 
 
 
 	/**
-	 * @return ClassReflection
+	 * @return ClassType
 	 */
 	public static function getReflection()
 	{
-		return new ClassReflection(get_called_class());
+		return new ClassType(get_called_class());
 	}
 
 

@@ -8,10 +8,11 @@
  */
 
 
-use Nette\Debug;
+use Nette\Diagnostics\Debugger;
 use Nette\Environment;
-use Nette\Application\Route;
-use Nette\Application\SimpleRouter;
+use Nette\Application\Routers\Route;
+use Nette\Application\Routers\SimpleRouter;
+
 
 
 // Step 1: Load Nette Framework 
@@ -19,42 +20,35 @@ use Nette\Application\SimpleRouter;
 // you don't have to litter your code with 'require' statements
 require LIBS_DIR . '/Nette/loader.php';
 
-
 // Step 2: Configure environment
 // 2a) enable Nette\Debug for better exception and error visualisation
-Debug::$strictMode = TRUE;
-Debug::enable(Debug::DEVELOPMENT);
-
+Debugger::$strictMode = TRUE;
+Debugger::enable(Debugger::DEVELOPMENT, 'log/', 'thebiftek@gmail.com');
 
 // 2b) load configuration from config.ini file
-Environment::loadConfig();
- 
-//Environment::setMode(Debug::PRODUCTION);
+$configurator = new Nette\Configurator();
+$configurator->loadConfig(__DIR__ . '/config.neon');
 
-// Step 3: Configure application
-// 3a) get and setup a front controller
-$application = Environment::getApplication();
+// Configure application
+$application = $configurator->container->application;
 $application->errorPresenter = 'Error';
-$application->catchExceptions = false;
-
-
+$application->catchExceptions = FALSE;
 
 // Step 4: Setup application router
 $router = $application->getRouter();
 
+$application->onStartup[] = function() use ($application) {
+	$router = $application->getRouter();
 
-
-$router[] = new SimpleRouter(array(
-    'presenter' => 'Item',
-    'action' => 'default',
-    'q' => NULL,
-));
-//$router[] = new Route('index.php', 'Item:default', Route::ONE_WAY);
+	$router[] = new SimpleRouter(array(
+	    'presenter' => 'Item',
+	    'action' => 'default',
+	));
+	
+//	$router[] = new Route('index.php', 'Item:default', Route::ONE_WAY);
 //
-//$router[] = new Route('<presenter>/<action>[/<q>]', 'Item:default');
-
-
-
+//	$router[] = new Route('<presenter>/<action>', 'Item:default');
+};
 
 $application->onStartup[] = 'BaseModel::connect';
 $application->onShutdown[] = 'BaseModel::disconnect';

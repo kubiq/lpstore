@@ -382,7 +382,9 @@ a:hover {
 	background-image: url('../images/img08.jpg');
 	text-align: center;
 	color: #F0E9E9;
-	
+	-moz-box-shadow: 0px 0px 6px #000000;
+	-webkit-box-shadow: 0px 0px 6px #000000;
+	box-shadow:0px 0px 6px #000000;
 	
 	padding-right: 10px;
 	padding-left: 10px;
@@ -424,6 +426,33 @@ a:hover {
 	padding-top: 7px;
 	padding-bottom: 7px;
 }
+
+.lpPrice {
+	display: inline;
+}
+
+#dealsList a.dealName {
+	display:block;
+	margin-top: 0;
+	text-decoration: none;
+	outline: 0;
+	clear: both;
+}
+.inline {
+	display: inline;
+}
+.shipImg {
+	-moz-box-shadow: 0px 0px 6px #000000;
+	-webkit-box-shadow: 0px 0px 6px #000000;
+	box-shadow:0px 0px 6px #000000;
+	width: 128px;
+	height: 128px;
+}
+
+
+
+
+
 
 
 

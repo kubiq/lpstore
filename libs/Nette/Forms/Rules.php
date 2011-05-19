@@ -51,12 +51,12 @@ final class Rules extends Nette\Object implements \IteratorAggregate
 	/** @var array */
 	private $toggles = array();
 
-	/** @var IFormControl */
+	/** @var IControl */
 	private $control;
 
 
 
-	public function __construct(IFormControl $control)
+	public function __construct(IControl $control)
 	{
 		$this->control = $control;
 	}
@@ -104,12 +104,12 @@ final class Rules extends Nette\Object implements \IteratorAggregate
 
 	/**
 	 * Adds a validation condition on specified control a returns new branch.
-	 * @param  IFormControl form control
+	 * @param  IControl form control
 	 * @param  mixed      condition type
 	 * @param  mixed      optional condition arguments
 	 * @return Rules      new branch
 	 */
-	public function addConditionOn(IFormControl $control, $operation, $arg = NULL)
+	public function addConditionOn(IControl $control, $operation, $arg = NULL)
 	{
 		$rule = new Rule;
 		$rule->control = $control;
@@ -117,7 +117,7 @@ final class Rules extends Nette\Object implements \IteratorAggregate
 		$this->adjustOperation($rule);
 		$rule->arg = $arg;
 		$rule->type = Rule::CONDITION;
-		$rule->subRules = new self($this->control);
+		$rule->subRules = new static($this->control);
 		$rule->subRules->parent = $this;
 
 		$this->rules[] = $rule;
@@ -134,7 +134,7 @@ final class Rules extends Nette\Object implements \IteratorAggregate
 	{
 		$rule = clone end($this->parent->rules);
 		$rule->isNegative = !$rule->isNegative;
-		$rule->subRules = new self($this->parent->control);
+		$rule->subRules = new static($this->parent->control);
 		$rule->subRules->parent = $this->parent;
 		$this->parent->rules[] = $rule;
 		return $rule->subRules;
@@ -175,7 +175,9 @@ final class Rules extends Nette\Object implements \IteratorAggregate
 	public function validate($onlyCheck = FALSE)
 	{
 		foreach ($this->rules as $rule) {
-			if ($rule->control->isDisabled()) continue;
+			if ($rule->control->isDisabled()) {
+				continue;
+			}
 
 			$success = ($rule->isNegative xor $this->getCallback($rule)->invoke($rule->control, $rule->arg));
 
@@ -231,7 +233,7 @@ final class Rules extends Nette\Object implements \IteratorAggregate
 
 		if (!$this->getCallback($rule)->isCallable()) {
 			$operation = is_scalar($rule->operation) ? " '$rule->operation'" : '';
-			throw new \InvalidArgumentException("Unknown operation$operation for control '{$rule->control->name}'.");
+			throw new Nette\InvalidArgumentException("Unknown operation$operation for control '{$rule->control->name}'.");
 		}
 	}
 

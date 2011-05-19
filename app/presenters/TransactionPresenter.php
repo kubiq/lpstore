@@ -7,8 +7,8 @@
  * @package    LpStore
  */
 use Nette\Debug;
-use Nette\Application\AppForm;
-use Nette\Application\JsonResponse;
+use Nette\Application\UI\Form;
+use Nette\Application\Responses\JsonResponse;
 use \Transaction;
 use \Requirement;
 
@@ -62,7 +62,7 @@ class TransactionPresenter extends BasePresenter {
 
 	public function createComponentTransactionForm() {
 
-		$form = new AppForm;
+		$form = new Form;
 
 		$renderer = $form->getRenderer();
 		$renderer->wrappers['form']['errors'] = FALSE;
@@ -74,89 +74,89 @@ class TransactionPresenter extends BasePresenter {
 		$form->addHidden('name', $this->getParam('name'));
 
 		$form->addText('isk', 'Isk price:')
-			->addRule(AppForm::FILLED, 'Fill out price pls!')
-			->addRule(AppForm::NUMERIC, 'Isk is number!')
-			->addRule(AppForm::RANGE, 'Cant fill price under zero!', array(0, 10000000000));
+			->addRule(Form::FILLED, 'Fill out price pls!')
+			->addRule(Form::NUMERIC, 'Isk is number!')
+			->addRule(Form::RANGE, 'Cant fill price under zero!', array(0, 10000000000));
 
 		$form->addText('lp', 'Loyaty points:')
-			->addRule(AppForm::FILLED, 'Fill out loyaty points pls!')
-			->addRule(AppForm::NUMERIC, 'LP is number!')
-			->addRule(AppForm::RANGE, 'LPs cant b under under zero!', array(0, 10000000000));
+			->addRule(Form::FILLED, 'Fill out loyaty points pls!')
+			->addRule(Form::NUMERIC, 'LP is number!')
+			->addRule(Form::RANGE, 'LPs cant b under under zero!', array(0, 10000000000));
 		
 		$form->addText('bulk', 'Bulk:')
-			->addRule(AppForm::FILLED, 'Fill out amount of things you get pls!')
-			->addRule(AppForm::NUMERIC, 'Bulk is number!')
+			->addRule(Form::FILLED, 'Fill out amount of things you get pls!')
+			->addRule(Form::NUMERIC, 'Bulk is number!')
 			->setDefaultValue(1)
-			->addRule(AppForm::RANGE, 'Bulk cant get under one!', array(1, 10000000000));
+			->addRule(Form::RANGE, 'Bulk cant get under one!', array(1, 10000000000));
 
 		$form->addText('item1', "Item 1")
 			->setHtmlId('item1');
 		$form->addText('q1', 'Quantity:')
 			->setDefaultValue(0)
 			->setHtmlId('q1')
-			->addRule(AppForm::NUMERIC, 'Enter number pls!');
+			->addRule(Form::NUMERIC, 'Enter number pls!');
 
 		$form->addText('item2', "Item 2")
 			->setHtmlId('item2');
 		$form->addText('q2', 'Quantity:')
 			->setDefaultValue(0)
 			->setHtmlId('q2')
-			->addRule(AppForm::NUMERIC, 'Enter number pls!');
+			->addRule(Form::NUMERIC, 'Enter number pls!');
 
 		$form->addText('item3', "Item 3")
 			->setHtmlId('item3');
 		$form->addText('q3', 'Quantity:')
 			->setDefaultValue(0)
 			->setHtmlId('q3')
-			->addRule(AppForm::NUMERIC, 'Enter number pls!');
+			->addRule(Form::NUMERIC, 'Enter number pls!');
 
 		$form->addText('item4', "Item 4")
 			->setHtmlId('item4');
 		$form->addText('q4', 'Quantity:')
 			->setDefaultValue(0)
 			->setHtmlId('q4')
-			->addRule(AppForm::NUMERIC, 'Enter number pls!');
+			->addRule(Form::NUMERIC, 'Enter number pls!');
 
 		$form->addText('item5', "Item 5")
 			->setHtmlId('item5');
 		$form->addText('q5', 'Quantity:')
 			->setDefaultValue(0)
 			->setHtmlId('q5')
-			->addRule(AppForm::NUMERIC, 'Enter number pls!');
+			->addRule(Form::NUMERIC, 'Enter number pls!');
 
 		$form->addText('corp', "Corporation:")
-			->addRule(AppForm::FILLED,"Select corporation please.")
+			->addRule(Form::FILLED,"Select corporation please.")
 			->setHtmlId('corp');
 		
-		$form['item1']	->addCondition(AppForm::FILLED)
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		$form['item1']	->addCondition(Form::FILLED)
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item2'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item3'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item4'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item5']);
 		
-		$form['item2']	->addCondition(AppForm::FILLED)
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item1'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		$form['item2']	->addCondition(Form::FILLED)
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item1'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item3'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item4'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item5']);
 		
-		$form['item3']	->addCondition(AppForm::FILLED)
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item1'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		$form['item3']	->addCondition(Form::FILLED)
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item2'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item1'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item4'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item5']);
 		
-		$form['item4']	->addCondition(AppForm::FILLED)
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item1'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item5']);
+		$form['item4']	->addCondition(Form::FILLED)
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item2'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item3'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item1'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item5']);
 		
-		$form['item5']	->addCondition(AppForm::FILLED)
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item2'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item3'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item4'])
-				->addRule(~AppForm::EQUAL, "You can't have duplicities!", $form['item1']);
+		$form['item5']	->addCondition(Form::FILLED)
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item2'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item3'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item4'])
+				->addRule(~Form::EQUAL, "You can't have duplicities!", $form['item1']);
 		
 		$form['item1']->getControlPrototype()->setSize(50);
 		$form['item2']->getControlPrototype()->setSize(50);

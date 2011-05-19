@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette\Templates;
+namespace Nette\Templating;
 
 use Nette;
 
@@ -20,7 +20,7 @@ use Nette;
  *
  * @author     David Grudl
  */
-class TemplateException extends \InvalidStateException implements Nette\IDebugPanel
+class FilterException extends Nette\InvalidStateException
 {
 	/** @var string */
 	public $sourceFile;
@@ -30,7 +30,7 @@ class TemplateException extends \InvalidStateException implements Nette\IDebugPa
 
 
 
-	function __construct($message, $code = 0, $sourceLine = 0)
+	public function __construct($message, $code = 0, $sourceLine = 0)
 	{
 		$this->sourceLine = (int) $sourceLine;
 		parent::__construct($message, $code);
@@ -38,34 +38,11 @@ class TemplateException extends \InvalidStateException implements Nette\IDebugPa
 
 
 
-	function setSourceFile($file)
+	public function setSourceFile($file)
 	{
 		$this->sourceFile = (string) $file;
 		$this->message = rtrim($this->message, '.') . " in " . str_replace(dirname(dirname($file)), '...', $file)
 			. ($this->sourceLine ? ":$this->sourceLine" : '');
-	}
-
-
-
-	function getTab()
-	{
-		return 'Template';
-	}
-
-
-
-	function getPanel()
-	{
-		$link = Nette\DebugHelpers::editorLink($this->sourceFile, $this->sourceLine);
-		return '<p><b>File:</b> ' . ($link ? '<a href="' . htmlspecialchars($link) . '">' : '') . htmlspecialchars($this->sourceFile) . ($link ? '</a>' : '')
-			. '&nbsp; <b>Line:</b> ' . ($this->sourceLine ? $this->sourceLine : 'n/a') . '</p>'
-			. ($this->sourceLine ? '<pre>' . Nette\DebugHelpers::highlightFile($this->sourceFile, $this->sourceLine) . '</pre>' : '');
-	}
-
-
-
-	function getId()
-	{
 	}
 
 }

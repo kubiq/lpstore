@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette;
+namespace Nette\Utils;
 
 use Nette,
 	RecursiveIteratorIterator;
@@ -28,7 +28,7 @@ use Nette,
  *
  * @author     David Grudl
  */
-class Finder extends Object implements \IteratorAggregate
+class Finder extends Nette\Object implements \IteratorAggregate
 {
 	/** @var array */
 	private $paths = array();
@@ -60,7 +60,7 @@ class Finder extends Object implements \IteratorAggregate
 		if (!is_array($mask)) {
 			$mask = func_get_args();
 		}
-		$finder = new self;
+		$finder = new static;
 		return $finder->select(array(), 'isDir')->select($mask, 'isFile');
 	}
 
@@ -76,7 +76,7 @@ class Finder extends Object implements \IteratorAggregate
 		if (!is_array($mask)) {
 			$mask = func_get_args();
 		}
-		$finder = new self;
+		$finder = new static;
 		return $finder->select($mask, 'isFile');
 	}
 
@@ -92,7 +92,7 @@ class Finder extends Object implements \IteratorAggregate
 		if (!is_array($mask)) {
 			$mask = func_get_args();
 		}
-		$finder = new self;
+		$finder = new static;
 		return $finder->select($mask, 'isDir');
 	}
 
@@ -144,7 +144,7 @@ class Finder extends Object implements \IteratorAggregate
 	public function from($path)
 	{
 		if ($this->paths) {
-			throw new \InvalidStateException('Directory to search has already been specified.');
+			throw new Nette\InvalidStateException('Directory to search has already been specified.');
 		}
 		if (!is_array($path)) {
 			$path = func_get_args();
@@ -204,12 +204,12 @@ class Finder extends Object implements \IteratorAggregate
 
 	/**
 	 * Returns iterator.
-	 * @return Iterator
+	 * @return Nette\Iterator
 	 */
 	public function getIterator()
 	{
 		if (!$this->paths) {
-			throw new \InvalidStateException('Call in() or from() to specify directory to search.');
+			throw new Nette\InvalidStateException('Call in() or from() to specify directory to search.');
 
 		} elseif (count($this->paths) === 1) {
 			return $this->buildIterator($this->paths[0]);
@@ -228,19 +228,19 @@ class Finder extends Object implements \IteratorAggregate
 	/**
 	 * Returns per-path iterator.
 	 * @param  string
-	 * @return Iterator
+	 * @return Nette\Iterator
 	 */
 	private function buildIterator($path)
 	{
 		if (PHP_VERSION_ID < 50301) {
-			$iterator = new RecursiveDirectoryIteratorFixed($path);
+			$iterator = new Nette\Utils\RecursiveDirectoryIteratorFixed($path);
 		} else {
 			$iterator = new \RecursiveDirectoryIterator($path, \RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
 		}
 
 		if ($this->exclude) {
 			$filters = $this->exclude;
-			$iterator = new RecursiveCallbackFilterIterator($iterator, function($file) use ($filters) {
+			$iterator = new Nette\Iterators\RecursiveFilter($iterator, function($file) use ($filters) {
 				if (!$file->isFile()) {
 					foreach ($filters as $filter) {
 						if (!call_user_func($filter, $file)) {
@@ -259,7 +259,7 @@ class Finder extends Object implements \IteratorAggregate
 
 		if ($this->groups) {
 			$groups = $this->groups;
-			$iterator = new CallbackFilterIterator($iterator, function($file) use ($groups) {
+			$iterator = new Nette\Iterators\Filter($iterator, function($file) use ($groups) {
 				foreach ($groups as $filters) {
 					foreach ($filters as $filter) {
 						if (!call_user_func($filter, $file)) {
@@ -339,7 +339,7 @@ class Finder extends Object implements \IteratorAggregate
 	{
 		if (func_num_args() === 1) { // in $operator is predicate
 			if (!preg_match('#^(?:([=<>!]=?|<>)\s*)?((?:\d*\.)?\d+)\s*(K|M|G|)B?$#i', $operator, $matches)) {
-				throw new \InvalidArgumentException('Invalid size predicate format.');
+				throw new Nette\InvalidArgumentException('Invalid size predicate format.');
 			}
 			list(, $operator, $size, $unit) = $matches;
 			static $units = array('' => 1, 'k' => 1e3, 'm' => 1e6, 'g' => 1e9);
@@ -363,12 +363,12 @@ class Finder extends Object implements \IteratorAggregate
 	{
 		if (func_num_args() === 1) { // in $operator is predicate
 			if (!preg_match('#^(?:([=<>!]=?|<>)\s*)?(.+)$#i', $operator, $matches)) {
-				throw new \InvalidArgumentException('Invalid date predicate format.');
+				throw new Nette\InvalidArgumentException('Invalid date predicate format.');
 			}
 			list(, $operator, $date) = $matches;
 			$operator = $operator ? $operator : '=';
 		}
-		$date = DateTime::from($date)->format('U');
+		$date = Nette\DateTime::from($date)->format('U');
 		return $this->filter(function($file) use ($operator, $date) {
 			return Finder::compare($file->getMTime(), $operator, $date);
 		});
@@ -401,7 +401,7 @@ class Finder extends Object implements \IteratorAggregate
 		case '<>':
 			return $l != $r;
 		}
-		throw new \InvalidArgumentException("Unknown operator $operator.");
+		throw new Nette\InvalidArgumentException("Unknown operator $operator.");
 	}
 
 }

@@ -9,7 +9,7 @@
  * the file license.txt that was distributed with this source code.
  */
 
-namespace Nette\Application;
+namespace Nette\Application\Routers;
 
 use Nette;
 
@@ -20,7 +20,7 @@ use Nette;
  *
  * @author     David Grudl
  */
-class MultiRouter extends Nette\ArrayList implements IRouter
+class RouteList extends Nette\ArrayList implements Nette\Application\IRouter
 {
 	/** @var array */
 	private $cachedRoutes;
@@ -38,11 +38,11 @@ class MultiRouter extends Nette\ArrayList implements IRouter
 
 
 	/**
-	 * Maps HTTP request to a PresenterRequest object.
-	 * @param  Nette\Web\IHttpRequest
-	 * @return PresenterRequest|NULL
+	 * Maps HTTP request to a Request object.
+	 * @param  Nette\Http\IRequest
+	 * @return Nette\Application\Request|NULL
 	 */
-	public function match(Nette\Web\IHttpRequest $httpRequest)
+	public function match(Nette\Http\IRequest $httpRequest)
 	{
 		foreach ($this as $route) {
 			$appRequest = $route->match($httpRequest);
@@ -57,12 +57,12 @@ class MultiRouter extends Nette\ArrayList implements IRouter
 
 
 	/**
-	 * Constructs absolute URL from PresenterRequest object.
-	 * @param  PresenterRequest
-	 * @param  Nette\Web\Uri
+	 * Constructs absolute URL from Request object.
+	 * @param  Nette\Application\Request
+	 * @param  Nette\Http\Url
 	 * @return string|NULL
 	 */
-	public function constructUrl(PresenterRequest $appRequest, Nette\Web\Uri $refUri)
+	public function constructUrl(Nette\Application\Request $appRequest, Nette\Http\Url $refUrl)
 	{
 		if ($this->cachedRoutes === NULL) {
 			$routes = array();
@@ -71,7 +71,9 @@ class MultiRouter extends Nette\ArrayList implements IRouter
 			foreach ($this as $route) {
 				$presenter = $route instanceof Route ? $route->getTargetPresenter() : NULL;
 
-				if ($presenter === FALSE) continue;
+				if ($presenter === FALSE) {
+					continue;
+				}
 
 				if (is_string($presenter)) {
 					$presenter = strtolower($presenter);
@@ -100,12 +102,14 @@ class MultiRouter extends Nette\ArrayList implements IRouter
 		}
 
 		$presenter = strtolower($appRequest->getPresenterName());
-		if (!isset($this->cachedRoutes[$presenter])) $presenter = '*';
+		if (!isset($this->cachedRoutes[$presenter])) {
+			$presenter = '*';
+		}
 
 		foreach ($this->cachedRoutes[$presenter] as $route) {
-			$uri = $route->constructUrl($appRequest, $refUri);
-			if ($uri !== NULL) {
-				return $uri;
+			$url = $route->constructUrl($appRequest, $refUrl);
+			if ($url !== NULL) {
+				return $url;
 			}
 		}
 
@@ -117,13 +121,13 @@ class MultiRouter extends Nette\ArrayList implements IRouter
 	/**
 	 * Adds the router.
 	 * @param  mixed
-	 * @param  IRouter
+	 * @param  Nette\Application\IRouter
 	 * @return void
 	 */
 	public function offsetSet($index, $route)
 	{
-		if (!$route instanceof IRouter) {
-			throw new \InvalidArgumentException("Argument must be IRouter descendant.");
+		if (!$route instanceof Nette\Application\IRouter) {
+			throw new Nette\InvalidArgumentException("Argument must be IRouter descendant.");
 		}
 		parent::offsetSet($index, $route);
 	}
